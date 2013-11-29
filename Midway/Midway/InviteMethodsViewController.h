@@ -12,6 +12,5 @@
 @interface InviteMethodsViewController : UITableViewController
 
 @property ABRecordID personID;
-@property NSString * test;
 
 @end

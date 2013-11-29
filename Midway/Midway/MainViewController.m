@@ -12,7 +12,7 @@
 @interface MainViewController ()
 
 - (IBAction)inviteAFriend:(id)sender;
--(void) displayPerson:(ABRecordRef)person;
+
 @property ABRecordID personID;
 
 @end
@@ -51,8 +51,6 @@
     }
 }
 
-
-
 - (IBAction)inviteAFriend:(id)sender {
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
@@ -67,9 +65,8 @@
 
 -(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
-    self.personID = ABRecordGetRecordID(person);
-//    [self displayPerson:person];
     [self dismissViewControllerAnimated:NO completion:nil];
+    self.personID = ABRecordGetRecordID(person);
     [self performSegueWithIdentifier:@"inviteMethods" sender:self];
     return NO;
 }
@@ -78,19 +75,5 @@
     
     return NO;
 }
-
--(void) displayPerson:(ABRecordRef)person {
-    
-//    NSString *name = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    
-    ABMultiValueRef emailMultiValue = ABRecordCopyValue(person, kABPersonEmailProperty);
-    NSArray *emailAddresses = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(emailMultiValue);
-    
-    NSString *email = [emailAddresses firstObject];
-    
-    self.labelOfInvited.text  = email;
-    
-}
-
 
 @end

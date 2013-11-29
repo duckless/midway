@@ -12,6 +12,4 @@
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 
-@property (weak, nonatomic) IBOutlet UILabel *labelOfInvited;
-
 @end
