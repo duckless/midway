@@ -7,7 +7,11 @@
 //
 
 #import "FlipsideViewController.h"
+#import "AddressBookUI/AddressBookUI.h"
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate>
+- (IBAction)showAddressBookEmail:(id)sender;
+- (IBAction)showAddressBookSMS:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *labelOfInvited;
 
 @end
