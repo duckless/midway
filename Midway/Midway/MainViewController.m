@@ -10,6 +10,8 @@
 
 @interface MainViewController ()
 
+-(void) displayPerson:(ABRecordRef)person;
+
 @end
 
 @implementation MainViewController
@@ -39,5 +41,48 @@
         [[segue destinationViewController] setDelegate:self];
     }
 }
+
+- (IBAction)showAddressBookEmail:(id)sender {
+    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = self;
+    [self presentViewController:picker animated:YES completion:Nil];
+}
+
+- (IBAction)showAddressBookSMS:(id)sender {
+}
+
+-(IBAction)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+    
+    [self displayPerson:person];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    return NO;
+}
+
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    
+    return NO;
+}
+
+-(void) displayPerson:(ABRecordRef)person {
+    
+//    NSString *name = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    NSString *email = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonEmailProperty);
+    
+    ABMultiValueRef emailMultiValue = ABRecordCopyValue(person, kABPersonEmailProperty);
+    NSArray *emailAddresses = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(emailMultiValue);
+    
+    email = [emailAddresses firstObject];
+    
+    self.labelOfInvited.text  = email;
+    
+}
+
 
 @end
