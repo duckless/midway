@@ -7,10 +7,13 @@
 //
 
 #import "MainViewController.h"
+#import "InviteMethodsViewController.h"
 
 @interface MainViewController ()
 
+- (IBAction)inviteAFriend:(id)sender;
 -(void) displayPerson:(ABRecordRef)person;
+@property ABRecordID personID;
 
 @end
 
@@ -37,18 +40,23 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSLog(@"prepare for segue");
     if ([[segue identifier] isEqualToString:@"showAlternate"]) {
         [[segue destinationViewController] setDelegate:self];
     }
+    if([[segue identifier] isEqualToString:@"inviteMethods"]) {
+        UINavigationController  *navController = (UINavigationController*)[segue destinationViewController];
+        InviteMethodsViewController *targetController = (InviteMethodsViewController *) [[navController viewControllers] objectAtIndex: 0];
+        [targetController setPersonID:self.personID];
+    }
 }
 
-- (IBAction)showAddressBookEmail:(id)sender {
+
+
+- (IBAction)inviteAFriend:(id)sender {
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
     [self presentViewController:picker animated:YES completion:Nil];
-}
-
-- (IBAction)showAddressBookSMS:(id)sender {
 }
 
 -(IBAction)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
@@ -59,9 +67,10 @@
 
 -(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
-    [self displayPerson:person];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+    self.personID = ABRecordGetRecordID(person);
+//    [self displayPerson:person];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"inviteMethods" sender:self];
     return NO;
 }
 
@@ -73,12 +82,11 @@
 -(void) displayPerson:(ABRecordRef)person {
     
 //    NSString *name = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    NSString *email = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonEmailProperty);
     
     ABMultiValueRef emailMultiValue = ABRecordCopyValue(person, kABPersonEmailProperty);
     NSArray *emailAddresses = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(emailMultiValue);
     
-    email = [emailAddresses firstObject];
+    NSString *email = [emailAddresses firstObject];
     
     self.labelOfInvited.text  = email;
     
