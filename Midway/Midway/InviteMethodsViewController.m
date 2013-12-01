@@ -5,13 +5,15 @@
 //  Created by Olof Bjerke on 2013-11-29.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-
+#import "SessionModel.h"
 #import "InviteMethodsViewController.h"
 
 
 @interface InviteMethodsViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *cellTapped;
 @property NSMutableArray *inviteMethods;
+-(void) structureTable;
 
 @end
 
@@ -46,32 +48,51 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     
-    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
-    ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(addressBook, self.personID);
-    
-    
-    
-    ABMultiValueRef emailMultiValue = ABRecordCopyValue(personRef, kABPersonEmailProperty);
-    NSArray *emailAddresses = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(emailMultiValue);
-    for (NSString *email  in emailAddresses) {
-        [self.inviteMethods addObject:email];
-    }
- 
-    ABMultiValueRef phoneMultiValue = ABRecordCopyValue(personRef, kABPersonPhoneProperty);
-    NSArray *phoneNumbers = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(phoneMultiValue);
-    for (NSString *number  in phoneNumbers) {
-        [self.inviteMethods addObject: number];
-    }
-
-    NSString *email = [emailAddresses firstObject];
-    
-    NSString *name = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));
-    NSLog(@"Email is: %@", email);
-    NSString * title = [[NSString alloc] initWithFormat:@"Invite %@", name];
-    self.title = title;
+    [self structureTable];
     
     [[self tableView]  reloadData];
     
+}
+
+
+-(void) structureTable {
+    
+    if(self.inviteMethods.count == 0)
+    {
+    
+        // One for email and one for phone numbers
+        [self.inviteMethods addObject: ([[NSMutableArray alloc] init])];
+        [self.inviteMethods addObject: ([[NSMutableArray alloc] init])];
+        
+    
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
+        ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(addressBook, self.personID);
+    
+        ABMultiValueRef emailMultiValue = ABRecordCopyValue(personRef, kABPersonEmailProperty);
+        NSArray *emailAddresses = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(emailMultiValue);
+        
+        [[self.inviteMethods objectAtIndex:0] addObjectsFromArray: [[SessionModel sharedSessionModel] inviteesEmails]];
+    /*
+     for (NSString *email  in emailAddresses) {
+     [self.inviteMethods addObject:email];
+     }
+     */
+        ABMultiValueRef phoneMultiValue = ABRecordCopyValue(personRef, kABPersonPhoneProperty);
+        NSArray *phoneNumbers = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(phoneMultiValue);
+    /*
+     for (NSString *number  in phoneNumbers) {
+     [self.inviteMethods addObject: number];
+     }
+     */
+        [[self.inviteMethods objectAtIndex:1] addObjectsFromArray:[[SessionModel sharedSessionModel] inviteesPhoneNumbers]];
+    
+        NSString *email = [emailAddresses firstObject];
+    
+        NSString *name = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));
+        NSLog(@"Email is: %@", email);
+        NSString * title = [[NSString alloc] initWithFormat:@"Invite %@", name];
+        self.title = title;
+    }
 }
 
 #pragma mark - Table view data source
@@ -79,13 +100,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.inviteMethods.count;
+    return ([[self.inviteMethods objectAtIndex:section] count]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,10 +115,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = [self.inviteMethods objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[self.inviteMethods objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     return cell;
 }
-
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,38 +126,26 @@
     return NO;
 }
 
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    NSString *sectionName;
+    switch (section)
+    {
+        case 0:
+            sectionName = @"Email";
+            break;
+        case 1:
+            sectionName = @"SMS";
+            break;
+            // ...
+        default:
+            sectionName = @"";
+            break;
+    }
+    return sectionName;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -147,6 +155,6 @@
     // Pass the selected object to the new view controller.
 }
 
- */
+
 
 @end

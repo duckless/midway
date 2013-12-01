@@ -25,6 +25,8 @@
 		D41542DD1848873C004DF581 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DC1848873C004DF581 /* AddressBookUI.framework */; };
 		D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DE18488749004DF581 /* AddressBook.framework */; };
 		D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */; };
+		D41542E4184B59FD004DF581 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542E3184B59FD004DF581 /* MessageUI.framework */; };
+		D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E7184B6BF4004DF581 /* SessionModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,9 @@
 		D41542DE18488749004DF581 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteMethodsViewController.h; sourceTree = "<group>"; };
 		D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteMethodsViewController.m; sourceTree = "<group>"; };
+		D41542E3184B59FD004DF581 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D41542E6184B6BF4004DF581 /* SessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionModel.h; sourceTree = "<group>"; };
+		D41542E7184B6BF4004DF581 /* SessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41542E4184B59FD004DF581 /* MessageUI.framework in Frameworks */,
 				D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */,
 				D41542DD1848873C004DF581 /* AddressBookUI.framework in Frameworks */,
 				0B05A0E6183F7C3500D697EF /* CoreGraphics.framework in Frameworks */,
@@ -113,6 +119,7 @@
 		0B05A0E2183F7C3500D697EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D41542E3184B59FD004DF581 /* MessageUI.framework */,
 				D41542DE18488749004DF581 /* AddressBook.framework */,
 				D41542DC1848873C004DF581 /* AddressBookUI.framework */,
 				0B05A0E3183F7C3500D697EF /* Foundation.framework */,
@@ -126,6 +133,8 @@
 		0B05A0E9183F7C3500D697EF /* Midway */ = {
 			isa = PBXGroup;
 			children = (
+				D41542E6184B6BF4004DF581 /* SessionModel.h */,
+				D41542E7184B6BF4004DF581 /* SessionModel.m */,
 				0B05A0F2183F7C3500D697EF /* AppDelegate.h */,
 				0B05A0F3183F7C3600D697EF /* AppDelegate.m */,
 				0B05A0F5183F7C3600D697EF /* Main.storyboard */,
@@ -267,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */,
 				D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */,
 				0B05A0F4183F7C3600D697EF /* AppDelegate.m in Sources */,
 				0B05A0FA183F7C3600D697EF /* MainViewController.m in Sources */,

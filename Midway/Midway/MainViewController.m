@@ -5,7 +5,7 @@
 //  Created by Rostislav Raykov on 11/22/13.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-
+#import "SessionModel.h"
 #import "MainViewController.h"
 #import "InviteMethodsViewController.h"
 
@@ -67,6 +67,7 @@
     
     [self dismissViewControllerAnimated:NO completion:nil];
     self.personID = ABRecordGetRecordID(person);
+    [[SessionModel sharedSessionModel] startSessionWith:ABRecordGetRecordID(person)];
     [self performSegueWithIdentifier:@"inviteMethods" sender:self];
     return NO;
 }
