@@ -231,6 +231,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = duckless;
 				TargetAttributes = {
+					0B05A0DF183F7C3400D697EF = {
+						DevelopmentTeam = KBC94J53ML;
+					};
 					0B05A103183F7C3600D697EF = {
 						TestTargetID = 0B05A0DF183F7C3400D697EF;
 					};
@@ -414,6 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";
 				INFOPLIST_FILE = "Midway/Midway-Info.plist";
@@ -427,6 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";
 				INFOPLIST_FILE = "Midway/Midway-Info.plist";
