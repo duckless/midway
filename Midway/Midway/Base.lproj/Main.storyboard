@@ -127,10 +127,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="gIk-gK-byK">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ECx-cu-xIt"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ECx-cu-xIt">
+                            <connections>
+                                <segue destination="2e0-2V-0Zn" kind="unwind" unwindAction="unwindInvite:" id="sPr-8I-LMr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="el9-77-N0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2e0-2V-0Zn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1496" y="150"/>
         </scene>
