@@ -104,7 +104,7 @@
     [self dismissViewControllerAnimated:NO completion:nil];
     if (result == MFMailComposeResultSent) {
         NSLog(@"It's away!");
-        [self performSegueWithIdentifier:@"waitingForAccept" sender:self];        
+        [self performSegueWithIdentifier:@"waitingForAccept" sender:self];
     }
     NSLog(@"GO to waiting!");
 
