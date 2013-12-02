@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *cellTapped;
 @property NSMutableArray *inviteMethods;
 -(void) structureTable;
+- (void) sendMail: (NSString *) recipent;
+- (void) sendText: (NSString *) recipent;
 
 @end
 
@@ -53,6 +55,54 @@
     
     [[self tableView]  reloadData];
     
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0)
+       [self sendMail: [tableView cellForRowAtIndexPath:indexPath].textLabel.text];
+    else if (indexPath.section == 1)
+       [self sendText: [tableView cellForRowAtIndexPath:indexPath].textLabel.text];
+}
+
+
+- (void) sendMail: (NSString *) recipent {
+    NSMutableArray *recipents = [[NSMutableArray alloc] init];
+    [recipents addObject:recipent];
+    
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:@"My Subject"];
+    [controller setToRecipients: recipents];
+    [controller setMessageBody:@"Hello there." isHTML:NO];
+    if (controller) [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void) sendText: (NSString *) recipent {
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if([MFMessageComposeViewController canSendText])
+    {
+        controller.body = @"SMS message here";
+        controller.recipients = [NSArray arrayWithObjects: recipent, nil];
+        controller.messageComposeDelegate = self;
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+    
+}
+
+-(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
