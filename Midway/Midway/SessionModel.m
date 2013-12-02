@@ -12,8 +12,9 @@
 @property ABRecordID personID;
 @property NSMutableArray *emails;
 @property NSMutableArray *phoneNumbers;
+@property NSString *inviteeName;
 - (void) retrieveSessionID;
-- (void) gatherEmailAndPhoneNumbers;
+- (void) gatherInviteeInfo;
 
 @end
 @implementation SessionModel
@@ -49,12 +50,16 @@
 - (void) startSessionWith:(ABRecordID)invitee {
     self.personID = invitee;
     
-    [self gatherEmailAndPhoneNumbers];
+    [self gatherInviteeInfo];
     NSLog(@"got an ID!");
     
 }
 
-- (void) gatherEmailAndPhoneNumbers {
+- (NSString *) inviteesName {
+    return self.inviteeName;
+}
+
+- (void) gatherInviteeInfo {
     
     NSLog(@"Gather email and phone info");
     [self.emails removeAllObjects];
@@ -72,6 +77,8 @@
     NSArray *phoneNumbers = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(phoneMultiValue);
 
     [self.phoneNumbers addObjectsFromArray:phoneNumbers];
+    
+    self.inviteeName = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));
     
 }
 - (void) retrieveSessionID {

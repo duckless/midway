@@ -55,52 +55,29 @@
 }
 
 
+
+#pragma mark - Table view data source
+
 -(void) structureTable {
     
     if(self.inviteMethods.count == 0)
     {
-    
         // One for email and one for phone numbers
         [self.inviteMethods addObject: ([[NSMutableArray alloc] init])];
         [self.inviteMethods addObject: ([[NSMutableArray alloc] init])];
         
-    
-        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(nil, nil);
-        ABRecordRef personRef = ABAddressBookGetPersonWithRecordID(addressBook, self.personID);
-    
-        ABMultiValueRef emailMultiValue = ABRecordCopyValue(personRef, kABPersonEmailProperty);
-        NSArray *emailAddresses = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(emailMultiValue);
-        
         [[self.inviteMethods objectAtIndex:0] addObjectsFromArray: [[SessionModel sharedSessionModel] inviteesEmails]];
-    /*
-     for (NSString *email  in emailAddresses) {
-     [self.inviteMethods addObject:email];
-     }
-     */
-        ABMultiValueRef phoneMultiValue = ABRecordCopyValue(personRef, kABPersonPhoneProperty);
-        NSArray *phoneNumbers = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(phoneMultiValue);
-    /*
-     for (NSString *number  in phoneNumbers) {
-     [self.inviteMethods addObject: number];
-     }
-     */
         [[self.inviteMethods objectAtIndex:1] addObjectsFromArray:[[SessionModel sharedSessionModel] inviteesPhoneNumbers]];
-    
-        NSString *email = [emailAddresses firstObject];
-    
-        NSString *name = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));
-        NSLog(@"Email is: %@", email);
-        NSString * title = [[NSString alloc] initWithFormat:@"Invite %@", name];
-        self.title = title;
+        
+        self.title = [[SessionModel sharedSessionModel] inviteesName];
     }
 }
 
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return self.inviteMethods.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -151,8 +128,25 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSLog(@"chose %d", indexPath.row);
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+//    if ([[segue identifier] isEqualToString:@"ShowPersonDetail"]) {
+//PersonViewController *detailViewController = (PersonViewController *)[segue destinationViewController];
+    
+        
+     //   detailViewController.person = [self.dataModel personAtIndex:indexPath.row];
+        
+   // }
+  //  else if ([[segue identifier] isEqualToString:@"addPerson"]) {
+        
+       // AddPersonViewController *addController = (AddPersonViewController *)[[[segue destinationViewController] viewControllers] objectAtIndex:0];
+        
+        //addController.person = [[Person alloc] init];
+//    }
+
 }
 
 
