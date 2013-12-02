@@ -6,10 +6,13 @@
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 #import "AddressBookUI/AddressBookUI.h"
+#import <MessageUI/MFMailComposeViewController.h>
+#import "MessageUI/MFMessageComposeViewController.h"
 
-@interface InviteMethodsViewController : UITableViewController
+@interface InviteMethodsViewController : UITableViewController <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property ABRecordID personID;
 
