@@ -27,6 +27,7 @@
 		D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */; };
 		D41542E4184B59FD004DF581 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542E3184B59FD004DF581 /* MessageUI.framework */; };
 		D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E7184B6BF4004DF581 /* SessionModel.m */; };
+		D41542EB184B98A8004DF581 /* SendInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542EA184B98A8004DF581 /* SendInviteViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		D41542E3184B59FD004DF581 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D41542E6184B6BF4004DF581 /* SessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionModel.h; sourceTree = "<group>"; };
 		D41542E7184B6BF4004DF581 /* SessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionModel.m; sourceTree = "<group>"; };
+		D41542E9184B98A8004DF581 /* SendInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendInviteViewController.h; sourceTree = "<group>"; };
+		D41542EA184B98A8004DF581 /* SendInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendInviteViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,18 +136,20 @@
 		0B05A0E9183F7C3500D697EF /* Midway */ = {
 			isa = PBXGroup;
 			children = (
-				D41542E6184B6BF4004DF581 /* SessionModel.h */,
-				D41542E7184B6BF4004DF581 /* SessionModel.m */,
 				0B05A0F2183F7C3500D697EF /* AppDelegate.h */,
 				0B05A0F3183F7C3600D697EF /* AppDelegate.m */,
-				0B05A0F5183F7C3600D697EF /* Main.storyboard */,
-				D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */,
-				D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */,
-				0B05A0F8183F7C3600D697EF /* MainViewController.h */,
-				0B05A0F9183F7C3600D697EF /* MainViewController.m */,
 				0B05A0FB183F7C3600D697EF /* FlipsideViewController.h */,
 				0B05A0FC183F7C3600D697EF /* FlipsideViewController.m */,
 				0B05A0FE183F7C3600D697EF /* Images.xcassets */,
+				D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */,
+				D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */,
+				0B05A0F5183F7C3600D697EF /* Main.storyboard */,
+				0B05A0F8183F7C3600D697EF /* MainViewController.h */,
+				0B05A0F9183F7C3600D697EF /* MainViewController.m */,
+				D41542E9184B98A8004DF581 /* SendInviteViewController.h */,
+				D41542EA184B98A8004DF581 /* SendInviteViewController.m */,
+				D41542E6184B6BF4004DF581 /* SessionModel.h */,
+				D41542E7184B6BF4004DF581 /* SessionModel.m */,
 				0B05A0EA183F7C3500D697EF /* Supporting Files */,
 			);
 			path = Midway;
@@ -279,6 +284,7 @@
 				D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */,
 				D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */,
 				0B05A0F4183F7C3600D697EF /* AppDelegate.m in Sources */,
+				D41542EB184B98A8004DF581 /* SendInviteViewController.m in Sources */,
 				0B05A0FA183F7C3600D697EF /* MainViewController.m in Sources */,
 				0B05A0FD183F7C3600D697EF /* FlipsideViewController.m in Sources */,
 				0B05A0F0183F7C3500D697EF /* main.m in Sources */,

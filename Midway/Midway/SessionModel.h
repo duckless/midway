@@ -17,5 +17,6 @@
 - (NSMutableArray *) inviteesEmails;
 - (NSMutableArray *) inviteesPhoneNumbers;
 - (void) startSessionWith: (ABRecordID) invitee;
+- (NSString *) inviteesName;
 
 @end
