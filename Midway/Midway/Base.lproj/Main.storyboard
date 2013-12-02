@@ -105,10 +105,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="o95-YC-IBd" kind="modal" identifier="waitingForAccept" id="HJ5-l4-pIa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ge7-vf-Zxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1027" y="150"/>
+            <point key="canvasLocation" x="1031" y="150"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GTJ-9x-yQ1">
@@ -135,7 +138,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="rQl-PL-IFJ" kind="push" identifier="cancelInvite" id="uZX-5n-lEh"/>
+                                    <segue destination="rQl-PL-IFJ" kind="modal" identifier="cancelInvite" id="uZX-5n-lEh"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -91,18 +91,23 @@
     
 }
 
--(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    
+-(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"waitingForAccept" sender:self];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError*)error;
 {
+    [self dismissViewControllerAnimated:NO completion:nil];
     if (result == MFMailComposeResultSent) {
         NSLog(@"It's away!");
+        [self performSegueWithIdentifier:@"waitingForAccept" sender:self];        
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"GO to waiting!");
+
 }
 
 
@@ -199,7 +204,5 @@
 //    }
 
 }
-
-
 
 @end
