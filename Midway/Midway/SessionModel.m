@@ -13,6 +13,8 @@
 @property NSMutableArray *emails;
 @property NSMutableArray *phoneNumbers;
 @property NSString *inviteeName;
+@property BOOL sessionIsActive;
+
 - (void) retrieveSessionID;
 - (void) gatherInviteeInfo;
 
@@ -64,9 +66,8 @@
 
 }
 
-#warning missing implementation
 - (BOOL) isSessionActive {
-    return NO;
+    return _sessionIsActive;
 }
 
 #warning missing implementation
@@ -104,11 +105,21 @@
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
+#warning url string must be added
         NSString *urlString = nil;
-        dispatch_sync(dispatch_get_main_queue(), ^{ //To make the update happen in main thread.
-        });
-        //return [[self getDeparturesFrom:json] sortedArrayUsingSelector:@selector(compare:)];
+        NSURL *requestURL = [NSURL URLWithString:urlString];
+        NSData *responseData = [NSData dataWithContentsOfURL: requestURL];
         
+        NSError *parsingError;
+        NSDictionary *jsonRespsonse = [NSJSONSerialization
+                                       JSONObjectWithData:responseData
+                                       options:kNilOptions
+                                       error:&parsingError];
+#warning json key missing
+        NSString *sessionID = [jsonRespsonse objectForKey:@""];
+        dispatch_sync(dispatch_get_main_queue(), ^{ //To make the update happen in main thread.
+            
+        });
     });
 }
 
