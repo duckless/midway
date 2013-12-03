@@ -16,7 +16,11 @@
 + (id)sharedSessionModel;
 - (NSMutableArray *) inviteesEmails;
 - (NSMutableArray *) inviteesPhoneNumbers;
-- (void) startSessionWith: (ABRecordID) invitee;
 - (NSString *) inviteesName;
+
+- (void) startSessionWith: (ABRecordID) invitee;
+- (void) invalidateSession;
+- (BOOL) isSessionActive;
+- (NSURL *) getInviteURL;
 
 @end
