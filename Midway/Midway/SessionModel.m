@@ -47,6 +47,10 @@
     return self.phoneNumbers;
 }
 
+- (NSString *) inviteesName {
+    return self.inviteeName;
+}
+
 - (void) startSessionWith:(ABRecordID)invitee {
     self.personID = invitee;
     
@@ -55,8 +59,19 @@
     
 }
 
-- (NSString *) inviteesName {
-    return self.inviteeName;
+#warning missing implementation
+- (void) invalidateSession {
+
+}
+
+#warning missing implementation
+- (BOOL) isSessionActive {
+    return NO;
+}
+
+#warning missing implementation
+- (NSURL *) getInviteURL {
+    return nil;
 }
 
 - (void) gatherInviteeInfo {
@@ -81,6 +96,8 @@
     self.inviteeName = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));
     
 }
+
+#warning missing implementation
 - (void) retrieveSessionID {
     // This message should contact the server in the
     // background, retrieving a new session ID to be used when an email or SMS is sent
