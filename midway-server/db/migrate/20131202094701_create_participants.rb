@@ -1,7 +1,7 @@
 class CreateParticipants < ActiveRecord::Migration
   def change
     create_table :participants do |t|
-      t.integer :session_id
+      t.belongs_to :session
       t.string :uuid
       t.string :last_location
 

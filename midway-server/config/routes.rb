@@ -1,9 +1,9 @@
 MidwayServer::Application.routes.draw do
-  get "session/start"
+  post "session/start"
 
-  get "session/join"
+  post "session/join"
 
-  get "session/midpoint"
+  post "session/midpoint"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
