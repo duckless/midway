@@ -54,7 +54,7 @@
                                     <action selector="inviteAFriend:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="6C3-9a-Xz4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7h-gj-6xd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7h-gj-6xd">
                                 <rect key="frame" x="20" y="522" width="94" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Secret button">
@@ -183,8 +183,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="compass_needle.png" translatesAutoresizingMaskIntoConstraints="NO" id="9vj-jG-X2d">
-                                <rect key="frame" x="10" y="139" width="300" height="289"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6cK-bs-fq8">
+                                <rect key="frame" x="110" y="234" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63529413938522339" green="0.80392158031463623" blue="0.35294118523597717" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <imageView opaque="NO" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="pointer2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ile-Eh-fzd">
+                                <rect key="frame" x="110" y="234" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
@@ -192,7 +197,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="x9n-e0-D3l"/>
                     <connections>
-                        <outlet property="geoArrow" destination="9vj-jG-X2d" id="KVQ-9h-7bO"/>
+                        <outlet property="geoArrow" destination="ile-Eh-fzd" id="oY8-R6-JsM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AQ-oJ-SmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -271,7 +276,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="compass_needle.png" width="300" height="289"/>
+        <image name="pointer2.png" width="100" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
