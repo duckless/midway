@@ -84,6 +84,15 @@
 - (void) retrieveSessionID {
     // This message should contact the server in the
     // background, retrieving a new session ID to be used when an email or SMS is sent
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSString *urlString = nil;
+        dispatch_sync(dispatch_get_main_queue(), ^{ //To make the update happen in main thread.
+        });
+        //return [[self getDeparturesFrom:json] sortedArrayUsingSelector:@selector(compare:)];
+        
+    });
 }
 
 @end
