@@ -95,9 +95,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="oWJ-f9-tIy" kind="push" identifier="sendInvite" id="AL7-q2-XzZ"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -108,31 +105,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="o95-YC-IBd" kind="modal" identifier="waitingForAccept" id="HJ5-l4-pIa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ge7-vf-Zxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1027" y="150"/>
-        </scene>
-        <!--Send Invite View Controller-->
-        <scene sceneID="R6T-zW-PZW">
-            <objects>
-                <viewController id="oWJ-f9-tIy" customClass="SendInviteViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Sx4-eY-ra5"/>
-                        <viewControllerLayoutGuide type="bottom" id="Yb6-Ke-tkj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ejH-uL-tha">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="gIk-gK-byK">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ECx-cu-xIt"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="el9-77-N0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1496" y="150"/>
+            <point key="canvasLocation" x="1031" y="150"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GTJ-9x-yQ1">
@@ -159,7 +138,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="rQl-PL-IFJ" kind="push" identifier="cancelInvite" id="uZX-5n-lEh"/>
+                                    <segue destination="rQl-PL-IFJ" kind="modal" identifier="cancelInvite" id="uZX-5n-lEh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -168,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fwj-ny-e5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1967" y="150"/>
+            <point key="canvasLocation" x="1512" y="150"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mAI-5E-406">
