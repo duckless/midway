@@ -6,11 +6,15 @@
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
 #import "SessionModel.h"
+#import "CompassView.h"
 #import "GeoPositionViewController.h"
 
 @interface GeoPositionViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *geoArrow;
+@property (weak, nonatomic) IBOutlet UIView *testView;
+@property (weak, nonatomic) IBOutlet UILabel *coordinates;
+@property (weak, nonatomic) IBOutlet UILabel *distance;
 @property CLLocationManager *locationManager;
+@property long time;
 @end
 
 @implementation GeoPositionViewController
@@ -34,7 +38,14 @@
     self.locationManager.delegate= self;
     [self.locationManager startUpdatingHeading];
     
+    self.time = (long)(NSTimeInterval)([[NSDate date] timeIntervalSince1970]);
 	// Do any additional setup after loading the view.
+    
+    CompassView *compassView = [[CompassView alloc] initWithFrame:CGRectMake(65, 65, 200, 200)];
+    compassView.coordinates = self.coordinates;
+    compassView.distance = self.distance;
+    [self.testView addSubview:compassView];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,6 +54,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void) viewWillAppear:(BOOL)animated
+{
+
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+
+}
 
 /*
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
@@ -96,10 +117,15 @@
     animation.fromValue = [NSNumber numberWithFloat:oldRadian];
     animation.toValue = [NSNumber numberWithFloat:newRadian];
     //animation.duration = 0.1f;
-    self.geoArrow.layer.anchorPoint = CGPointMake(0.5, 0.5);
+    //self.geoArrow.layer.anchorPoint = CGPointMake(0.5, 0.5);
     
-//    [self.geoArrow.layer addAnimation:animation forKey:nil];
-    self.geoArrow.transform = CGAffineTransformMakeRotation(newRadian);
+    //[self.geoArrow.layer addAnimation:animation forKey:nil];
+    //self.geoArrow.transform = CGAffineTransformMakeRotation(newRadian);
+    
+    //long currentTime = (long)(NSTimeInterval)([[NSDate date] timeIntervalSince1970]);
+    //long timePassed = currentTime - self.time;
+    
+    //self.geoArrow.transform = CGAffineTransformMakeRotation(M_PI/60*timePassed);
 }
 
 @end
