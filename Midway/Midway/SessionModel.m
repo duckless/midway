@@ -87,6 +87,12 @@
     //    57° 42.218', 11° 58.035'
     CLLocationDegrees latitude = 57.70363333333333;
     CLLocationDegrees longitude = 11.96725;
+    latitude = 57.671345;
+    longitude = 11.915153;
+    
+//    140 km south of Gothenburg
+//    latitude = 57.5413;
+//    longitude = 11.910583;
     
     CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: latitude longitude:longitude];
     
