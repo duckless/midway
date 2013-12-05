@@ -87,8 +87,14 @@
     //    57° 42.218', 11° 58.035'
     CLLocationDegrees latitude = 57.70363333333333;
     CLLocationDegrees longitude = 11.96725;
+    
+    // Parking lot
     latitude = 57.671345;
     longitude = 11.915153;
+    
+    // Kuggen
+    latitude = 57.706983;
+    longitude = 11.9387;
     
 //    140 km south of Gothenburg
 //    latitude = 57.5413;
