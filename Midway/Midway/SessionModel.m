@@ -81,6 +81,30 @@
     self.inviteeName = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));
     
 }
+
+- (CLLocation *) targetLocation {
+    
+    //    57° 42.218', 11° 58.035'
+    CLLocationDegrees latitude = 57.70363333333333;
+    CLLocationDegrees longitude = 11.96725;
+    
+    // Parking lot
+    latitude = 57.671345;
+    longitude = 11.915153;
+    
+    // Kuggen
+    latitude = 57.706983;
+    longitude = 11.9387;
+    
+//    140 km south of Gothenburg
+//    latitude = 57.5413;
+//    longitude = 11.910583;
+    
+    CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: latitude longitude:longitude];
+    
+    return targetLocation;
+}
+
 - (void) retrieveSessionID {
     // This message should contact the server in the
     // background, retrieving a new session ID to be used when an email or SMS is sent
