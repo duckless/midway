@@ -27,6 +27,14 @@
 		D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */; };
 		D41542E4184B59FD004DF581 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542E3184B59FD004DF581 /* MessageUI.framework */; };
 		D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E7184B6BF4004DF581 /* SessionModel.m */; };
+		D418EDBB184CBB2600D2EA72 /* GeoPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D418EDBA184CBB2600D2EA72 /* GeoPositionViewController.m */; };
+		D418EDC3184CC5E400D2EA72 /* compass_needle.png in Resources */ = {isa = PBXBuildFile; fileRef = D418EDC2184CC5E400D2EA72 /* compass_needle.png */; };
+		D418EDC5184DD6FF00D2EA72 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = D418EDC4184DD6FF00D2EA72 /* pointer.png */; };
+		D418EDC7184DE28300D2EA72 /* pointer2.png in Resources */ = {isa = PBXBuildFile; fileRef = D418EDC6184DE28300D2EA72 /* pointer2.png */; };
+		D485E767184CB95D0082C780 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D485E766184CB95D0082C780 /* CoreLocation.framework */; };
+		D485E769184CB9660082C780 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D485E768184CB9660082C780 /* QuartzCore.framework */; };
+		D4A9D8F7184F28990095E745 /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9D8F6184F28990095E745 /* CompassView.m */; };
+		D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8F8184F6E400095E745 /* testArrow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +76,16 @@
 		D41542E3184B59FD004DF581 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D41542E6184B6BF4004DF581 /* SessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionModel.h; sourceTree = "<group>"; };
 		D41542E7184B6BF4004DF581 /* SessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionModel.m; sourceTree = "<group>"; };
+		D418EDB9184CBB2600D2EA72 /* GeoPositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPositionViewController.h; sourceTree = "<group>"; };
+		D418EDBA184CBB2600D2EA72 /* GeoPositionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPositionViewController.m; sourceTree = "<group>"; };
+		D418EDC2184CC5E400D2EA72 /* compass_needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass_needle.png; sourceTree = "<group>"; };
+		D418EDC4184DD6FF00D2EA72 /* pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer.png; sourceTree = "<group>"; };
+		D418EDC6184DE28300D2EA72 /* pointer2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer2.png; sourceTree = "<group>"; };
+		D485E766184CB95D0082C780 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D485E768184CB9660082C780 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D4A9D8F5184F28990095E745 /* CompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassView.h; sourceTree = "<group>"; };
+		D4A9D8F6184F28990095E745 /* CompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassView.m; sourceTree = "<group>"; };
+		D4A9D8F8184F6E400095E745 /* testArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testArrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D485E769184CB9660082C780 /* QuartzCore.framework in Frameworks */,
+				D485E767184CB95D0082C780 /* CoreLocation.framework in Frameworks */,
 				D41542E4184B59FD004DF581 /* MessageUI.framework in Frameworks */,
 				D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */,
 				D41542DD1848873C004DF581 /* AddressBookUI.framework in Frameworks */,
@@ -119,6 +139,8 @@
 		0B05A0E2183F7C3500D697EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D485E768184CB9660082C780 /* QuartzCore.framework */,
+				D485E766184CB95D0082C780 /* CoreLocation.framework */,
 				D41542E3184B59FD004DF581 /* MessageUI.framework */,
 				D41542DE18488749004DF581 /* AddressBook.framework */,
 				D41542DC1848873C004DF581 /* AddressBookUI.framework */,
@@ -133,6 +155,14 @@
 		0B05A0E9183F7C3500D697EF /* Midway */ = {
 			isa = PBXGroup;
 			children = (
+				D418EDC2184CC5E400D2EA72 /* compass_needle.png */,
+				D418EDB9184CBB2600D2EA72 /* GeoPositionViewController.h */,
+				D418EDBA184CBB2600D2EA72 /* GeoPositionViewController.m */,
+				D4A9D8F5184F28990095E745 /* CompassView.h */,
+				D4A9D8F6184F28990095E745 /* CompassView.m */,
+				D4A9D8F8184F6E400095E745 /* testArrow.png */,
+				D418EDC6184DE28300D2EA72 /* pointer2.png */,
+				D418EDC4184DD6FF00D2EA72 /* pointer.png */,
 				0B05A0F2183F7C3500D697EF /* AppDelegate.h */,
 				0B05A0F3183F7C3600D697EF /* AppDelegate.m */,
 				0B05A0FB183F7C3600D697EF /* FlipsideViewController.h */,
@@ -258,9 +288,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D418EDC7184DE28300D2EA72 /* pointer2.png in Resources */,
 				0B05A0FF183F7C3600D697EF /* Images.xcassets in Resources */,
+				D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */,
 				0B05A0EE183F7C3500D697EF /* InfoPlist.strings in Resources */,
 				0B05A0F7183F7C3600D697EF /* Main.storyboard in Resources */,
+				D418EDC3184CC5E400D2EA72 /* compass_needle.png in Resources */,
+				D418EDC5184DD6FF00D2EA72 /* pointer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +313,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D418EDBB184CBB2600D2EA72 /* GeoPositionViewController.m in Sources */,
+				D4A9D8F7184F28990095E745 /* CompassView.m in Sources */,
 				D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */,
 				D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */,
 				0B05A0F4183F7C3600D697EF /* AppDelegate.m in Sources */,
