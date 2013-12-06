@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "AddressBookUI/AddressBookUI.h"
 
-@interface SessionModel : NSObject
+@interface SessionModel : NSObject <NSURLConnectionDataDelegate>
 
-@property NSString *sessionID;
+
 
 + (id)sharedSessionModel;
 - (NSMutableArray *) inviteesEmails;
