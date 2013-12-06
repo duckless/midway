@@ -101,7 +101,7 @@
     
     
 //    NSLog(@"New magnetic heading: %d", magneticAngle);
-	NSLog(@"New true heading: %d", trueAngle);
+	NSLog(@"New true heading: %ld", (long)trueAngle);
     
     CLLocation * targetLocation = [[SessionModel sharedSessionModel] targetLocation];
     
