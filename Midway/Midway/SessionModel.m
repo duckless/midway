@@ -5,7 +5,6 @@
 //  Created by Olof Bjerke on 2013-12-01.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-#import "LocationManager.h"
 #import "AddressBookUI/AddressBookUI.h"
 #import "SessionModel.h"
 
@@ -14,12 +13,14 @@
 
 @interface SessionModel ()
 
+@property CLLocationManager *locationManager;
 @property ABRecordID personID;
 @property NSMutableArray *emails;
 @property NSMutableArray *phoneNumbers;
 @property NSString *inviteeName;
 - (void) retrieveSessionID;
 - (void) gatherInviteeInfo;
+- (void) updateCompass;
 
 @end
 @implementation SessionModel
@@ -29,6 +30,20 @@
     if(self) {
         _emails = [[NSMutableArray alloc] init];
         _phoneNumbers = [[NSMutableArray alloc] init];
+        
+        // Location mananger setup
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.headingFilter = 1;
+        _locationManager.distanceFilter = kCLDistanceFilterNone;
+        _locationManager.delegate= self;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLocationUpdates) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdatingSignificantLocation) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdatingLocation) name:UIApplicationDidBecomeActiveNotification object:nil];
+        
+        
+        
     }
     return self;
 }
@@ -115,19 +130,17 @@
 
 -(double) headingTowardTargetLocation
 {
-    NSInteger trueAngle = [[LocationManager locationManager] currentHeading].trueHeading;
+    NSInteger trueAngle = [self currentHeading].trueHeading;
     CLLocation * targetLocation = self.targetLocation;
     
     // Current location
-    double lat1 = [[LocationManager locationManager] currentLatitude];
-    double lon1 = [[LocationManager locationManager] currentLongitude];
+    double lat1 = [self currentLatitude];
+    double lon1 = [self currentLongitude];
     
     // Target location
     float lat2 = targetLocation.coordinate.latitude;
     float lon2 = targetLocation.coordinate.longitude;
     
-    // Distance between coordinates
-    // double distance = [[[LocationManager locationManager] currentLocation] distanceFromLocation: targetLocation];
     
     float headingToTarget = atan2(sin(lon2 - lon1) * cos(lat2), cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1));
     float headingInDegrees = radiansToDegrees(headingToTarget);
@@ -137,8 +150,78 @@
     if (compassHeading < 0)
         compassHeading = compassHeading + 360;
     
-    NSLog(@"compassHeading: %f", compassHeading);
+    // NSLog(@"compassHeading: %f", compassHeading);
     return degreesToRadians(compassHeading);
+}
+
+#pragma Location manager
+
+- (void) startUpdatingLocation
+{
+    NSLog(@"starting location services");
+    [self.locationManager startUpdatingHeading];
+    [self.locationManager startUpdatingLocation];
+}
+
+-(void) startUpdatingSignificantLocation
+{
+    NSLog(@"starting significant");
+    [self.locationManager startMonitoringSignificantLocationChanges];
+}
+
+-(void) stopLocationUpdates
+{
+    NSLog(@"Stopping location services");
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+    [self.locationManager stopUpdatingLocation];
+    [self.locationManager stopUpdatingHeading];
+}
+
+- (CLHeading *) currentHeading
+{
+    return self.locationManager.heading;
+}
+
+- (CLLocation *) currentLocation
+{
+    return self.locationManager.location;
+}
+
+-(double) currentLatitude
+{
+    return self.locationManager.location.coordinate.latitude;;
+}
+
+-(double) currentLongitude
+{
+    return self.locationManager.location.coordinate.longitude;
+}
+
+
+#pragma location manager delegate
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [self updateCompass];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    [self updateCompass];
+}
+
+#pragma helper?
+
+- (void) updateCompass
+{
+    double heading = [self headingTowardTargetLocation];
+    double distance = [[self currentLocation] distanceFromLocation: self.targetLocation];
+    
+    NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+    [userInfo setObject: [[NSNumber alloc] initWithDouble:heading] forKey:@"heading"];
+    [userInfo setObject: [[NSNumber alloc] initWithDouble:distance] forKey:@"distance"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"updateCompass" object:nil userInfo:userInfo];
 }
 
 @end

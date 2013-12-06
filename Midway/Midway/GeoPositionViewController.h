@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface GeoPositionViewController : UIViewController
-
+- (void) receiveNotification: (NSNotification * ) notification;
 
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AddressBookUI/AddressBookUI.h"
 
-@interface SessionModel : NSObject
+@interface SessionModel : NSObject <CLLocationManagerDelegate>
 
 @property NSString *sessionID;
 
@@ -20,5 +20,17 @@
 - (NSString *) inviteesName;
 - (CLLocation *) targetLocation;
 - (double) headingTowardTargetLocation;
+
+
+- (CLLocation *) currentLocation;
+- (CLHeading *) currentHeading;
+
+- (double) currentLatitude;
+- (double) currentLongitude;
+
+- (void) startUpdatingLocation;
+- (void) startUpdatingSignificantLocation;
+- (void) stopLocationUpdates;
+
 
 @end
