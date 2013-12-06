@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface GeoPositionViewController : UIViewController <CLLocationManagerDelegate>
+@interface GeoPositionViewController : UIViewController
 
 
 

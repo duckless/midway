@@ -22,34 +22,33 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+    {
         
-        //Compass Images
+//        Compass Images
+        UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+        arrowImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"golden_arrow" ofType:@"png"]];
         
-        UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-        arrowImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"testArrow" ofType:@"png"]];
-        
-        //Compass Container
-        
+//        Compass Container
         self.compassContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         
-        //[self.compassContainer.layer  insertSublayer:myCompassLayer atIndex:0];
+//        [self.compassContainer.layer  insertSublayer:myCompassLayer atIndex:0];
         [self.compassContainer addSubview:arrowImg];
         
         [self addSubview:self.compassContainer];
         
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.locationManager.headingFilter = 1;
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
         self.locationManager.delegate=self;
         
-        //Start the compass updates.
+//        Start the compass updates.
         [self.locationManager startUpdatingHeading];
         [self.locationManager startUpdatingLocation];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdating) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdating) name:UIApplicationDidBecomeActiveNotification object:nil];
-        
         
     }
     return self;
@@ -83,7 +82,6 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
-    
 	[self updateCompass];
 }
 
@@ -94,15 +92,7 @@
 
 - (void) updateCompass
 {
-    
-//    NSInteger magneticAngle = newHeading.magneticHeading;
     NSInteger trueAngle = self.locationManager.heading.trueHeading;
-    
-    
-    
-//    NSLog(@"New magnetic heading: %d", magneticAngle);
-	NSLog(@"New true heading: %ld", (long)trueAngle);
-    
     CLLocation * targetLocation = [[SessionModel sharedSessionModel] targetLocation];
     
     // Current location
@@ -116,43 +106,23 @@
     // Distance between coordinates
     float distance = [self.locationManager.location distanceFromLocation: targetLocation];
     
-    //    θ = atan2( sin(Δlong).cos(lat2), cos(lat1).sin(lat2) − sin(lat1).cos(lat2).cos(Δlong) )
-    //    float heading = atan2(cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1), sin(lon2 - lon1) * cos(lat2));
-    float heading = atan2(sin(lon2 - lon1) * cos(lat2), cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1));
+    float headingToTarget = atan2(sin(lon2 - lon1) * cos(lat2), cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1));
+    float headingInDegrees = radiansToDegrees(headingToTarget);
     
-    
-    float headingInDegrees = radiansToDegrees(heading);
     
     
     float compassHeading = headingInDegrees - trueAngle;
     
-    if (compassHeading < 0) {
+    if (compassHeading < 0)
         compassHeading = compassHeading + 360;
-    }
     
     NSLog(@"compassHeading: %f", compassHeading);
     
-    NSLog(@"headingInDegrees = %f, trueHeading = %ld", headingInDegrees, (long)trueAngle);
     self.coordinates.text = [[NSString alloc] initWithFormat:@"lat: %f, lon: %f", lat1, lon1];
     self.distance.text = [[NSString alloc] initWithFormat:@"%f meter left", distance];
     
-    //This is set by a switch in my apps settings //
-    NSUserDefaults *prefs= [NSUserDefaults standardUserDefaults];
-    BOOL magneticNorth = [prefs boolForKey:@"UseMagneticNorth"];
-    
-    if (magneticNorth == YES) {
-        //        NSLog(@"using magnetic north");
-        
-//        CGAffineTransform rotate = CGAffineTransformMakeRotation(degreesToRadians(-magneticAngle));
-//        [self.compassContainer setTransform:rotate];
-    }
-    else {
-        //        NSLog(@"using true north");
-        
-        CGAffineTransform rotate = CGAffineTransformMakeRotation(degreesToRadians(compassHeading));
-        [self.compassContainer setTransform:rotate];
-    }
-    
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(degreesToRadians(compassHeading));
+    [self.compassContainer setTransform:rotate];
 }
 
 @end
