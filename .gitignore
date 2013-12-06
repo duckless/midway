@@ -17,3 +17,4 @@ profile
 DerivedData
 .idea/
 zbrox.xcuserdatad
+midway-server/config/foursquare.yml
