@@ -19,6 +19,6 @@
 - (void) startSessionWith: (ABRecordID) invitee;
 - (NSString *) inviteesName;
 - (CLLocation *) targetLocation;
-- (double) headingTowardTarget;
+- (double) headingTowardTargetLocation;
 
 @end

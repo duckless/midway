@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface LocationManager : NSObject
+@interface LocationManager : NSObject <CLLocationManagerDelegate>
 
 + (id)locationManager;
 
 - (CLLocation *) currentLocation;
-- (CLLocation *) currentHeading;
+- (CLHeading *) currentHeading;
 
 - (double) currentLatitude;
 - (double) currentLongitude;
