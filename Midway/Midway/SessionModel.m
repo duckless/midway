@@ -19,8 +19,6 @@
 @property NSMutableArray *phoneNumbers;
 @property NSString *inviteeName;
 
-@property NSString *sessionID;
-
 @property BOOL sessionIsActive;
 
 @property NSURLConnection *sessionIDconnection;

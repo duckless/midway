@@ -5,14 +5,12 @@
 //  Created by Rostislav Raykov on 11/22/13.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-#import "LocationManager.h"
 #import "AppDelegate.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [LocationManager locationManager];
     // Override point for customization after application launch.
     return YES;
     
