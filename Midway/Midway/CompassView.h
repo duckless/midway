@@ -10,11 +10,6 @@
 
 @interface CompassView : UIView <CLLocationManagerDelegate>
 
-@property CLLocationManager * locationManager;
-@property CGFloat currentAngle;
-@property UIView *compassContainer;
-@property (weak, nonatomic) IBOutlet UILabel *coordinates;
-@property (weak, nonatomic) IBOutlet UILabel *distance;
-- (void) receiveNotification: (NSNotification * ) notification;
+- (void) updateCompassWithHeading: (double) compassHeading;
 
 @end

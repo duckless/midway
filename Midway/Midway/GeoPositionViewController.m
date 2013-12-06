@@ -5,7 +5,7 @@
 //  Created by Olof Bjerke on 2013-12-02.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-#import "LocationManager.h"
+#import "SessionModel.h"
 #import "CompassView.h"
 #import "GeoPositionViewController.h"
 
@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *coordinates;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
 @property CLLocationManager *locationManager;
-@property long time;
+@property CompassView * compassView;
 @end
 
 @implementation GeoPositionViewController
@@ -23,7 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -31,11 +31,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[LocationManager locationManager] startUpdatingLocation];
-    CompassView *compassView = [[CompassView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
-    compassView.coordinates = self.coordinates;
-    compassView.distance = self.distance;
-    [self.testView addSubview:compassView];
+    NSLog(@"Come on!!!!");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateCompass" object:nil];
+
+    [[SessionModel sharedSessionModel] startUpdatingLocation];
+    self.compassView = [[CompassView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
+    [self.testView addSubview:self.compassView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,6 +54,19 @@
 - (void) viewDidAppear:(BOOL)animated
 {
 
+}
+
+- (void) receiveNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:@"updateCompass"])
+    {
+        NSDictionary* userInfo = notification.userInfo;
+        double heading = [[userInfo objectForKey:@"heading"] doubleValue];
+        double distanceLeft = [[userInfo objectForKey:@"distance"] doubleValue];
+        
+        [self.compassView updateCompassWithHeading: heading];
+        self.distance.text = [[NSString alloc] initWithFormat:@"%f", distanceLeft];
+    }
 }
 
 
