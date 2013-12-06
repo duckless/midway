@@ -9,14 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "AddressBookUI/AddressBookUI.h"
 
-@interface SessionModel : NSObject <CLLocationManagerDelegate>
+@interface SessionModel : NSObject <NSURLConnectionDataDelegate, CLLocationManagerDelegate>
 
 @property NSString *sessionID;
 
 + (id)sharedSessionModel;
 - (NSMutableArray *) inviteesEmails;
 - (NSMutableArray *) inviteesPhoneNumbers;
-- (void) startSessionWith: (ABRecordID) invitee;
 - (NSString *) inviteesName;
 - (CLLocation *) targetLocation;
 - (double) headingTowardTargetLocation;
