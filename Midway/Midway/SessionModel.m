@@ -110,7 +110,7 @@
     // background, retrieving a new session ID to be used when an email or SMS is sent
 }
 
--(double) headingTowardTarget
+-(double) headingTowardTargetLocation
 {
     
     return 0;
