@@ -22,6 +22,7 @@
 		0B05A108183F7C3600D697EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B05A0E7183F7C3500D697EF /* UIKit.framework */; };
 		0B05A110183F7C3800D697EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B05A10E183F7C3800D697EF /* InfoPlist.strings */; };
 		0B05A112183F7C3900D697EF /* MidwayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B05A111183F7C3900D697EF /* MidwayTests.m */; };
+		2700B7FB1851D63400521535 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2700B7FA1851D63400521535 /* LocationManager.m */; };
 		D41542DD1848873C004DF581 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DC1848873C004DF581 /* AddressBookUI.framework */; };
 		D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DE18488749004DF581 /* AddressBook.framework */; };
 		D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */; };
@@ -69,6 +70,8 @@
 		0B05A10D183F7C3700D697EF /* MidwayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MidwayTests-Info.plist"; sourceTree = "<group>"; };
 		0B05A10F183F7C3800D697EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B05A111183F7C3900D697EF /* MidwayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MidwayTests.m; sourceTree = "<group>"; };
+		2700B7F91851D63400521535 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		2700B7FA1851D63400521535 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		D41542DC1848873C004DF581 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		D41542DE18488749004DF581 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteMethodsViewController.h; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				D41542E6184B6BF4004DF581 /* SessionModel.h */,
 				D41542E7184B6BF4004DF581 /* SessionModel.m */,
 				0B05A0EA183F7C3500D697EF /* Supporting Files */,
+				2700B7F91851D63400521535 /* LocationManager.h */,
+				2700B7FA1851D63400521535 /* LocationManager.m */,
 			);
 			path = Midway;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				D418EDBB184CBB2600D2EA72 /* GeoPositionViewController.m in Sources */,
 				D4A9D8F7184F28990095E745 /* CompassView.m in Sources */,
 				D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */,
+				2700B7FB1851D63400521535 /* LocationManager.m in Sources */,
 				D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */,
 				0B05A0F4183F7C3600D697EF /* AppDelegate.m in Sources */,
 				0B05A0FA183F7C3600D697EF /* MainViewController.m in Sources */,
