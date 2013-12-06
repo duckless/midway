@@ -15,6 +15,6 @@
 @property UIView *compassContainer;
 @property (weak, nonatomic) IBOutlet UILabel *coordinates;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
-
+- (void) receiveNotification: (NSNotification * ) notification;
 
 @end

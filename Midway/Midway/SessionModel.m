@@ -5,8 +5,13 @@
 //  Created by Olof Bjerke on 2013-12-01.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
+#import "LocationManager.h"
 #import "AddressBookUI/AddressBookUI.h"
 #import "SessionModel.h"
+
+#define degreesToRadians(x) (M_PI * x / 180.0)
+#define radiansToDegrees(x) (x * 180 / M_PI)
+
 @interface SessionModel ()
 
 @property ABRecordID personID;
@@ -112,8 +117,30 @@
 
 -(double) headingTowardTargetLocation
 {
+    NSInteger trueAngle = [[LocationManager locationManager] currentHeading].trueHeading;
+    CLLocation * targetLocation = self.targetLocation;
     
-    return 0;
+    // Current location
+    double lat1 = [[LocationManager locationManager] currentLatitude];
+    double lon1 = [[LocationManager locationManager] currentLongitude];
+    
+    // Target location
+    float lat2 = targetLocation.coordinate.latitude;
+    float lon2 = targetLocation.coordinate.longitude;
+    
+    // Distance between coordinates
+    // double distance = [[[LocationManager locationManager] currentLocation] distanceFromLocation: targetLocation];
+    
+    float headingToTarget = atan2(sin(lon2 - lon1) * cos(lat2), cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1));
+    float headingInDegrees = radiansToDegrees(headingToTarget);
+    
+    float compassHeading = headingInDegrees - trueAngle;
+    
+    if (compassHeading < 0)
+        compassHeading = compassHeading + 360;
+    
+    NSLog(@"compassHeading: %f", compassHeading);
+    return degreesToRadians(compassHeading);
 }
 
 @end

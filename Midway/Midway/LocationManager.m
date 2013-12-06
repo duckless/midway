@@ -5,7 +5,7 @@
 //  Created by Anton Malmquist on 2013-12-06.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-
+#import "SessionModel.h"
 #import "LocationManager.h"
 @interface LocationManager()
 
@@ -26,6 +26,12 @@
         
         // Start the location updates.
         [self startUpdatingLocation];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdatingLocation) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdatingSignificantLocation) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdatingLocation) name:UIApplicationDidBecomeActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateCompass" object:self];
+        
     }
     return self;
 }
@@ -61,20 +67,40 @@
 
 - (void) startUpdatingLocation
 {
+    NSLog(@"starting location services");
     [self.locationManager startUpdatingHeading];
     [self.locationManager startUpdatingLocation];
 }
 
 -(void) startUpdatingSignificantLocation
 {
+    NSLog(@"starting significant");
     [self.locationManager startMonitoringSignificantLocationChanges];
 }
 
 -(void) stopLocationUpdates
 {
+    NSLog(@"Stopping locaiton services");
     [self.locationManager stopMonitoringSignificantLocationChanges];
     [self.locationManager stopUpdatingLocation];
     [self.locationManager stopUpdatingHeading];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    double heading = [[SessionModel sharedSessionModel] headingTowardTargetLocation];
+    
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject: [NSNumber numberWithDouble:heading] forKey:@"heading"];
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"updateCompass" object:nil userInfo:userInfo];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    double heading = [[SessionModel sharedSessionModel] headingTowardTargetLocation];
+    
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject: [NSNumber numberWithDouble:heading] forKey:@"heading"];
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"updateCompass" object:nil userInfo:userInfo];
+    NSLog(@"send heading...");
 }
 
 @end
