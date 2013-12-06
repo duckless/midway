@@ -23,14 +23,10 @@
         _locationManager.headingFilter = 1;
         _locationManager.distanceFilter = kCLDistanceFilterNone;
         _locationManager.delegate=self;
-        
-        // Start the location updates.
-        [self startUpdatingLocation];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdatingLocation) name:UIApplicationDidEnterBackgroundNotification object:nil];
+                
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLocationUpdates) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdatingSignificantLocation) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdatingLocation) name:UIApplicationDidBecomeActiveNotification object:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateCompass" object:self];
         
     }
     return self;
@@ -80,7 +76,7 @@
 
 -(void) stopLocationUpdates
 {
-    NSLog(@"Stopping locaiton services");
+    NSLog(@"Stopping location services");
     [self.locationManager stopMonitoringSignificantLocationChanges];
     [self.locationManager stopUpdatingLocation];
     [self.locationManager stopUpdatingHeading];

@@ -29,8 +29,6 @@
     if(self) {
         _emails = [[NSMutableArray alloc] init];
         _phoneNumbers = [[NSMutableArray alloc] init];
-//        [self loadData];
-        
     }
     return self;
 }

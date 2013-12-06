@@ -5,7 +5,7 @@
 //  Created by Olof Bjerke on 2013-12-02.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-#import "SessionModel.h"
+#import "LocationManager.h"
 #import "CompassView.h"
 #import "GeoPositionViewController.h"
 
@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[LocationManager locationManager] startUpdatingLocation];
     CompassView *compassView = [[CompassView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
     compassView.coordinates = self.coordinates;
     compassView.distance = self.distance;
