@@ -22,6 +22,14 @@
 		0B05A108183F7C3600D697EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B05A0E7183F7C3500D697EF /* UIKit.framework */; };
 		0B05A110183F7C3800D697EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B05A10E183F7C3800D697EF /* InfoPlist.strings */; };
 		0B05A112183F7C3900D697EF /* MidwayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B05A111183F7C3900D697EF /* MidwayTests.m */; };
+		0B7CE947185231F000294C19 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE946185231F000294C19 /* Parse.framework */; };
+		0B7CE9491852322200294C19 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9481852322200294C19 /* AudioToolbox.framework */; };
+		0B7CE94B1852322A00294C19 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE94A1852322A00294C19 /* CFNetwork.framework */; };
+		0B7CE94D1852323A00294C19 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE94C1852323A00294C19 /* libz.1.1.3.dylib */; };
+		0B7CE94F1852324200294C19 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE94E1852324200294C19 /* MobileCoreServices.framework */; };
+		0B7CE9511852324D00294C19 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9501852324D00294C19 /* Security.framework */; };
+		0B7CE9531852325200294C19 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9521852325200294C19 /* StoreKit.framework */; };
+		0B7CE9551852325900294C19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9541852325900294C19 /* SystemConfiguration.framework */; };
 		D41542DD1848873C004DF581 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DC1848873C004DF581 /* AddressBookUI.framework */; };
 		D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DE18488749004DF581 /* AddressBook.framework */; };
 		D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */; };
@@ -69,6 +77,14 @@
 		0B05A10D183F7C3700D697EF /* MidwayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MidwayTests-Info.plist"; sourceTree = "<group>"; };
 		0B05A10F183F7C3800D697EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B05A111183F7C3900D697EF /* MidwayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MidwayTests.m; sourceTree = "<group>"; };
+		0B7CE946185231F000294C19 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		0B7CE9481852322200294C19 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0B7CE94A1852322A00294C19 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0B7CE94C1852323A00294C19 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		0B7CE94E1852324200294C19 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0B7CE9501852324D00294C19 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0B7CE9521852325200294C19 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0B7CE9541852325900294C19 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D41542DC1848873C004DF581 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		D41542DE18488749004DF581 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteMethodsViewController.h; sourceTree = "<group>"; };
@@ -93,7 +109,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B7CE9551852325900294C19 /* SystemConfiguration.framework in Frameworks */,
+				0B7CE9531852325200294C19 /* StoreKit.framework in Frameworks */,
+				0B7CE9511852324D00294C19 /* Security.framework in Frameworks */,
+				0B7CE94F1852324200294C19 /* MobileCoreServices.framework in Frameworks */,
+				0B7CE94D1852323A00294C19 /* libz.1.1.3.dylib in Frameworks */,
+				0B7CE94B1852322A00294C19 /* CFNetwork.framework in Frameworks */,
+				0B7CE9491852322200294C19 /* AudioToolbox.framework in Frameworks */,
 				D485E769184CB9660082C780 /* QuartzCore.framework in Frameworks */,
+				0B7CE947185231F000294C19 /* Parse.framework in Frameworks */,
 				D485E767184CB95D0082C780 /* CoreLocation.framework in Frameworks */,
 				D41542E4184B59FD004DF581 /* MessageUI.framework in Frameworks */,
 				D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */,
@@ -139,6 +163,14 @@
 		0B05A0E2183F7C3500D697EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B7CE9541852325900294C19 /* SystemConfiguration.framework */,
+				0B7CE9521852325200294C19 /* StoreKit.framework */,
+				0B7CE9501852324D00294C19 /* Security.framework */,
+				0B7CE94E1852324200294C19 /* MobileCoreServices.framework */,
+				0B7CE94C1852323A00294C19 /* libz.1.1.3.dylib */,
+				0B7CE94A1852322A00294C19 /* CFNetwork.framework */,
+				0B7CE9481852322200294C19 /* AudioToolbox.framework */,
+				0B7CE946185231F000294C19 /* Parse.framework */,
 				D485E768184CB9660082C780 /* QuartzCore.framework */,
 				D485E766184CB95D0082C780 /* CoreLocation.framework */,
 				D41542E3184B59FD004DF581 /* MessageUI.framework */,
@@ -258,6 +290,11 @@
 				TargetAttributes = {
 					0B05A0DF183F7C3400D697EF = {
 						DevelopmentTeam = KBC94J53ML;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					0B05A103183F7C3600D697EF = {
 						TestTargetID = 0B05A0DF183F7C3400D697EF;
@@ -447,11 +484,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.duckless.Midway";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.duckless.Midway";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/zbrox/Dropbox/Projects/Chalmers/Mobile/Midway\\ Workspace/Midway",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";
 				INFOPLIST_FILE = "Midway/Midway-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "098BFE9D-25A4-4805-B4B0-5F3786545CEC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -461,11 +504,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.duckless.Midway";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.duckless.Midway";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/zbrox/Dropbox/Projects/Chalmers/Mobile/Midway\\ Workspace/Midway",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";
 				INFOPLIST_FILE = "Midway/Midway-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "098BFE9D-25A4-4805-B4B0-5F3786545CEC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

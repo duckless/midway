@@ -146,7 +146,7 @@
         
         NSString *postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@", nil];
         
-        [request setValue:[NSString stringWithFormat:@"%d", [postString length]]
+        [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
                                            forHTTPHeaderField:@"Content-length"];
         
         [request setHTTPBody:[postString
