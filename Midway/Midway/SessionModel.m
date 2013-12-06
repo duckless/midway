@@ -18,6 +18,14 @@
 @property NSMutableArray *emails;
 @property NSMutableArray *phoneNumbers;
 @property NSString *inviteeName;
+
+@property NSString *sessionID;
+
+@property BOOL sessionIsActive;
+
+@property NSURLConnection *sessionIDconnection;
+@property NSMutableData *sessionIDdata;
+
 - (void) retrieveSessionID;
 - (void) gatherInviteeInfo;
 - (void) updateCompass;
@@ -65,16 +73,16 @@
     return self.phoneNumbers;
 }
 
+- (NSString *) inviteesName {
+    return self.inviteeName;
+}
+
 - (void) startSessionWith:(ABRecordID)invitee {
     self.personID = invitee;
     
     [self gatherInviteeInfo];
     NSLog(@"got an ID!");
     
-}
-
-- (NSString *) inviteesName {
-    return self.inviteeName;
 }
 
 - (void) gatherInviteeInfo {
@@ -100,6 +108,7 @@
     
 }
 
+
 - (CLLocation *) targetLocation {
     
     //    57° 42.218', 11° 58.035'
@@ -123,9 +132,55 @@
     return targetLocation;
 }
 
+
+#warning missing implementation
 - (void) retrieveSessionID {
     // This message should contact the server in the
     // background, retrieving a new session ID to be used when an email or SMS is sent
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
+                                                        initWithURL:[NSURL
+                                                      URLWithString:@"http://midway.zbrox.org/session/start"]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@", nil];
+        
+        [request setValue:[NSString stringWithFormat:@"%d", [postString length]]
+                                           forHTTPHeaderField:@"Content-length"];
+        
+        [request setHTTPBody:[postString
+                              dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        _sessionIDconnection =[[NSURLConnection alloc] initWithRequest:request
+                                        delegate:self];
+        
+        _sessionIDdata = [NSMutableData data];
+        [_sessionIDconnection start];
+    });
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if(!data.length)
+        return;
+    
+    if (connection == _sessionIDconnection){
+        [_sessionIDdata appendData:data];
+    }
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    if(connection == _sessionIDconnection)
+    {
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization
+                              JSONObjectWithData:_sessionIDdata
+                              options:kNilOptions
+                              error:&error];
+        _sessionID = [json objectForKey:@"session_id"];
+    }
 }
 
 -(double) headingTowardTargetLocation
