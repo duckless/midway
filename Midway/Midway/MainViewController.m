@@ -25,6 +25,11 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -63,11 +68,12 @@
     
 }
 
+
 -(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
     [self dismissViewControllerAnimated:NO completion:nil];
     self.personID = ABRecordGetRecordID(person);
-    [[SessionModel sharedSessionModel] startSessionWith:ABRecordGetRecordID(person)];
+    //[[SessionModel sharedSessionModel] startSessionWith:ABRecordGetRecordID(person)];
     [self performSegueWithIdentifier:@"inviteMethods" sender:self];
     return NO;
 }

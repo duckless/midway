@@ -17,4 +17,7 @@ profile
 DerivedData
 .idea/
 zbrox.xcuserdatad
+<<<<<<< HEAD
 midway-server/config/foursquare.yml
+=======
+>>>>>>> master

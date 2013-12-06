@@ -5,7 +5,6 @@
 //  Created by Rostislav Raykov on 11/22/13.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-
 #import "AppDelegate.h"
 
 @implementation AppDelegate
@@ -14,6 +13,7 @@
 {
     // Override point for customization after application launch.
     return YES;
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
