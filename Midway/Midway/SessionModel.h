@@ -18,6 +18,7 @@
 - (NSMutableArray *) inviteesPhoneNumbers;
 - (NSString *) inviteesName;
 - (CLLocation *) targetLocation;
+- (void) startSessionWith:(ABRecordID)invitee;
 - (double) headingTowardTargetLocation;
 
 
