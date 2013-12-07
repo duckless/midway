@@ -6,14 +6,16 @@
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
 #import "AppDelegate.h"
+#import "SessionModel.h"
 #import <Parse/Parse.h>
+#import "GeoPositionViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Parse setApplicationId:@"APP_ID_HERE"
-                  clientKey:@"CLIENT_KEY_HERE"];
+    [Parse setApplicationId:@"APP"
+                  clientKey:@"CLIENT"];
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
      UIRemoteNotificationTypeAlert|
      UIRemoteNotificationTypeSound];
@@ -53,6 +55,27 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSLog(@"opening a link!");
+    
+    [[SessionModel sharedSessionModel] acceptSessionWith:[url host]];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    GeoPositionViewController *geoVC = [storyboard instantiateViewControllerWithIdentifier:@"navigator"];
+//    [(UINavigationController*)self.window.rootViewController pushViewController:geoVC animated:NO];
+//    [self.window.rootViewController presentViewController:geoVC animated:NO completion:nil];
+    
+    [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
+
+
+    return YES;
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -62,5 +85,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
 
 @end
