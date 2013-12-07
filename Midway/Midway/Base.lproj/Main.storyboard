@@ -61,7 +61,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gnY-Bc-C1q" kind="modal" id="wWL-kB-hcx"/>
+                                    <segue destination="gnY-Bc-C1q" kind="modal" identifier="geoPosition" id="wWL-kB-hcx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -174,7 +174,7 @@
         <!--Geo Position View Controller-->
         <scene sceneID="HNp-UJ-6gR">
             <objects>
-                <viewController id="gnY-Bc-C1q" customClass="GeoPositionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="navigator" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gnY-Bc-C1q" customClass="GeoPositionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KHg-aZ-IxT"/>
                         <viewControllerLayoutGuide type="bottom" id="gcc-T5-v1M"/>
@@ -304,7 +304,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uZX-5n-lEh"/>
         <segue reference="wWL-kB-hcx"/>
+        <segue reference="uZX-5n-lEh"/>
     </inferredMetricsTieBreakers>
 </document>
