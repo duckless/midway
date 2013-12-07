@@ -56,28 +56,33 @@ class SessionController < ApplicationController
     @participant.last_location = params[:last_location]
     @participant.save
 
-    # midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
+    midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
 
     render json: {:session_id => @session_id.session_id, :location1 => midway_fika}
   end
 
   protected
     def send_push(uuid, message)
+      require 'net/http'
+      require "uri"
+
       parse = read_config 'parse'
 
-      uri = URI.parse("https://api.parse.com")
-      http = Net::HTTP.new(uri.host, uri.port)
-      
+      uri              = URI.parse("https://api.parse.com")
+      http             = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl     = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
       request = Net::HTTP::Post.new("/1/push")
       request.add_field('X-Parse-Application-Id', parse['application_id'])
       request.add_field('X-Parse-REST-API-Key', parse['rest_api_key'])
       request.add_field('Content-Type', 'application/json')
+
       request.body = {
-        "where": 
-          {"deviceToken": uuid}, 
-        "data": 
-          {"alert": message}
-        }
+        where: {deviceToken: uuid}, 
+        data: {alert: message}
+      }.to_json
+
       response = http.request(request)
     end
 
@@ -91,7 +96,7 @@ class SessionController < ApplicationController
     def read_config(name)
       path = File.join(Rails.root, "config", "#{name}.yml")
       config = YAML.load_file(path)
-      config["#{parse}"]
+      config["#{name}"]
     end
 
     def find_fika(location)
