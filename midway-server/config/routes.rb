@@ -3,7 +3,7 @@ MidwayServer::Application.routes.draw do
 
   post "session/join"
 
-  post "session/midpoint"
+  post "session/update"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
