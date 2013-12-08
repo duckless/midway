@@ -1,0 +1,3 @@
+parse:
+  application_id: APPLICATION_ID_HERE
+  rest_api_key: REST_API_KEY_HERE

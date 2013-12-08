@@ -20,4 +20,5 @@ zbrox.xcuserdatad
 midway-server/config/foursquare.yml
 midway-server/db/development.sqlite3
 midway-server/log/development.log
-midway-server/tmp
+midway-server/tmp/
+midway-server/config/parse.yml
