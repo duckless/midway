@@ -70,6 +70,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    [(UINavigationController*)self.window.rootViewController pushViewController:geoVC animated:NO];
 //    [self.window.rootViewController presentViewController:geoVC animated:NO completion:nil];
     
+    [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
     [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
 
 
