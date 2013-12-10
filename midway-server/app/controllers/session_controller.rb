@@ -58,7 +58,7 @@ class SessionController < ApplicationController
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
 
-    render json: {:session_id => @session_id.session_id, :location1 => midway_fika}
+    render json: {:session_id => @session_id.session_id, :location => midway_fika}
   end
 
   protected
