@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   def start
     begin
-      @participant = Participant.create!({:uuid => params[:uuid], :last_location => params[:last_location]})
+      @participant = Participant.create!({:uuid => params[:uuid], :last_location => params[:location]})
     rescue
       render json: {:error => "Insufficient parameters"}
       return
@@ -21,7 +21,7 @@ class SessionController < ApplicationController
     end
 
     begin
-      @participant = Participant.create!({:uuid => params[:uuid], :last_location => params[:last_location]})
+      @participant = Participant.create!({:uuid => params[:uuid], :last_location => params[:location]})
     rescue
       render json: {:error => "Insufficient parameters"}
       return
@@ -53,7 +53,7 @@ class SessionController < ApplicationController
     @other_participant = Participant.where(['session_id = ? AND id != ?', 
       @session.id, @participant.id])
 
-    @participant.last_location = params[:last_location]
+    @participant.last_location = params[:location]
     @participant.save
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
