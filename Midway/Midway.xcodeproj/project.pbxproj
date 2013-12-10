@@ -43,6 +43,9 @@
 		D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8F8184F6E400095E745 /* testArrow.png */; };
 		D4A9D8FB1851C3E60095E745 /* golden_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8FA1851C3E60095E745 /* golden_arrow.png */; };
 		D4A9D8FD1851C5800095E745 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8FC1851C5800095E745 /* icon.png */; };
+		D961AD27185755690036B13C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D961AD26185755690036B13C /* arrow.png */; };
+		D961AD29185756130036B13C /* grabfikaheading.png in Resources */ = {isa = PBXBuildFile; fileRef = D961AD28185756130036B13C /* grabfikaheading.png */; };
+		D9F1517018574EF4009B7DD8 /* headicon.png in Resources */ = {isa = PBXBuildFile; fileRef = D9F1516F18574EF4009B7DD8 /* headicon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +105,9 @@
 		D4A9D8F8184F6E400095E745 /* testArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testArrow.png; sourceTree = "<group>"; };
 		D4A9D8FA1851C3E60095E745 /* golden_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golden_arrow.png; sourceTree = "<group>"; };
 		D4A9D8FC1851C5800095E745 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		D961AD26185755690036B13C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		D961AD28185756130036B13C /* grabfikaheading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grabfikaheading.png; sourceTree = "<group>"; };
+		D9F1516F18574EF4009B7DD8 /* headicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headicon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +200,7 @@
 				0B05A0FB183F7C3600D697EF /* FlipsideViewController.h */,
 				0B05A0FC183F7C3600D697EF /* FlipsideViewController.m */,
 				D418EDB9184CBB2600D2EA72 /* GeoPositionViewController.h */,
+				D9F1516F18574EF4009B7DD8 /* headicon.png */,
 				D418EDBA184CBB2600D2EA72 /* GeoPositionViewController.m */,
 				D4A9D8FA1851C3E60095E745 /* golden_arrow.png */,
 				D4A9D8FC1851C5800095E745 /* icon.png */,
@@ -201,6 +208,8 @@
 				D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */,
 				D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */,
 				0B05A0F5183F7C3600D697EF /* Main.storyboard */,
+				D961AD28185756130036B13C /* grabfikaheading.png */,
+				D961AD26185755690036B13C /* arrow.png */,
 				0B05A0F8183F7C3600D697EF /* MainViewController.h */,
 				0B05A0F9183F7C3600D697EF /* MainViewController.m */,
 				D418EDC6184DE28300D2EA72 /* pointer2.png */,
@@ -327,7 +336,10 @@
 			files = (
 				D4A9D8FB1851C3E60095E745 /* golden_arrow.png in Resources */,
 				D418EDC7184DE28300D2EA72 /* pointer2.png in Resources */,
+				D9F1517018574EF4009B7DD8 /* headicon.png in Resources */,
 				0B05A0FF183F7C3600D697EF /* Images.xcassets in Resources */,
+				D961AD27185755690036B13C /* arrow.png in Resources */,
+				D961AD29185756130036B13C /* grabfikaheading.png in Resources */,
 				D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */,
 				D4A9D8FD1851C5800095E745 /* icon.png in Resources */,
 				0B05A0EE183F7C3500D697EF /* InfoPlist.strings in Resources */,
