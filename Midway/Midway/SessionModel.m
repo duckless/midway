@@ -7,6 +7,7 @@
 //
 #import "AddressBookUI/AddressBookUI.h"
 #import "SessionModel.h"
+#import "Parse/PFInstallation.h"
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define radiansToDegrees(x) (x * 180 / M_PI)
@@ -23,6 +24,11 @@
 
 @property NSURLConnection *sessionIDconnection;
 @property NSMutableData *sessionIDdata;
+
+@property NSURLConnection *joinSessionConnection;
+@property NSMutableData *joinSessionData;
+
+@property CLLocation *targetLocation;
 
 - (void) retrieveSessionID;
 - (void) gatherInviteeInfo;
@@ -77,7 +83,7 @@
     self.personID = invitee;
     
     [self gatherInviteeInfo];
-    NSLog(@"got an ID!");
+    NSLog(@"got an user record ID!");
     
 }
 
@@ -106,43 +112,85 @@
 
 
 - (CLLocation *) targetLocation {
-    
-    //    57° 42.218', 11° 58.035'
-    CLLocationDegrees latitude = 57.70363333333333;
-    CLLocationDegrees longitude = 11.96725;
-    
-    // Parking lot
-    latitude = 57.671345;
-    longitude = 11.915153;
-    
+    /*
     // Kuggen
-    latitude = 57.706983;
-    longitude = 11.9387;
+    CLLocationDegrees latitude = 57.706983;
+    CLLocationDegrees longitude = 11.9387;
     
-//    140 km south of Gothenburg
-//    latitude = 57.5413;
-//    longitude = 11.910583;
+    self.targetLocation = [[CLLocation alloc] initWithLatitude: latitude longitude:longitude];
+    */
+    return self.targetLocation;
+}
+
+- (void) setTargetLocation:(CLLocation *)targetLocation {
+    self.targetLocation = targetLocation;
+}
+
+-(void)acceptSessionWith:(NSString *)sessionID
+{
+    // This method is triggered when a user taps on a link with the grabafika:// URI scheme.
     
-    CLLocation *targetLocation = [[CLLocation alloc] initWithLatitude: latitude longitude:longitude];
-    
-    return targetLocation;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSString *token = [[PFInstallation currentInstallation] deviceToken];
+        
+        NSString *location = [[NSString alloc] initWithFormat:@"%f%@%f",
+                                    self.currentLocation.coordinate.latitude,
+                                    @"%2C",
+                                    self.currentLocation.coordinate.longitude,
+                                    nil];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
+                                        initWithURL:[NSURL
+                                                     URLWithString:@"http://midway.zbrox.org/session/join"]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@&session_id=%@",
+                                                                token,
+                                                                location,
+                                                                sessionID,
+                                                                nil];
+        
+        [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
+       forHTTPHeaderField:@"Content-length"];
+        
+        [request setHTTPBody:[postString
+                              dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        _joinSessionConnection =[[NSURLConnection alloc] initWithRequest:request
+                                                              delegate:self];
+        
+        _joinSessionData = [NSMutableData data];
+        [_joinSessionConnection start];
+    });
 }
 
 
-#warning missing implementation
 - (void) retrieveSessionID {
     // This message should contact the server in the
     // background, retrieving a new session ID to be used when an email or SMS is sent
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
+        NSString *token = [[PFInstallation currentInstallation] deviceToken];
+        
+        NSString *location = [[NSString alloc] initWithFormat:@"%f%@%f",
+                              self.currentLocation.coordinate.latitude,
+                              @"%2C",
+                              self.currentLocation.coordinate.longitude,
+                              nil];
+
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
                                                         initWithURL:[NSURL
                                                       URLWithString:@"http://midway.zbrox.org/session/start"]];
         
         [request setHTTPMethod:@"POST"];
         
-        NSString *postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@", nil, nil];
+        NSString *postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@",
+                                                                token,
+                                                                location,
+                                                                nil];
         
         [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
                                            forHTTPHeaderField:@"Content-length"];
@@ -162,8 +210,12 @@
     if(!data.length)
         return;
     
-    if (connection == _sessionIDconnection){
+    if (connection == _sessionIDconnection) {
         [_sessionIDdata appendData:data];
+    }
+    
+    if (connection == _joinSessionConnection) {
+        [_joinSessionData appendData:data];
     }
 }
 
@@ -176,6 +228,21 @@
                               options:kNilOptions
                               error:&error];
         _sessionID = [json objectForKey:@"session_id"];
+    }
+    
+    if(connection == _joinSessionConnection)
+    {
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization
+                              JSONObjectWithData:_joinSessionData
+                              options:kNilOptions
+                              error:&error];
+        _sessionID = [json objectForKey:@"session_id"];
+        NSString *location = [json objectForKey:@"location"];
+        NSArray *latLong = [location componentsSeparatedByString:@","];
+        [self setTargetLocation: [[CLLocation alloc]
+                                  initWithLatitude:[latLong[0] doubleValue]
+                                  longitude:[latLong[1] doubleValue]]];
     }
 }
 

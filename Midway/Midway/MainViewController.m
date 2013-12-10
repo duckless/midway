@@ -50,6 +50,8 @@
         [[segue destinationViewController] setDelegate:self];
     }
     if([[segue identifier] isEqualToString:@"inviteMethods"]) {
+        SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
+        [sharedSessionModel retrieveSessionID];
         UINavigationController  *navController = (UINavigationController*)[segue destinationViewController];
         InviteMethodsViewController *targetController = (InviteMethodsViewController *) [[navController viewControllers] objectAtIndex: 0];
         [targetController setPersonID:self.personID];

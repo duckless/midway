@@ -22,7 +22,6 @@
 		0B05A108183F7C3600D697EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B05A0E7183F7C3500D697EF /* UIKit.framework */; };
 		0B05A110183F7C3800D697EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B05A10E183F7C3800D697EF /* InfoPlist.strings */; };
 		0B05A112183F7C3900D697EF /* MidwayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B05A111183F7C3900D697EF /* MidwayTests.m */; };
-		0B7CE947185231F000294C19 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE946185231F000294C19 /* Parse.framework */; };
 		0B7CE9491852322200294C19 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9481852322200294C19 /* AudioToolbox.framework */; };
 		0B7CE94B1852322A00294C19 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE94A1852322A00294C19 /* CFNetwork.framework */; };
 		0B7CE94D1852323A00294C19 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE94C1852323A00294C19 /* libz.1.1.3.dylib */; };
@@ -37,12 +36,16 @@
 		D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E7184B6BF4004DF581 /* SessionModel.m */; };
 		D418EDBB184CBB2600D2EA72 /* GeoPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D418EDBA184CBB2600D2EA72 /* GeoPositionViewController.m */; };
 		D418EDC7184DE28300D2EA72 /* pointer2.png in Resources */ = {isa = PBXBuildFile; fileRef = D418EDC6184DE28300D2EA72 /* pointer2.png */; };
+		D471EC251853A7F30043D960 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE946185231F000294C19 /* Parse.framework */; };
 		D485E767184CB95D0082C780 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D485E766184CB95D0082C780 /* CoreLocation.framework */; };
 		D485E769184CB9660082C780 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D485E768184CB9660082C780 /* QuartzCore.framework */; };
 		D4A9D8F7184F28990095E745 /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9D8F6184F28990095E745 /* CompassView.m */; };
 		D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8F8184F6E400095E745 /* testArrow.png */; };
 		D4A9D8FB1851C3E60095E745 /* golden_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8FA1851C3E60095E745 /* golden_arrow.png */; };
 		D4A9D8FD1851C5800095E745 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8FC1851C5800095E745 /* icon.png */; };
+		D961AD27185755690036B13C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D961AD26185755690036B13C /* arrow.png */; };
+		D961AD29185756130036B13C /* grabfikaheading.png in Resources */ = {isa = PBXBuildFile; fileRef = D961AD28185756130036B13C /* grabfikaheading.png */; };
+		D9F1517018574EF4009B7DD8 /* headicon.png in Resources */ = {isa = PBXBuildFile; fileRef = D9F1516F18574EF4009B7DD8 /* headicon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +105,9 @@
 		D4A9D8F8184F6E400095E745 /* testArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testArrow.png; sourceTree = "<group>"; };
 		D4A9D8FA1851C3E60095E745 /* golden_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golden_arrow.png; sourceTree = "<group>"; };
 		D4A9D8FC1851C5800095E745 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		D961AD26185755690036B13C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		D961AD28185756130036B13C /* grabfikaheading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grabfikaheading.png; sourceTree = "<group>"; };
+		D9F1516F18574EF4009B7DD8 /* headicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headicon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D471EC251853A7F30043D960 /* Parse.framework in Frameworks */,
 				0B7CE9551852325900294C19 /* SystemConfiguration.framework in Frameworks */,
 				0B7CE9531852325200294C19 /* StoreKit.framework in Frameworks */,
 				0B7CE9511852324D00294C19 /* Security.framework in Frameworks */,
@@ -117,7 +124,6 @@
 				0B7CE94B1852322A00294C19 /* CFNetwork.framework in Frameworks */,
 				0B7CE9491852322200294C19 /* AudioToolbox.framework in Frameworks */,
 				D485E769184CB9660082C780 /* QuartzCore.framework in Frameworks */,
-				0B7CE947185231F000294C19 /* Parse.framework in Frameworks */,
 				D485E767184CB95D0082C780 /* CoreLocation.framework in Frameworks */,
 				D41542E4184B59FD004DF581 /* MessageUI.framework in Frameworks */,
 				D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */,
@@ -187,27 +193,30 @@
 		0B05A0E9183F7C3500D697EF /* Midway */ = {
 			isa = PBXGroup;
 			children = (
-				D418EDB9184CBB2600D2EA72 /* GeoPositionViewController.h */,
-				D418EDBA184CBB2600D2EA72 /* GeoPositionViewController.m */,
-				D4A9D8F5184F28990095E745 /* CompassView.h */,
-				D4A9D8F6184F28990095E745 /* CompassView.m */,
-				D4A9D8FC1851C5800095E745 /* icon.png */,
-				D4A9D8FA1851C3E60095E745 /* golden_arrow.png */,
-				D4A9D8F8184F6E400095E745 /* testArrow.png */,
-				D418EDC6184DE28300D2EA72 /* pointer2.png */,
 				0B05A0F2183F7C3500D697EF /* AppDelegate.h */,
 				0B05A0F3183F7C3600D697EF /* AppDelegate.m */,
+				D4A9D8F5184F28990095E745 /* CompassView.h */,
+				D4A9D8F6184F28990095E745 /* CompassView.m */,
 				0B05A0FB183F7C3600D697EF /* FlipsideViewController.h */,
 				0B05A0FC183F7C3600D697EF /* FlipsideViewController.m */,
+				D418EDB9184CBB2600D2EA72 /* GeoPositionViewController.h */,
+				D9F1516F18574EF4009B7DD8 /* headicon.png */,
+				D418EDBA184CBB2600D2EA72 /* GeoPositionViewController.m */,
+				D4A9D8FA1851C3E60095E745 /* golden_arrow.png */,
+				D4A9D8FC1851C5800095E745 /* icon.png */,
 				0B05A0FE183F7C3600D697EF /* Images.xcassets */,
 				D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */,
 				D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */,
 				0B05A0F5183F7C3600D697EF /* Main.storyboard */,
+				D961AD28185756130036B13C /* grabfikaheading.png */,
+				D961AD26185755690036B13C /* arrow.png */,
 				0B05A0F8183F7C3600D697EF /* MainViewController.h */,
 				0B05A0F9183F7C3600D697EF /* MainViewController.m */,
+				D418EDC6184DE28300D2EA72 /* pointer2.png */,
 				D41542E6184B6BF4004DF581 /* SessionModel.h */,
 				D41542E7184B6BF4004DF581 /* SessionModel.m */,
 				0B05A0EA183F7C3500D697EF /* Supporting Files */,
+				D4A9D8F8184F6E400095E745 /* testArrow.png */,
 			);
 			path = Midway;
 			sourceTree = "<group>";
@@ -327,7 +336,10 @@
 			files = (
 				D4A9D8FB1851C3E60095E745 /* golden_arrow.png in Resources */,
 				D418EDC7184DE28300D2EA72 /* pointer2.png in Resources */,
+				D9F1517018574EF4009B7DD8 /* headicon.png in Resources */,
 				0B05A0FF183F7C3600D697EF /* Images.xcassets in Resources */,
+				D961AD27185755690036B13C /* arrow.png in Resources */,
+				D961AD29185756130036B13C /* grabfikaheading.png in Resources */,
 				D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */,
 				D4A9D8FD1851C5800095E745 /* icon.png in Resources */,
 				0B05A0EE183F7C3500D697EF /* InfoPlist.strings in Resources */,
@@ -489,6 +501,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/zbrox/Dropbox/Projects/Chalmers/Mobile/Midway\\ Workspace/Midway",
+					"/Users/olofbjerke/Development/iOS/mobile-computing-project/midway/Midway",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";
@@ -509,6 +522,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/zbrox/Dropbox/Projects/Chalmers/Mobile/Midway\\ Workspace/Midway",
+					"/Users/olofbjerke/Development/iOS/mobile-computing-project/midway/Midway",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";

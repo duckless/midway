@@ -73,9 +73,9 @@
     
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     controller.mailComposeDelegate = self;
-    [controller setSubject:@"My Subject"];
+    [controller setSubject:@"Grab a fika"];
     [controller setToRecipients: recipents];
-    [controller setMessageBody:@"Hello there." isHTML:NO];
+    [controller setMessageBody:@"Hi! Want to grab a fika with me? grabafika://SESSION_ID_HERE " isHTML:NO];
     if (controller) [self presentViewController:controller animated:YES completion:nil];
 }
 
@@ -83,7 +83,9 @@
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if([MFMessageComposeViewController canSendText])
     {
-        controller.body = @"SMS message here";
+        //SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
+        controller.body = @"Hi! Want to grab a fika with me? grabafika://";
+        //[controller.body stringByAppendingString: sharedSessionModel.sessionID];
         controller.recipients = [NSArray arrayWithObjects: recipent, nil];
         controller.messageComposeDelegate = self;
         [self presentViewController:controller animated:YES completion:nil];
