@@ -21,7 +21,7 @@
 - (void) startSessionWith:(ABRecordID)invitee;
 - (void) acceptSessionWith:(NSString *)sessionID;
 - (double) headingTowardTargetLocation;
-
+- (void) retrieveSessionID;
 
 - (CLLocation *) currentLocation;
 - (CLHeading *) currentHeading;

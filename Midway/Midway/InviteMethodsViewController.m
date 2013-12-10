@@ -83,7 +83,9 @@
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if([MFMessageComposeViewController canSendText])
     {
-        controller.body = @"Hi! Want to grab a fika with me? grabafika://SESSION_ID_HERE ";
+        //SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
+        controller.body = @"Hi! Want to grab a fika with me? grabafika://";
+        //[controller.body stringByAppendingString: sharedSessionModel.sessionID];
         controller.recipients = [NSArray arrayWithObjects: recipent, nil];
         controller.messageComposeDelegate = self;
         [self presentViewController:controller animated:YES completion:nil];
