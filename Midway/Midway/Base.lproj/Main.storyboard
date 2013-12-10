@@ -30,8 +30,8 @@
                                     <segue destination="kIf-nA-PKG" kind="modal" identifier="showAlternate" modalTransitionStyle="flipHorizontal" id="ZEO-Qe-X3j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Fl-KiY">
-                                <rect key="frame" x="54" y="458" width="213" height="69"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Fl-KiY">
+                                <rect key="frame" x="54" y="458" width="213" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Send invitation">
@@ -65,6 +65,7 @@
                             <constraint firstAttribute="trailing" secondItem="jqg-sy-dxO" secondAttribute="trailing" constant="20" symbolic="YES" id="1ym-A3-aKq"/>
                             <constraint firstItem="F7h-gj-6xd" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="20" id="Cqk-0d-bmi"/>
                             <constraint firstAttribute="bottom" secondItem="jqg-sy-dxO" secondAttribute="bottom" constant="20" symbolic="YES" id="Uf2-YL-3zF"/>
+                            <constraint firstItem="StD-2B-Kvw" firstAttribute="top" secondItem="gdx-Fl-KiY" secondAttribute="bottom" constant="75" id="tp8-gs-dkd"/>
                             <constraint firstItem="StD-2B-Kvw" firstAttribute="top" secondItem="F7h-gj-6xd" secondAttribute="bottom" constant="16" id="zpM-0d-khA"/>
                         </constraints>
                     </view>
