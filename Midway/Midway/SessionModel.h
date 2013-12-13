@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AddressBookUI/AddressBookUI.h"
 
-@interface SessionModel : NSObject <NSURLConnectionDataDelegate, CLLocationManagerDelegate>
+@interface SessionModel : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate>
 
 @property NSString *sessionID;
 
