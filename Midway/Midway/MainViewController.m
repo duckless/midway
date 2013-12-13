@@ -50,8 +50,6 @@
         [[segue destinationViewController] setDelegate:self];
     }
     if([[segue identifier] isEqualToString:@"inviteMethods"]) {
-        SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
-        [sharedSessionModel retrieveSessionID];
         UINavigationController  *navController = (UINavigationController*)[segue destinationViewController];
         InviteMethodsViewController *targetController = (InviteMethodsViewController *) [[navController viewControllers] objectAtIndex: 0];
         [targetController setPersonID:self.personID];
@@ -59,6 +57,9 @@
 }
 
 - (IBAction)inviteAFriend:(id)sender {
+    SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
+    [sharedSessionModel retrieveSessionID];
+    
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
     [self presentViewController:picker animated:YES completion:Nil];

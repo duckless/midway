@@ -128,6 +128,7 @@
 
 -(void)acceptSessionWith:(NSString *)sessionID
 {
+    NSLog(@"accept");
     // This method is triggered when a user taps on a link with the grabafika:// URI scheme.
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -168,6 +169,7 @@
 
 
 - (void) retrieveSessionID {
+    NSLog(@"retrive");
     // This message should contact the server in the
     // background, retrieving a new session ID to be used when an email or SMS is sent
     
@@ -207,6 +209,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSLog(@"did receive");
     if(!data.length)
         return;
     
@@ -220,6 +223,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"retrive session id?");
     if(connection == _sessionIDconnection)
     {
         NSError* error;

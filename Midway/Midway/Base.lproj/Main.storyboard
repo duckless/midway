@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Fl-KiY">
-                                <rect key="frame" x="54" y="458" width="213" height="35"/>
+                                <rect key="frame" x="54" y="465" width="213" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Send invitation">
@@ -142,8 +142,8 @@ be accepted.</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES9-QJ-BcA">
-                                <rect key="frame" x="60" y="451" width="201" height="59"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES9-QJ-BcA">
+                                <rect key="frame" x="60" y="465" width="201" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Cancel invite">
@@ -165,6 +165,9 @@ be accepted.</string>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZV8-gQ-C7I" firstAttribute="top" secondItem="ES9-QJ-BcA" secondAttribute="bottom" constant="70" id="cHt-Qj-0Zw"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fwj-ny-e5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -296,6 +299,6 @@ be accepted.</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uZX-5n-lEh"/>
-        <segue reference="wWL-kB-hcx"/>
+        <segue reference="IfX-rs-4Ma"/>
     </inferredMetricsTieBreakers>
 </document>
