@@ -17,11 +17,13 @@
 - (NSMutableArray *) inviteesEmails;
 - (NSMutableArray *) inviteesPhoneNumbers;
 - (NSString *) inviteesName;
-- (CLLocation *) targetLocation;
+
 - (void) startSessionWith:(ABRecordID)invitee;
 - (void) acceptSessionWith:(NSString *)sessionID;
 - (double) headingTowardTargetLocation;
 - (void) retrieveSessionID;
+- (void) getLocation;
+- (void) updateLocation;
 
 - (CLLocation *) currentLocation;
 - (CLHeading *) currentHeading;

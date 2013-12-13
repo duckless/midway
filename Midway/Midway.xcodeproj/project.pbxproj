@@ -520,6 +520,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.duckless.Midway";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.duckless.Midway";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"$(SRCROOT)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";
 				INFOPLIST_FILE = "Midway/Midway-Info.plist";

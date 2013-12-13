@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIView *testView;
 @property (weak, nonatomic) IBOutlet UILabel *coordinates;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
+@property (weak, nonatomic) IBOutlet UILabel *venueNameLabel;
 @property CLLocationManager *locationManager;
 @property CompassView * compassView;
 @end
@@ -63,9 +64,11 @@
         NSDictionary* userInfo = notification.userInfo;
         double heading = [[userInfo objectForKey:@"heading"] doubleValue];
         double distanceLeft = [[userInfo objectForKey:@"distance"] doubleValue];
+        NSString *venueName = [userInfo objectForKey:@"venueName"];
         
         [self.compassView updateCompassWithHeading: heading];
         self.distance.text = [[NSString alloc] initWithFormat:@"%f", distanceLeft];
+        self.venueNameLabel.text = venueName;
     }
 }
 

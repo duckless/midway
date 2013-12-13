@@ -31,10 +31,11 @@ class SessionController < ApplicationController
     @session.participants << @participant
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
+    midway_fika_location = "#{midway_fika['location'][:lat]},#{midway_fika['location'][:lng]}"
 
     send_push @other_participant.uuid, "Your friend has joined."
 
-    render json: {:session_id => @session.session_id, :location => midway_fika}
+    render json: {:session_id => @session.session_id, :location => midway_fika_location, :venue_name => midway_fika['name']}
   end
 
   def update
@@ -57,8 +58,9 @@ class SessionController < ApplicationController
     @participant.save
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
+    midway_fika_location = "#{midway_fika['location'][:lat]},#{midway_fika['location'][:lng]}"
 
-    render json: {:session_id => @session_id.session_id, :location => midway_fika}
+    render json: {:session_id => @session.session_id, :location => midway_fika_location, :venue_name => midway_fika['name']}
   end
 
   protected
@@ -100,14 +102,15 @@ class SessionController < ApplicationController
     end
 
     def find_fika(location)
-      foursquare = read_config
+      foursquare = read_config "foursquare"
       client = Foursquare2::Client.new(:client_id => foursquare['client_id'], 
         :client_secret => foursquare['client_secret'])
 
       venues = client.search_venues(:ll => location, 
         :categoryId => foursquare['cafe_category_id'])
-      location = venues['groups'][0]['items'][0]['location']
-      "#{location[:lat]},#{location[:lng]}"
+      venues['groups'][0]['items'][0]
+      # location = venues['groups'][0]['items'][0]['location']
+      # "#{location[:lat]},#{location[:lng]}"
     end
 
 end
