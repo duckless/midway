@@ -75,7 +75,9 @@
     controller.mailComposeDelegate = self;
     [controller setSubject:@"Grab a fika"];
     [controller setToRecipients: recipents];
-    [controller setMessageBody:@"Hi! Want to grab a fika with me? grabafika://SESSION_ID_HERE " isHTML:NO];
+    SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
+    NSString *text = [[NSString alloc] initWithFormat:@"Hi! Want to grab a fika with me? grabafika://%@", sharedSessionModel.sessionID ];
+    [controller setMessageBody:text isHTML:NO];
     if (controller) [self presentViewController:controller animated:YES completion:nil];
 }
 
@@ -83,9 +85,8 @@
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if([MFMessageComposeViewController canSendText])
     {
-        //SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
-        controller.body = @"Hi! Want to grab a fika with me? grabafika://";
-        //[controller.body stringByAppendingString: sharedSessionModel.sessionID];
+        SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
+        controller.body = [[NSString alloc] initWithFormat:@"Hi! Want to grab a fika with me? grabafika://%@", sharedSessionModel.sessionID ];
         controller.recipients = [NSArray arrayWithObjects: recipent, nil];
         controller.messageComposeDelegate = self;
         [self presentViewController:controller animated:YES completion:nil];

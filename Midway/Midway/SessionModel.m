@@ -173,13 +173,10 @@
     // This message should contact the server in the
     // background, retrieving a new session ID to be used when an email or SMS is sent
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
         NSString *token = [[PFInstallation currentInstallation] deviceToken];
         
-        NSString *location = [[NSString alloc] initWithFormat:@"%f%@%f",
+        NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
                               self.currentLocation.coordinate.latitude,
-                              @"%2C",
                               self.currentLocation.coordinate.longitude,
                               nil];
 
@@ -193,8 +190,8 @@
                                                                 token,
                                                                 location,
                                                                 nil];
-        
-        [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
+
+        [request setValue:[NSString stringWithFormat:@"%d", [postString length]]
                                            forHTTPHeaderField:@"Content-length"];
         
         [request setHTTPBody:[postString
@@ -205,7 +202,7 @@
         
         _sessionIDdata = [NSMutableData data];
         [_sessionIDconnection start];
-    });
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -227,12 +224,17 @@
     if(connection == _sessionIDconnection)
     {
         NSError* error;
+        NSLog(@"length: %d", _sessionIDdata.length);
         NSDictionary* json = [NSJSONSerialization
                               JSONObjectWithData:_sessionIDdata
                               options:kNilOptions
                               error:&error];
+
+        NSLog(@"Session ID = %@",_sessionID );
+
         _sessionID = [json objectForKey:@"session_id"];
     }
+    
     
     if(connection == _joinSessionConnection)
     {
@@ -249,6 +251,17 @@
                                   longitude:[latLong[1] doubleValue]]];
     }
 }
+
+- (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"Did Receive Response");
+}
+
+- (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
+{
+    NSLog(@"Did Fail");
+}
+
 
 -(double) headingTowardTargetLocation
 {
