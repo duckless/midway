@@ -12,7 +12,6 @@
 		0B05A0E8183F7C3500D697EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B05A0E7183F7C3500D697EF /* UIKit.framework */; };
 		0B05A0EE183F7C3500D697EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B05A0EC183F7C3500D697EF /* InfoPlist.strings */; };
 		0B05A0F0183F7C3500D697EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B05A0EF183F7C3500D697EF /* main.m */; };
-		0B05A0F4183F7C3600D697EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B05A0F3183F7C3600D697EF /* AppDelegate.m */; };
 		0B05A0F7183F7C3600D697EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B05A0F5183F7C3600D697EF /* Main.storyboard */; };
 		0B05A0FA183F7C3600D697EF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B05A0F9183F7C3600D697EF /* MainViewController.m */; };
 		0B05A0FD183F7C3600D697EF /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B05A0FC183F7C3600D697EF /* FlipsideViewController.m */; };
@@ -71,7 +70,6 @@
 		0B05A0EF183F7C3500D697EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0B05A0F1183F7C3500D697EF /* Midway-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Midway-Prefix.pch"; sourceTree = "<group>"; };
 		0B05A0F2183F7C3500D697EF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		0B05A0F3183F7C3600D697EF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0B05A0F6183F7C3600D697EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B05A0F8183F7C3600D697EF /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		0B05A0F9183F7C3600D697EF /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 			children = (
 				0B45287D185C9CBE000DC569 /* AppDelegate.m */,
 				0B05A0F2183F7C3500D697EF /* AppDelegate.h */,
-				0B05A0F3183F7C3600D697EF /* AppDelegate.m */,
 				D4A9D8F5184F28990095E745 /* CompassView.h */,
 				D4A9D8F6184F28990095E745 /* CompassView.m */,
 				0B05A0FB183F7C3600D697EF /* FlipsideViewController.h */,
@@ -378,7 +375,6 @@
 				0B45287E185C9CBE000DC569 /* AppDelegate.m in Sources */,
 				D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */,
 				D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */,
-				0B05A0F4183F7C3600D697EF /* AppDelegate.m in Sources */,
 				0B05A0FA183F7C3600D697EF /* MainViewController.m in Sources */,
 				0B05A0FD183F7C3600D697EF /* FlipsideViewController.m in Sources */,
 				0B05A0F0183F7C3500D697EF /* main.m in Sources */,
