@@ -22,6 +22,9 @@
 		0B05A108183F7C3600D697EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B05A0E7183F7C3500D697EF /* UIKit.framework */; };
 		0B05A110183F7C3800D697EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B05A10E183F7C3800D697EF /* InfoPlist.strings */; };
 		0B05A112183F7C3900D697EF /* MidwayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B05A111183F7C3900D697EF /* MidwayTests.m */; };
+		0B45287E185C9CBE000DC569 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B45287D185C9CBE000DC569 /* AppDelegate.m */; };
+		0B452880185C9CEF000DC569 /* parse_config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B45287F185C9CEF000DC569 /* parse_config.plist */; };
+		0B452882185C9D40000DC569 /* parse_config_sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B452881185C9D40000DC569 /* parse_config_sample.plist */; };
 		0B7CE9491852322200294C19 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9481852322200294C19 /* AudioToolbox.framework */; };
 		0B7CE94B1852322A00294C19 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE94A1852322A00294C19 /* CFNetwork.framework */; };
 		0B7CE94D1852323A00294C19 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE94C1852323A00294C19 /* libz.1.1.3.dylib */; };
@@ -80,6 +83,9 @@
 		0B05A10D183F7C3700D697EF /* MidwayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MidwayTests-Info.plist"; sourceTree = "<group>"; };
 		0B05A10F183F7C3800D697EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B05A111183F7C3900D697EF /* MidwayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MidwayTests.m; sourceTree = "<group>"; };
+		0B45287D185C9CBE000DC569 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0B45287F185C9CEF000DC569 /* parse_config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = parse_config.plist; sourceTree = "<group>"; };
+		0B452881185C9D40000DC569 /* parse_config_sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = parse_config_sample.plist; sourceTree = "<group>"; };
 		0B7CE946185231F000294C19 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		0B7CE9481852322200294C19 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0B7CE94A1852322A00294C19 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -193,6 +199,7 @@
 		0B05A0E9183F7C3500D697EF /* Midway */ = {
 			isa = PBXGroup;
 			children = (
+				0B45287D185C9CBE000DC569 /* AppDelegate.m */,
 				0B05A0F2183F7C3500D697EF /* AppDelegate.h */,
 				0B05A0F3183F7C3600D697EF /* AppDelegate.m */,
 				D4A9D8F5184F28990095E745 /* CompassView.h */,
@@ -228,6 +235,8 @@
 				0B05A0EC183F7C3500D697EF /* InfoPlist.strings */,
 				0B05A0EF183F7C3500D697EF /* main.m */,
 				0B05A0F1183F7C3500D697EF /* Midway-Prefix.pch */,
+				0B45287F185C9CEF000DC569 /* parse_config.plist */,
+				0B452881185C9D40000DC569 /* parse_config_sample.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -334,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B452882185C9D40000DC569 /* parse_config_sample.plist in Resources */,
 				D4A9D8FB1851C3E60095E745 /* golden_arrow.png in Resources */,
 				D418EDC7184DE28300D2EA72 /* pointer2.png in Resources */,
 				D9F1517018574EF4009B7DD8 /* headicon.png in Resources */,
@@ -341,6 +351,7 @@
 				D961AD27185755690036B13C /* arrow.png in Resources */,
 				D961AD29185756130036B13C /* grabfikaheading.png in Resources */,
 				D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */,
+				0B452880185C9CEF000DC569 /* parse_config.plist in Resources */,
 				D4A9D8FD1851C5800095E745 /* icon.png in Resources */,
 				0B05A0EE183F7C3500D697EF /* InfoPlist.strings in Resources */,
 				0B05A0F7183F7C3600D697EF /* Main.storyboard in Resources */,
@@ -364,6 +375,7 @@
 			files = (
 				D418EDBB184CBB2600D2EA72 /* GeoPositionViewController.m in Sources */,
 				D4A9D8F7184F28990095E745 /* CompassView.m in Sources */,
+				0B45287E185C9CBE000DC569 /* AppDelegate.m in Sources */,
 				D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */,
 				D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */,
 				0B05A0F4183F7C3600D697EF /* AppDelegate.m in Sources */,

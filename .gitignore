@@ -22,3 +22,4 @@ midway-server/db/development.sqlite3
 midway-server/log/development.log
 midway-server/tmp/
 midway-server/config/parse.yml
+Midway/Midway/parse_config.plist
