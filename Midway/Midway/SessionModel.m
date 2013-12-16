@@ -118,9 +118,46 @@
 
 #pragma Networking
 
+- (void) retrieveSessionID {
+    NSLog(@"retrive");
+    // First connection to server
+    // This message should contact the server in the background, retrieving a new session ID to be used when an email or SMS is sent
+    
+    NSString *token = [[PFInstallation currentInstallation] deviceToken];
+    
+    NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
+                          self.currentLocation.coordinate.latitude,
+                          self.currentLocation.coordinate.longitude,
+                          nil];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
+                                    initWithURL:[NSURL
+                                                 URLWithString:@"http://midway.zbrox.org/session/start"]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@",
+                            token,
+                            location,
+                            nil];
+    
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
+   forHTTPHeaderField:@"Content-length"];
+    
+    [request setHTTPBody:[postString
+                          dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    _sessionIDconnection =[[NSURLConnection alloc] initWithRequest:request
+                                                          delegate:self];
+    
+    _sessionIDdata = [NSMutableData data];
+    [_sessionIDconnection start];
+}
+
 -(void)acceptSessionWith:(NSString *)sessionID
 {
-    NSLog(@"accept");
+    NSLog(@"accept session");
+    // Second connection to server
     // This method is triggered when a user taps on a link with the grabafika:// URI scheme.
     
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
@@ -142,9 +179,8 @@
                             location,
                             nil];
 
-    
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
-   forHTTPHeaderField:@"Content-length"];
+    forHTTPHeaderField:@"Content-length"];
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
@@ -152,13 +188,13 @@
     
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
-    _joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    self.joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     NSDictionary* json = [NSJSONSerialization
                           JSONObjectWithData:_joinSessionData
                           options:kNilOptions
                           error:&error];
-    _sessionID = [json objectForKey:@"session_id"];
+    self.sessionID = [json objectForKey:@"session_id"];
     NSString *responseLocation = [json objectForKey:@"location"];
     NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
     [self setTargetLocation: [[CLLocation alloc]
@@ -167,47 +203,13 @@
     [self setVenueName:[json objectForKey:@"venue_name"]];
 }
 
-- (void) retrieveSessionID {
-    NSLog(@"retrive");
-    // This message should contact the server in the
-    // background, retrieving a new session ID to be used when an email or SMS is sent
-    
-    NSString *token = [[PFInstallation currentInstallation] deviceToken];
-    
-    NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
-                          self.currentLocation.coordinate.latitude,
-                          self.currentLocation.coordinate.longitude,
-                          nil];
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                                    initWithURL:[NSURL
-                                                  URLWithString:@"http://midway.zbrox.org/session/start"]];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    NSString *postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@",
-                                                            token,
-                                                            location,
-                                                            nil];
-
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
-                                       forHTTPHeaderField:@"Content-length"];
-    
-    [request setHTTPBody:[postString
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    _sessionIDconnection =[[NSURLConnection alloc] initWithRequest:request
-                                    delegate:self];
-    
-    _sessionIDdata = [NSMutableData data];
-    [_sessionIDconnection start];
-}
 
 - (void) getLocation
 {
     NSLog(@"get location");
-    // --This method is triggered when a user taps on a link with the grabafika:// URI scheme.--
     // This method is triggered by a push notification after a session is accepted
+    // Third connection to server
     
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
@@ -230,7 +232,7 @@
     
     
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
-   forHTTPHeaderField:@"Content-length"];
+    forHTTPHeaderField:@"Content-length"];
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
@@ -253,15 +255,16 @@
     [self setVenueName:[json objectForKey:@"venue_name"]];
 }
 
-- (void) updateLocation {
+- (void) updateTargetLocation {
     // Run this method to retrieve a new target location?
+    // Method runs every x seconds to retrieve a new target café
  
     
     // Timer used to reduce server requests;
     if(!self.timer)
     {
         self.timer = [[NSDate date] timeIntervalSince1970] + 10;
-        NSLog(@"adding 20");
+        NSLog(@"adding time");
     }
     if (self.timer > [[NSDate date] timeIntervalSince1970]) {
         return;
@@ -271,6 +274,7 @@
         NSLog(@"update location");
     }
     
+  
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
@@ -285,23 +289,46 @@
     [request setHTTPMethod:@"POST"];
     
     NSString *postString = [[NSString alloc] initWithFormat:@"session_id=%@&uuid=%@&location=%@",
-                            _sessionID,
+                            self.sessionID,
                             token,
                             location,
                             nil];
     
+    @try {
+        NSLog(postString);
+    }
+    @catch (NSException *exception) {
+
+    }
+    @finally {
+
+    }
+
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
    forHTTPHeaderField:@"Content-length"];
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
     
-    _updateSessionConnection =[[NSURLConnection alloc] initWithRequest:request
-                                                          delegate:self];
     
-    _updateSessionData = [NSMutableData data];
-    [_updateSessionConnection start];
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    NSError *error = [[NSError alloc] init];
+    _joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:_joinSessionData
+                          options:kNilOptions
+                          error:&error];
+    NSString *responseLocation = [json objectForKey:@"location"];
+    NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
+    [self setTargetLocation: [[CLLocation alloc]
+                              initWithLatitude:[latLong[0] doubleValue]
+                              longitude:[latLong[1] doubleValue]]];
+    [self setVenueName:[json objectForKey:@"venue_name"]];
+
 }
+
+#pragma connection helpers
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     NSLog(@"did receive");
@@ -322,27 +349,21 @@
     if(connection == _sessionIDconnection)
     {
         NSError* error;
-//        NSLog(@"length: %lu", (unsigned long)_sessionIDdata.length);
         NSDictionary* json = [NSJSONSerialization
                               JSONObjectWithData:_sessionIDdata
                               options:kNilOptions
                               error:&error];
 
-//        NSLog(@"Session ID = %@",_sessionID );
-
-        _sessionID = [json objectForKey:@"session_id"];
+        self.sessionID = [json objectForKey:@"session_id"];
     }
     
     if(connection == _updateSessionConnection)
     {
         NSError* error;
-        //        NSLog(@"length: %lu", (unsigned long)_sessionIDdata.length);
         NSDictionary* json = [NSJSONSerialization
                               JSONObjectWithData:_updateSessionData
                               options:kNilOptions
                               error:&error];
-        
-        //        NSLog(@"Session ID = %@",_sessionID );
         
         NSString *responseLocation = [json objectForKey:@"location"];
         NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
@@ -423,8 +444,7 @@
 
 - (void) updateCompass
 {
-    
-    [self updateLocation];
+    [self updateTargetLocation];
     
     double heading = [self headingTowardTargetLocation];
     double distance = [[self currentLocation] distanceFromLocation: self.targetLocation];
@@ -447,7 +467,6 @@
 -(double) headingTowardTargetLocation
 {
     NSInteger trueAngle = [self currentHeading].trueHeading;
-    //CLLocation * targetLocation = self.targetLocation;
     
     // Current location
     double lat1 = [self currentLatitude];
@@ -466,7 +485,6 @@
     if (compassHeading < 0)
         compassHeading = compassHeading + 360;
     
-    // NSLog(@"compassHeading: %f", compassHeading);
     return degreesToRadians(compassHeading);
 }
 

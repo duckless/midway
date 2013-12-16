@@ -23,7 +23,7 @@
 - (double) headingTowardTargetLocation;
 - (void) retrieveSessionID;
 - (void) getLocation;
-- (void) updateLocation;
+- (void) updateTargetLocation;
 
 - (CLLocation *) currentLocation;
 - (CLHeading *) currentHeading;

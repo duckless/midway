@@ -47,7 +47,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"Received remote notification");
     [PFPush handlePush:userInfo];
-    [[SessionModel sharedSessionModel] getLocation];
+    [[SessionModel sharedSessionModel] updateTargetLocation];
     
 //    SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
 //    [sharedSessionModel acceptSessionWith: sharedSessionModel.sessionID];

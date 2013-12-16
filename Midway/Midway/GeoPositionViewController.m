@@ -69,7 +69,7 @@
             venueName = [userInfo objectForKey:@"venueName"];
         }
         @catch (NSException * e) {
-
+            venueName = @"Waiting for venue name";
         }
         @finally {
 
