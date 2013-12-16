@@ -24,6 +24,7 @@
 
 @property NSURLConnection *sessionIDconnection;
 @property NSMutableData *sessionIDdata;
+@property NSTimeInterval timer;
 
 @property NSData *joinSessionData;
 
@@ -70,6 +71,8 @@
     return sharedSessionModel;
 }
 
+#pragma Contact list
+
 - (NSMutableArray *) inviteesEmails {
     return self.emails;
 }
@@ -112,6 +115,8 @@
     self.inviteeName = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));
     
 }
+
+#pragma Networking
 
 -(void)acceptSessionWith:(NSString *)sessionID
 {
@@ -161,7 +166,6 @@
                               longitude:[latLong[1] doubleValue]]];
     [self setVenueName:[json objectForKey:@"venue_name"]];
 }
-
 
 - (void) retrieveSessionID {
     NSLog(@"retrive");
@@ -251,9 +255,21 @@
 
 - (void) updateLocation {
     // Run this method to retrieve a new target location?
-    NSLog(@"update location");
+ 
     
-    
+    // Timer used to reduce server requests;
+    if(!self.timer)
+    {
+        self.timer = [[NSDate date] timeIntervalSince1970] + 10;
+        NSLog(@"adding 20");
+    }
+    if (self.timer > [[NSDate date] timeIntervalSince1970]) {
+        return;
+    }
+    else {
+        self.timer = [[NSDate date] timeIntervalSince1970] + 10;
+        NSLog(@"update location");
+    }
     
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
@@ -347,33 +363,6 @@
     NSLog(@"Did Fail");
 }
 
-
--(double) headingTowardTargetLocation
-{
-    NSInteger trueAngle = [self currentHeading].trueHeading;
-    //CLLocation * targetLocation = self.targetLocation;
-    
-    // Current location
-    double lat1 = [self currentLatitude];
-    double lon1 = [self currentLongitude];
-    
-    // Target location
-    float lat2 = self.targetLocation.coordinate.latitude;
-    float lon2 = self.targetLocation.coordinate.longitude;
-    
-    
-    float headingToTarget = atan2(sin(lon2 - lon1) * cos(lat2), cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1));
-    float headingInDegrees = radiansToDegrees(headingToTarget);
-    
-    float compassHeading = headingInDegrees - trueAngle;
-    
-    if (compassHeading < 0)
-        compassHeading = compassHeading + 360;
-    
-    // NSLog(@"compassHeading: %f", compassHeading);
-    return degreesToRadians(compassHeading);
-}
-
 #pragma Location manager
 
 - (void) startUpdatingLocation
@@ -435,6 +424,8 @@
 - (void) updateCompass
 {
     
+    [self updateLocation];
+    
     double heading = [self headingTowardTargetLocation];
     double distance = [[self currentLocation] distanceFromLocation: self.targetLocation];
     
@@ -451,6 +442,32 @@
 
     }
     [[NSNotificationCenter defaultCenter] postNotificationName: @"updateCompass" object:nil userInfo:userInfo];
+}
+
+-(double) headingTowardTargetLocation
+{
+    NSInteger trueAngle = [self currentHeading].trueHeading;
+    //CLLocation * targetLocation = self.targetLocation;
+    
+    // Current location
+    double lat1 = [self currentLatitude];
+    double lon1 = [self currentLongitude];
+    
+    // Target location
+    float lat2 = self.targetLocation.coordinate.latitude;
+    float lon2 = self.targetLocation.coordinate.longitude;
+    
+    
+    float headingToTarget = atan2(sin(lon2 - lon1) * cos(lat2), cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1));
+    float headingInDegrees = radiansToDegrees(headingToTarget);
+    
+    float compassHeading = headingInDegrees - trueAngle;
+    
+    if (compassHeading < 0)
+        compassHeading = compassHeading + 360;
+    
+    // NSLog(@"compassHeading: %f", compassHeading);
+    return degreesToRadians(compassHeading);
 }
 
 @end
