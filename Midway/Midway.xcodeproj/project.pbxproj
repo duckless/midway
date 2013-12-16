@@ -197,23 +197,23 @@
 		0B05A0E9183F7C3500D697EF /* Midway */ = {
 			isa = PBXGroup;
 			children = (
-				0B45287D185C9CBE000DC569 /* AppDelegate.m */,
 				0B05A0F2183F7C3500D697EF /* AppDelegate.h */,
+				0B45287D185C9CBE000DC569 /* AppDelegate.m */,
+				D961AD26185755690036B13C /* arrow.png */,
 				D4A9D8F5184F28990095E745 /* CompassView.h */,
 				D4A9D8F6184F28990095E745 /* CompassView.m */,
 				0B05A0FB183F7C3600D697EF /* FlipsideViewController.h */,
 				0B05A0FC183F7C3600D697EF /* FlipsideViewController.m */,
 				D418EDB9184CBB2600D2EA72 /* GeoPositionViewController.h */,
-				D9F1516F18574EF4009B7DD8 /* headicon.png */,
 				D418EDBA184CBB2600D2EA72 /* GeoPositionViewController.m */,
 				D4A9D8FA1851C3E60095E745 /* golden_arrow.png */,
+				D961AD28185756130036B13C /* grabfikaheading.png */,
+				D9F1516F18574EF4009B7DD8 /* headicon.png */,
 				D4A9D8FC1851C5800095E745 /* icon.png */,
 				0B05A0FE183F7C3600D697EF /* Images.xcassets */,
 				D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */,
 				D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */,
 				0B05A0F5183F7C3600D697EF /* Main.storyboard */,
-				D961AD28185756130036B13C /* grabfikaheading.png */,
-				D961AD26185755690036B13C /* arrow.png */,
 				0B05A0F8183F7C3600D697EF /* MainViewController.h */,
 				0B05A0F9183F7C3600D697EF /* MainViewController.m */,
 				D418EDC6184DE28300D2EA72 /* pointer2.png */,
@@ -504,8 +504,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.duckless.Midway";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.duckless.Midway";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
@@ -515,7 +515,7 @@
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";
 				INFOPLIST_FILE = "Midway/Midway-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "098BFE9D-25A4-4805-B4B0-5F3786545CEC";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -525,8 +525,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.duckless.Midway";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.duckless.Midway";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
@@ -536,7 +536,7 @@
 				GCC_PREFIX_HEADER = "Midway/Midway-Prefix.pch";
 				INFOPLIST_FILE = "Midway/Midway-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "098BFE9D-25A4-4805-B4B0-5F3786545CEC";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

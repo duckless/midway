@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rQl-PL-IFJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rQl-PL-IFJ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Fl-KiY">
-                                <rect key="frame" x="54" y="465" width="213" height="35"/>
+                                <rect key="frame" x="54" y="480" width="213" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Send invitation">
@@ -62,10 +62,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="StD-2B-Kvw" firstAttribute="top" secondItem="gdx-Fl-KiY" secondAttribute="bottom" constant="44" id="0ll-L0-E09"/>
                             <constraint firstAttribute="trailing" secondItem="jqg-sy-dxO" secondAttribute="trailing" constant="20" symbolic="YES" id="1ym-A3-aKq"/>
                             <constraint firstItem="F7h-gj-6xd" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="20" id="Cqk-0d-bmi"/>
                             <constraint firstAttribute="bottom" secondItem="jqg-sy-dxO" secondAttribute="bottom" constant="20" symbolic="YES" id="Uf2-YL-3zF"/>
-                            <constraint firstItem="StD-2B-Kvw" firstAttribute="top" secondItem="gdx-Fl-KiY" secondAttribute="bottom" constant="75" id="tp8-gs-dkd"/>
                             <constraint firstItem="StD-2B-Kvw" firstAttribute="top" secondItem="F7h-gj-6xd" secondAttribute="bottom" constant="16" id="zpM-0d-khA"/>
                         </constraints>
                     </view>
@@ -114,7 +114,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="o95-YC-IBd" kind="modal" identifier="waitingForAccept" id="HJ5-l4-pIa"/>
+                        <segue destination="o95-YC-IBd" kind="modal" identifier="waitingForAccept" modalTransitionStyle="coverVertical" id="HJ5-l4-pIa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ge7-vf-Zxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -143,14 +143,14 @@ be accepted.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES9-QJ-BcA">
-                                <rect key="frame" x="60" y="465" width="201" height="35"/>
+                                <rect key="frame" x="60" y="480" width="201" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Cancel invite">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="rQl-PL-IFJ" kind="modal" identifier="cancelInvite" id="uZX-5n-lEh"/>
+                                    <segue destination="rQl-PL-IFJ" kind="modal" identifier="cancelInvite" customClass="UIStoryboardPopoverSegue" id="uZX-5n-lEh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBI-XI-y6R">
@@ -166,7 +166,7 @@ be accepted.</string>
                         </subviews>
                         <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ZV8-gQ-C7I" firstAttribute="top" secondItem="ES9-QJ-BcA" secondAttribute="bottom" constant="70" id="cHt-Qj-0Zw"/>
+                            <constraint firstItem="ZV8-gQ-C7I" firstAttribute="top" secondItem="ES9-QJ-BcA" secondAttribute="bottom" constant="44" id="cHt-Qj-0Zw"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -186,26 +186,29 @@ be accepted.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8u9-Ju-uWt">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8u9-Ju-uWt">
                                 <rect key="frame" x="0.0" y="90" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="350m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZx-1i-fQ4">
-                                <rect key="frame" x="20" y="447" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" red="1" green="0.69803921568627447" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance to destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLt-Lf-zCT">
-                                <rect key="frame" x="20" y="418" width="280" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Distance to destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLt-Lf-zCT">
+                                <rect key="frame" x="59" y="455" width="202" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1Y-xt-57b" userLabel="venueName">
-                                <rect key="frame" x="139" y="476" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="450m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZx-1i-fQ4">
+                                <rect key="frame" x="20" y="480" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="j4y-St-mua"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="0.69803921568627447" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Waiting for venue name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1Y-xt-57b" userLabel="venueName">
+                                <rect key="frame" x="53" y="519" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -213,6 +216,12 @@ be accepted.</string>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gcc-T5-v1M" firstAttribute="top" secondItem="GLt-Lf-zCT" secondAttribute="bottom" constant="88" id="J0r-xL-QDG"/>
+                            <constraint firstItem="GLt-Lf-zCT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8u9-Ju-uWt" secondAttribute="bottom" constant="22" id="duM-Ph-ivY"/>
+                            <constraint firstItem="gcc-T5-v1M" firstAttribute="top" secondItem="PZx-1i-fQ4" secondAttribute="bottom" constant="44" id="fIa-QH-ksP"/>
+                            <constraint firstItem="gcc-T5-v1M" firstAttribute="top" secondItem="k1Y-xt-57b" secondAttribute="bottom" constant="28" id="kqi-cV-WSk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="x9n-e0-D3l"/>
                     <connections>

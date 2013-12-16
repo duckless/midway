@@ -96,6 +96,7 @@
 
 -(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
+    NSLog(@"Send sms!");
     [self dismissViewControllerAnimated:NO completion:nil];
     [self performSegueWithIdentifier:@"waitingForAccept" sender:self];
 }
@@ -110,7 +111,6 @@
         [self performSegueWithIdentifier:@"waitingForAccept" sender:self];
     }
     NSLog(@"GO to waiting!");
-
 }
 
 

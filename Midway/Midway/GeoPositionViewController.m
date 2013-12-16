@@ -64,8 +64,16 @@
         NSDictionary* userInfo = notification.userInfo;
         double heading = [[userInfo objectForKey:@"heading"] doubleValue];
         double distanceLeft = [[userInfo objectForKey:@"distance"] doubleValue];
-        NSString *venueName = [userInfo objectForKey:@"venueName"];
-        
+        NSString *venueName = @"Waiting for venue name";
+        @try {
+            venueName = [userInfo objectForKey:@"venueName"];
+        }
+        @catch (NSException * e) {
+
+        }
+        @finally {
+
+        }
         [self.compassView updateCompassWithHeading: heading];
         self.distance.text = [[NSString alloc] initWithFormat:@"%f", distanceLeft];
         self.venueNameLabel.text = venueName;

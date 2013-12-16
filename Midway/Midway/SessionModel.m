@@ -202,7 +202,8 @@
 - (void) getLocation
 {
     NSLog(@"get location");
-    // This method is triggered when a user taps on a link with the grabafika:// URI scheme.
+    // --This method is triggered when a user taps on a link with the grabafika:// URI scheme.--
+    // This method is triggered by a push notification after a session is accepted
     
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
@@ -218,7 +219,7 @@
     [request setHTTPMethod:@"POST"];
     
     NSString *postString = [[NSString alloc] initWithFormat:@"session_id=%@&uuid=%@&location=%@",
-                            _sessionID,
+                            self.sessionID,
                             token,
                             location,
                             nil];
@@ -249,9 +250,10 @@
 }
 
 - (void) updateLocation {
-    NSLog(@"get location");
-    // This message should contact the server in the
-    // background, retrieving a new session ID to be used when an email or SMS is sent
+    // Run this method to retrieve a new target location?
+    NSLog(@"update location");
+    
+    
     
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
@@ -432,14 +434,22 @@
 
 - (void) updateCompass
 {
+    
     double heading = [self headingTowardTargetLocation];
     double distance = [[self currentLocation] distanceFromLocation: self.targetLocation];
     
     NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
     [userInfo setObject: [[NSNumber alloc] initWithDouble:heading] forKey:@"heading"];
     [userInfo setObject: [[NSNumber alloc] initWithDouble:distance] forKey:@"distance"];
-    [userInfo setObject:_venueName forKey:@"venueName"];
-    
+    @try {
+        [userInfo setObject:self.venueName forKey:@"venueName"];
+    }
+    @catch (NSException * e) {
+
+    }
+    @finally {
+
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName: @"updateCompass" object:nil userInfo:userInfo];
 }
 
