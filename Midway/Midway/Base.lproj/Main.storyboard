@@ -181,11 +181,14 @@ v. To have a break, coffee break, sometimes with pastries, with one's colleagues
                                 <string key="text">Waiting for invite to 
 be accepted.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
+                                <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                             </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="button.png" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-hI-VF4">
+                                <rect key="frame" x="-31" y="519" width="351" height="49"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES9-QJ-BcA">
-                                <rect key="frame" x="60" y="451" width="201" height="59"/>
+                                <rect key="frame" x="60" y="514" width="201" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Cancel invite">
@@ -196,7 +199,7 @@ be accepted.</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBI-XI-y6R">
-                                <rect key="frame" x="113" y="518" width="95" height="30"/>
+                                <rect key="frame" x="113" y="390" width="95" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Test compass">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -206,7 +209,7 @@ be accepted.</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fwj-ny-e5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -339,6 +342,6 @@ be accepted.</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uZX-5n-lEh"/>
-        <segue reference="wWL-kB-hcx"/>
+        <segue reference="IfX-rs-4Ma"/>
     </inferredMetricsTieBreakers>
 </document>
