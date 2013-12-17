@@ -108,7 +108,8 @@ class SessionController < ApplicationController
         :client_secret => foursquare['client_secret'])
 
       venues = client.search_venues(:ll => location, 
-        :categoryId => foursquare['cafe_category_id'])
+        :categoryId => foursquare['cafe_category_id'],
+        :radius => foursquare['radius'])
       venues['groups'][0]['items'][0]
       # location = venues['groups'][0]['items'][0]['location']
       # "#{location[:lat]},#{location[:lng]}"

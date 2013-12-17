@@ -82,8 +82,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
     else {
         NSLog(@"Cancel Tapped.");
-        SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
-        [sharedSessionModel clearSession];
     }
 }
 

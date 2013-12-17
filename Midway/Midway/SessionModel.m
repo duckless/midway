@@ -81,9 +81,9 @@
 
 - (NSString *) sessionID
 {
-    if (self.sessionID)
+    if (_sessionID)
     {
-        return self.sessionID;
+        return _sessionID;
     } else {
         return [[NSUserDefaults standardUserDefaults] stringForKey:@"sessionID"];
     }
