@@ -118,10 +118,9 @@
 
 #pragma Networking
 
+// First connection to server
+// This message should contact the server in the background, retrieving a new session ID to be used when an email or SMS is sent
 - (void) retrieveSessionID {
-    NSLog(@"retrive");
-    // First connection to server
-    // This message should contact the server in the background, retrieving a new session ID to be used when an email or SMS is sent
     
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
@@ -154,12 +153,11 @@
     [_sessionIDconnection start];
 }
 
+// Second connection to server
+// This method is triggered when a user taps on a link with the grabafika:// URI scheme.
+// Seems to be working fine. Retrieves a café close by.
 -(void)acceptSessionWith:(NSString *)sessionID
 {
-    NSLog(@"accept session");
-    // Second connection to server
-    // This method is triggered when a user taps on a link with the grabafika:// URI scheme.
-    
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
@@ -191,10 +189,10 @@
     self.joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:_joinSessionData
+                          JSONObjectWithData:self.joinSessionData
                           options:kNilOptions
                           error:&error];
-    self.sessionID = [json objectForKey:@"session_id"];
+    
     NSString *responseLocation = [json objectForKey:@"location"];
     NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
     [self setTargetLocation: [[CLLocation alloc]
@@ -204,13 +202,12 @@
 }
 
 
-
+// This method is triggered by a push notification after a session is accepted
+// Third connection to server
+// Should be able to skip this method and only run - (void) updateTargetLocation
+// Does not work even though it is close to identical to -(void)acceptSessionWith:(NSString *)sessionID
 - (void) getLocation
 {
-    NSLog(@"get location");
-    // This method is triggered by a push notification after a session is accepted
-    // Third connection to server
-    
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
@@ -255,16 +252,15 @@
     [self setVenueName:[json objectForKey:@"venue_name"]];
 }
 
+// Run this method to retrieve a new target location?
+// Method runs every x seconds to retrieve a new target café
 - (void) updateTargetLocation {
-    // Run this method to retrieve a new target location?
-    // Method runs every x seconds to retrieve a new target café
  
-    
     // Timer used to reduce server requests;
+    // Should have different values depending on distance to target and speed.
     if(!self.timer)
     {
         self.timer = [[NSDate date] timeIntervalSince1970] + 10;
-        NSLog(@"adding time");
     }
     if (self.timer > [[NSDate date] timeIntervalSince1970]) {
         return;
@@ -293,16 +289,6 @@
                             token,
                             location,
                             nil];
-    
-    @try {
-        NSLog(postString);
-    }
-    @catch (NSException *exception) {
-
-    }
-    @finally {
-
-    }
 
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
    forHTTPHeaderField:@"Content-length"];
@@ -313,25 +299,24 @@
     
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
-    _joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    self.joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:_joinSessionData
+                          JSONObjectWithData:self.joinSessionData
                           options:kNilOptions
                           error:&error];
     NSString *responseLocation = [json objectForKey:@"location"];
     NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
+
     [self setTargetLocation: [[CLLocation alloc]
                               initWithLatitude:[latLong[0] doubleValue]
                               longitude:[latLong[1] doubleValue]]];
     [self setVenueName:[json objectForKey:@"venue_name"]];
-
 }
 
 #pragma connection helpers
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"did receive");
     if(!data.length)
         return;
     
