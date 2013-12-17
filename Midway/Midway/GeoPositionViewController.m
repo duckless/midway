@@ -36,7 +36,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateCompass" object:nil];
 
     [[SessionModel sharedSessionModel] startUpdatingLocation];
-    self.compassView = [[CompassView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
+    self.compassView = [[CompassView alloc] initWithFrame:CGRectMake(40, 40, 240, 240)];
     [self.testView addSubview:self.compassView];
 }
 

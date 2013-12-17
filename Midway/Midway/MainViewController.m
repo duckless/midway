@@ -92,5 +92,10 @@
 
 }
 
+-(IBAction)unwindNavigation:(UIStoryboardSegue *)sender
+{
+    [[SessionModel sharedSessionModel] clearSession];
+}
+
 
 @end

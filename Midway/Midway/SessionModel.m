@@ -111,15 +111,11 @@
 
 - (void) startSessionWith:(ABRecordID)invitee {
     self.personID = invitee;
-    
     [self gatherInviteeInfo];
-    NSLog(@"got an user record ID!");
-    
 }
 
 - (void) gatherInviteeInfo {
     
-    NSLog(@"Gather email and phone info");
     [self.emails removeAllObjects];
     [self.phoneNumbers removeAllObjects];
     
@@ -137,7 +133,6 @@
     [self.phoneNumbers addObjectsFromArray:phoneNumbers];
     
     self.inviteeName = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));
-    
 }
 
 #pragma Networking
@@ -145,7 +140,7 @@
 // First connection to server
 // This message should contact the server in the background, retrieving a new session ID to be used when an email or SMS is sent
 - (void) retrieveSessionID {
-    
+    NSLog(@"Retrieve a sessionID...");
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
