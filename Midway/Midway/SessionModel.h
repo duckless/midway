@@ -11,12 +11,14 @@
 
 @interface SessionModel : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate, CLLocationManagerDelegate>
 
-@property NSString *sessionID;
+@property (strong,nonatomic) NSString *sessionID;
 
 + (id)sharedSessionModel;
 - (NSMutableArray *) inviteesEmails;
 - (NSMutableArray *) inviteesPhoneNumbers;
 - (NSString *) inviteesName;
+
+- (void) clearSession;
 
 - (void) startSessionWith:(ABRecordID)invitee;
 - (void) acceptSessionWith:(NSString *)sessionID;

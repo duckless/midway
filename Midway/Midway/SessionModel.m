@@ -41,6 +41,8 @@
 @end
 @implementation SessionModel
 
+@synthesize sessionID = _sessionID;
+
 -(id) init {
     self = [super init];
     if(self) {
@@ -69,6 +71,28 @@
         sharedSessionModel = [[self alloc] init];
     });
     return sharedSessionModel;
+}
+
+- (void) setSessionID:(NSString *)sessionID
+{
+    _sessionID = sessionID;
+    [[NSUserDefaults standardUserDefaults] setObject:_sessionID forKey:@"sessionID"];
+}
+
+- (NSString *) sessionID
+{
+    if (self.sessionID)
+    {
+        return self.sessionID;
+    } else {
+        return [[NSUserDefaults standardUserDefaults] stringForKey:@"sessionID"];
+    }
+}
+
+- (void) clearSession
+{
+    [self setSessionID:nil];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionID"];
 }
 
 #pragma Contact list
@@ -199,28 +223,14 @@
                               initWithLatitude:[latLong[0] doubleValue]
                               longitude:[latLong[1] doubleValue]]];
     [self setVenueName:[json objectForKey:@"venue_name"]];
+    
+    [self setSessionID:sessionID];
 }
 
 
 // Run this method to retrieve a new target location?
 // Method runs every x seconds to retrieve a new target café
 - (void) updateTargetLocation {
- 
-    // Timer used to reduce server requests;
-    // Should have different values depending on distance to target and speed.
-//    if(!self.timer)
-//    {
-//        self.timer = [[NSDate date] timeIntervalSince1970] + 10;
-//    }
-//    if (self.timer > [[NSDate date] timeIntervalSince1970]) {
-//        return;
-//    }
-//    else {
-//        self.timer = [[NSDate date] timeIntervalSince1970] + 10;
-//        NSLog(@"update location");
-//    }
-    
-  
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
@@ -235,7 +245,7 @@
     [request setHTTPMethod:@"POST"];
     
     NSString *postString = [[NSString alloc] initWithFormat:@"session_id=%@&uuid=%@&location=%@",
-                            self.sessionID,
+                            [self sessionID],
                             token,
                             location,
                             nil];
@@ -285,8 +295,8 @@
                               JSONObjectWithData:_sessionIDdata
                               options:kNilOptions
                               error:&error];
-
-        self.sessionID = [json objectForKey:@"session_id"];
+        
+        [self setSessionID: [json objectForKey:@"session_id"]];
     }
 }
 
