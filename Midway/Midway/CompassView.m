@@ -19,8 +19,8 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
-        arrowImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"golden_arrow" ofType:@"png"]];
+        UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, 240)];
+        arrowImg.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"arrow" ofType:@"png"]];
     
         self.compassContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         [self.compassContainer addSubview:arrowImg];
