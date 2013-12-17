@@ -47,7 +47,7 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="h13-yE-kI6">
-                                <rect key="frame" x="45" y="45" width="100" height="100"/>
+                                <rect key="frame" x="25" y="45" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="H5F-h0-VxN"/>
@@ -55,14 +55,14 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grab a Fika*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl6-5T-EZk">
-                                <rect key="frame" x="45" y="165" width="126" height="21"/>
+                                <rect key="frame" x="25" y="157" width="208" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*F•i•ka" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7s8-WF-xLY">
-                                <rect key="frame" x="45" y="203" width="70" height="21"/>
+                                <rect key="frame" x="25" y="203" width="70" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" white="0.96133667879999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="226" translatesAutoresizingMaskIntoConstraints="NO" id="4bo-XS-jGm">
-                                <rect key="frame" x="45" y="232" width="226" height="90"/>
+                                <rect key="frame" x="25" y="232" width="226" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">n. A social institution in Sweden.
 v. To have a break, coffee break, sometimes with pastries, with one's colleagues, friends, date or family.</string>
@@ -93,7 +93,7 @@ v. To have a break, coffee break, sometimes with pastries, with one's colleagues
                             <constraint firstItem="h13-yE-kI6" firstAttribute="top" secondItem="PLr-FI-Wqc" secondAttribute="bottom" constant="25" id="Wpp-iJ-tSB"/>
                             <constraint firstItem="gdx-Fl-KiY" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="XPU-rc-mPr"/>
                             <constraint firstAttribute="bottom" secondItem="gdx-Fl-KiY" secondAttribute="bottom" id="fDP-oo-Vvp"/>
-                            <constraint firstItem="h13-yE-kI6" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="45" id="mnT-kI-amD"/>
+                            <constraint firstItem="h13-yE-kI6" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="25" id="mnT-kI-amD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HtY-cL-NSQ"/>
