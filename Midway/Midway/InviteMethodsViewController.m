@@ -96,9 +96,20 @@
 
 -(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
-    NSLog(@"Send sms!");
-    [self dismissViewControllerAnimated:NO completion:nil];
-    [self performSegueWithIdentifier:@"waitingForAccept" sender:self];
+    if(result == MessageComposeResultCancelled)
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else if(result == MessageComposeResultFailed)
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+    {
+        NSLog(@"Send sms!");
+        [self dismissViewControllerAnimated:NO completion:nil];
+        [self performSegueWithIdentifier:@"waitingForAccept" sender:self];
+    }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller
@@ -112,8 +123,6 @@
     }
     NSLog(@"GO to waiting!");
 }
-
-
 
 #pragma mark - Table view data source
 
@@ -184,28 +193,10 @@
 
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSLog(@"chose %ld", (long)indexPath.row);
-
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-//    if ([[segue identifier] isEqualToString:@"ShowPersonDetail"]) {
-//PersonViewController *detailViewController = (PersonViewController *)[segue destinationViewController];
-    
-        
-     //   detailViewController.person = [self.dataModel personAtIndex:indexPath.row];
-        
-   // }
-  //  else if ([[segue identifier] isEqualToString:@"addPerson"]) {
-        
-       // AddPersonViewController *addController = (AddPersonViewController *)[[[segue destinationViewController] viewControllers] objectAtIndex:0];
-        
-        //addController.person = [[Person alloc] init];
-//    }
-
 }
 
 @end
