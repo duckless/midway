@@ -16,6 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="JqF-kK-8UC">
+                                <rect key="frame" x="-3" y="0.0" width="325" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-Fl-KiY">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -42,34 +46,54 @@
                                     <segue destination="gnY-Bc-C1q" kind="modal" identifier="geoPosition" id="wWL-kB-hcx"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="1024.png" translatesAutoresizingMaskIntoConstraints="NO" id="h13-yE-kI6">
-                                <rect key="frame" x="85" y="85" width="150" height="150"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="h13-yE-kI6">
+                                <rect key="frame" x="45" y="45" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="9ZM-ug-QM7"/>
+                                    <constraint firstAttribute="height" constant="100" id="H5F-h0-VxN"/>
+                                    <constraint firstAttribute="width" constant="100" id="HAJ-2E-mWQ"/>
                                 </constraints>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="grabfikaheading.png" translatesAutoresizingMaskIntoConstraints="NO" id="gW4-0N-5jc">
-                                <rect key="frame" x="67" y="245" width="187" height="42"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="42X-1f-omI"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grab a Fika*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl6-5T-EZk">
+                                <rect key="frame" x="45" y="165" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*F•i•ka" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7s8-WF-xLY">
+                                <rect key="frame" x="45" y="203" width="70" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" white="0.96133667879999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" [fee-KA]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcV-UA-VlM">
+                                <rect key="frame" x="100" y="203" width="89" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="0.96133667879999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="226" translatesAutoresizingMaskIntoConstraints="NO" id="4bo-XS-jGm">
+                                <rect key="frame" x="45" y="232" width="226" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">n. A social institution in Sweden.
+v. To have a break, coffee break, sometimes with pastries, with one's colleagues, friends, date or family.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.96133667879999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gdx-Fl-KiY" firstAttribute="top" secondItem="F7h-gj-6xd" secondAttribute="bottom" constant="28" id="3Dl-6c-Pg7"/>
-                            <constraint firstItem="h13-yE-kI6" firstAttribute="centerX" secondItem="gW4-0N-5jc" secondAttribute="centerX" id="71W-Su-PlJ"/>
-                            <constraint firstItem="gW4-0N-5jc" firstAttribute="top" secondItem="h13-yE-kI6" secondAttribute="bottom" constant="10" id="9tA-ZZ-ZCS"/>
                             <constraint firstAttribute="trailing" secondItem="gdx-Fl-KiY" secondAttribute="trailing" id="EKa-gp-RDj"/>
-                            <constraint firstItem="F7h-gj-6xd" firstAttribute="centerX" secondItem="gW4-0N-5jc" secondAttribute="centerX" id="Mgf-5V-Ixn"/>
                             <constraint firstItem="gdx-Fl-KiY" firstAttribute="centerX" secondItem="F7h-gj-6xd" secondAttribute="centerX" id="Ndy-n3-N2r"/>
+                            <constraint firstItem="h13-yE-kI6" firstAttribute="top" secondItem="PLr-FI-Wqc" secondAttribute="bottom" constant="25" id="Wpp-iJ-tSB"/>
                             <constraint firstItem="gdx-Fl-KiY" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="XPU-rc-mPr"/>
                             <constraint firstAttribute="bottom" secondItem="gdx-Fl-KiY" secondAttribute="bottom" id="fDP-oo-Vvp"/>
-                            <constraint firstItem="h13-yE-kI6" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="85" id="j3S-Ft-KKV"/>
-                            <constraint firstItem="gW4-0N-5jc" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="67" id="lmi-on-isP"/>
-                            <constraint firstItem="h13-yE-kI6" firstAttribute="top" secondItem="PLr-FI-Wqc" secondAttribute="bottom" constant="65" id="uAz-TB-Lw1"/>
+                            <constraint firstItem="h13-yE-kI6" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" constant="45" id="mnT-kI-amD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HtY-cL-NSQ"/>
@@ -303,8 +327,8 @@ be accepted.</string>
         </scene>
     </scenes>
     <resources>
-        <image name="1024.png" width="1024" height="1024"/>
-        <image name="grabfikaheading.png" width="423" height="98"/>
+        <image name="background.png" width="644" height="1143"/>
+        <image name="icon.png" width="180" height="180"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
