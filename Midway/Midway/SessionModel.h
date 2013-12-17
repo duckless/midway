@@ -22,7 +22,6 @@
 - (void) acceptSessionWith:(NSString *)sessionID;
 - (double) headingTowardTargetLocation;
 - (void) retrieveSessionID;
-- (void) getLocation;
 - (void) updateTargetLocation;
 
 - (CLLocation *) currentLocation;

@@ -45,14 +45,15 @@ class SessionController < ApplicationController
       return
     end
 
-    @participant = Participant.find_by_uuid(params[:uuid])
+    @participant = Participant.where(['uuid = ? AND session_id = ?', 
+      params[:uuid], @session.id]).first
     if @participant.nil?
       render json: {:error => "Invalid uuid"}
       return
     end
 
     @other_participant = Participant.where(['session_id = ? AND id != ?', 
-      @session.id, @participant.id])
+      @session.id, @participant.id]).first
 
     @participant.last_location = params[:location]
     @participant.save

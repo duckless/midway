@@ -29,7 +29,7 @@
 @property NSData *joinSessionData;
 
 @property NSURLConnection *updateSessionConnection;
-@property NSMutableData *updateSessionData;
+@property NSData *updateSessionData;
 
 @property CLLocation *targetLocation;
 @property NSString *venueName;
@@ -202,73 +202,23 @@
 }
 
 
-// This method is triggered by a push notification after a session is accepted
-// Third connection to server
-// Should be able to skip this method and only run - (void) updateTargetLocation
-// Does not work even though it is close to identical to -(void)acceptSessionWith:(NSString *)sessionID
-- (void) getLocation
-{
-    NSString *token = [[PFInstallation currentInstallation] deviceToken];
-    
-    NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
-                          self.currentLocation.coordinate.latitude,
-                          self.currentLocation.coordinate.longitude,
-                          nil];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                    initWithURL:[NSURL
-                                                 URLWithString:@"http://midway.zbrox.org/session/update"]];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    NSString *postString = [[NSString alloc] initWithFormat:@"session_id=%@&uuid=%@&location=%@",
-                            self.sessionID,
-                            token,
-                            location,
-                            nil];
-    
-    
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
-    forHTTPHeaderField:@"Content-length"];
-    
-    [request setHTTPBody:[postString
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    _joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:_joinSessionData
-                          options:kNilOptions
-                          error:&error];
-
-    NSString *responseLocation = [json objectForKey:@"location"];
-    NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
-    [self setTargetLocation: [[CLLocation alloc]
-                              initWithLatitude:[latLong[0] doubleValue]
-                              longitude:[latLong[1] doubleValue]]];
-    [self setVenueName:[json objectForKey:@"venue_name"]];
-}
-
 // Run this method to retrieve a new target location?
 // Method runs every x seconds to retrieve a new target café
 - (void) updateTargetLocation {
  
     // Timer used to reduce server requests;
     // Should have different values depending on distance to target and speed.
-    if(!self.timer)
-    {
-        self.timer = [[NSDate date] timeIntervalSince1970] + 10;
-    }
-    if (self.timer > [[NSDate date] timeIntervalSince1970]) {
-        return;
-    }
-    else {
-        self.timer = [[NSDate date] timeIntervalSince1970] + 10;
-        NSLog(@"update location");
-    }
+//    if(!self.timer)
+//    {
+//        self.timer = [[NSDate date] timeIntervalSince1970] + 10;
+//    }
+//    if (self.timer > [[NSDate date] timeIntervalSince1970]) {
+//        return;
+//    }
+//    else {
+//        self.timer = [[NSDate date] timeIntervalSince1970] + 10;
+//        NSLog(@"update location");
+//    }
     
   
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
@@ -299,10 +249,10 @@
     
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
-    self.joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    _updateSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:self.joinSessionData
+                          JSONObjectWithData:_updateSessionData
                           options:kNilOptions
                           error:&error];
     NSString *responseLocation = [json objectForKey:@"location"];
@@ -324,9 +274,6 @@
         [_sessionIDdata appendData:data];
     }
     
-    if (connection == _updateSessionConnection) {
-        [_updateSessionData appendData:data];
-    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -340,22 +287,6 @@
                               error:&error];
 
         self.sessionID = [json objectForKey:@"session_id"];
-    }
-    
-    if(connection == _updateSessionConnection)
-    {
-        NSError* error;
-        NSDictionary* json = [NSJSONSerialization
-                              JSONObjectWithData:_updateSessionData
-                              options:kNilOptions
-                              error:&error];
-        
-        NSString *responseLocation = [json objectForKey:@"location"];
-        NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
-        [self setTargetLocation: [[CLLocation alloc]
-                                  initWithLatitude:[latLong[0] doubleValue]
-                                  longitude:[latLong[1] doubleValue]]];
-        [self setVenueName:[json objectForKey:@"venue_name"]];
     }
 }
 
@@ -418,6 +349,7 @@
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     [self updateCompass];
+    //[self updateTargetLocation];
 }
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
@@ -429,8 +361,6 @@
 
 - (void) updateCompass
 {
-    [self updateTargetLocation];
-    
     double heading = [self headingTowardTargetLocation];
     double distance = [[self currentLocation] distanceFromLocation: self.targetLocation];
     

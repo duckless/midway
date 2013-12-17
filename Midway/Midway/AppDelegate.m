@@ -49,9 +49,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
     [[SessionModel sharedSessionModel] updateTargetLocation];
     
-//    SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
-//    [sharedSessionModel acceptSessionWith: sharedSessionModel.sessionID];
-    
     [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
     [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
 }
