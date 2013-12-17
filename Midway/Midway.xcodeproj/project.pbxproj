@@ -40,11 +40,12 @@
 		D485E767184CB95D0082C780 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D485E766184CB95D0082C780 /* CoreLocation.framework */; };
 		D485E769184CB9660082C780 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D485E768184CB9660082C780 /* QuartzCore.framework */; };
 		D4A9D8F7184F28990095E745 /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9D8F6184F28990095E745 /* CompassView.m */; };
-		D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8F8184F6E400095E745 /* testArrow.png */; };
 		D4A9D8FB1851C3E60095E745 /* golden_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8FA1851C3E60095E745 /* golden_arrow.png */; };
 		D4A9D8FD1851C5800095E745 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9D8FC1851C5800095E745 /* icon.png */; };
 		D961AD27185755690036B13C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D961AD26185755690036B13C /* arrow.png */; };
-		D961AD29185756130036B13C /* grabfikaheading.png in Resources */ = {isa = PBXBuildFile; fileRef = D961AD28185756130036B13C /* grabfikaheading.png */; };
+		D9B1039918605FAC00595B1F /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D9B1039818605FAC00595B1F /* background.png */; };
+		D9B1039B186061D600595B1F /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = D9B1039A186061D600595B1F /* button.png */; };
+		D9B1039F1860648400595B1F /* logoheadmain.png in Resources */ = {isa = PBXBuildFile; fileRef = D9B1039E1860648400595B1F /* logoheadmain.png */; };
 		D9F1517018574EF4009B7DD8 /* headicon.png in Resources */ = {isa = PBXBuildFile; fileRef = D9F1516F18574EF4009B7DD8 /* headicon.png */; };
 /* End PBXBuildFile section */
 
@@ -102,11 +103,12 @@
 		D485E768184CB9660082C780 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4A9D8F5184F28990095E745 /* CompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassView.h; sourceTree = "<group>"; };
 		D4A9D8F6184F28990095E745 /* CompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassView.m; sourceTree = "<group>"; };
-		D4A9D8F8184F6E400095E745 /* testArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testArrow.png; sourceTree = "<group>"; };
 		D4A9D8FA1851C3E60095E745 /* golden_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golden_arrow.png; sourceTree = "<group>"; };
 		D4A9D8FC1851C5800095E745 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		D961AD26185755690036B13C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
-		D961AD28185756130036B13C /* grabfikaheading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grabfikaheading.png; sourceTree = "<group>"; };
+		D9B1039818605FAC00595B1F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		D9B1039A186061D600595B1F /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		D9B1039E1860648400595B1F /* logoheadmain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoheadmain.png; sourceTree = "<group>"; };
 		D9F1516F18574EF4009B7DD8 /* headicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headicon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,7 +210,9 @@
 				D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */,
 				D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */,
 				0B05A0F5183F7C3600D697EF /* Main.storyboard */,
-				D961AD28185756130036B13C /* grabfikaheading.png */,
+				D9B1039A186061D600595B1F /* button.png */,
+				D9B1039E1860648400595B1F /* logoheadmain.png */,
+				D9B1039818605FAC00595B1F /* background.png */,
 				D961AD26185755690036B13C /* arrow.png */,
 				0B05A0F8183F7C3600D697EF /* MainViewController.h */,
 				0B05A0F9183F7C3600D697EF /* MainViewController.m */,
@@ -216,7 +220,6 @@
 				D41542E6184B6BF4004DF581 /* SessionModel.h */,
 				D41542E7184B6BF4004DF581 /* SessionModel.m */,
 				0B05A0EA183F7C3500D697EF /* Supporting Files */,
-				D4A9D8F8184F6E400095E745 /* testArrow.png */,
 			);
 			path = Midway;
 			sourceTree = "<group>";
@@ -335,14 +338,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A9D8FB1851C3E60095E745 /* golden_arrow.png in Resources */,
+				D9B1039B186061D600595B1F /* button.png in Resources */,
 				D418EDC7184DE28300D2EA72 /* pointer2.png in Resources */,
 				D9F1517018574EF4009B7DD8 /* headicon.png in Resources */,
 				0B05A0FF183F7C3600D697EF /* Images.xcassets in Resources */,
 				D961AD27185755690036B13C /* arrow.png in Resources */,
-				D961AD29185756130036B13C /* grabfikaheading.png in Resources */,
-				D4A9D8F9184F6E400095E745 /* testArrow.png in Resources */,
 				D4A9D8FD1851C5800095E745 /* icon.png in Resources */,
+				D9B1039F1860648400595B1F /* logoheadmain.png in Resources */,
 				0B05A0EE183F7C3500D697EF /* InfoPlist.strings in Resources */,
+				D9B1039918605FAC00595B1F /* background.png in Resources */,
 				0B05A0F7183F7C3600D697EF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
