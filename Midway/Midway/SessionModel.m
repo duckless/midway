@@ -117,9 +117,9 @@
     
     [self.emails addObjectsFromArray:emailAddresses];
     
+    
     ABMultiValueRef phoneMultiValue = ABRecordCopyValue(personRef, kABPersonPhoneProperty);
     NSArray *phoneNumbers = (__bridge NSArray *)ABMultiValueCopyArrayOfAllValues(phoneMultiValue);
-
     [self.phoneNumbers addObjectsFromArray:phoneNumbers];
     
     self.inviteeName = (__bridge NSString *)(ABRecordCopyValue(personRef, kABPersonFirstNameProperty));

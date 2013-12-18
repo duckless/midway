@@ -9,7 +9,7 @@
 #import "FlipsideViewController.h"
 #import "AddressBookUI/AddressBookUI.h"
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate>
+@interface MainViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
 -(IBAction)unwindInvite:(UIStoryboardSegue *)sender;
 
 @end
