@@ -31,6 +31,7 @@
 		0B7CE9511852324D00294C19 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9501852324D00294C19 /* Security.framework */; };
 		0B7CE9531852325200294C19 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9521852325200294C19 /* StoreKit.framework */; };
 		0B7CE9551852325900294C19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9541852325900294C19 /* SystemConfiguration.framework */; };
+		0BD249221861D4520004BFBE /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD249211861D4520004BFBE /* CoreBluetooth.framework */; };
 		D41542DD1848873C004DF581 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DC1848873C004DF581 /* AddressBookUI.framework */; };
 		D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DE18488749004DF581 /* AddressBook.framework */; };
 		D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */; };
@@ -95,6 +96,7 @@
 		0B7CE9501852324D00294C19 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0B7CE9521852325200294C19 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0B7CE9541852325900294C19 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0BD249211861D4520004BFBE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D41542DC1848873C004DF581 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		D41542DE18488749004DF581 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteMethodsViewController.h; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD249221861D4520004BFBE /* CoreBluetooth.framework in Frameworks */,
 				D471EC251853A7F30043D960 /* Parse.framework in Frameworks */,
 				0B7CE9551852325900294C19 /* SystemConfiguration.framework in Frameworks */,
 				0B7CE9531852325200294C19 /* StoreKit.framework in Frameworks */,
@@ -179,6 +182,7 @@
 		0B05A0E2183F7C3500D697EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BD249211861D4520004BFBE /* CoreBluetooth.framework */,
 				0B7CE9541852325900294C19 /* SystemConfiguration.framework */,
 				0B7CE9521852325200294C19 /* StoreKit.framework */,
 				0B7CE9501852324D00294C19 /* Security.framework */,
