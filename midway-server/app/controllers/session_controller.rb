@@ -113,10 +113,10 @@ class SessionController < ApplicationController
       request.add_field('Content-Type', 'application/json')
 
       body = {
-        where: {deviceToken: uuid}, 
-        data: {
-          alert: message,
-          content-available: 1
+        :where => {:deviceToken => uuid}, 
+        :data => {
+          :alert => message,
+          :"content-available" => 1
         }
       }
 
@@ -153,7 +153,8 @@ class SessionController < ApplicationController
       if venues
         venues['groups'][0]['items'][0]
       elsif i < 3
-        find_fika location, i++
+        i += 1
+        find_fika location, i
       else
         false
       end
