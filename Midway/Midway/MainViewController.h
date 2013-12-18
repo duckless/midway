@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
 
-#import "FlipsideViewController.h"
-#import "AddressBookUI/AddressBookUI.h"
+#import "MessageUI/MFMessageComposeViewController.h"
 
-@interface MainViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface MainViewController : UIViewController <MFMessageComposeViewControllerDelegate>
 -(IBAction)unwindInvite:(UIStoryboardSegue *)sender;
 
 @end

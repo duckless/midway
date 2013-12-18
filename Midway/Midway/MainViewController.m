@@ -7,17 +7,26 @@
 //
 #import "SessionModel.h"
 #import "MainViewController.h"
-#import "InviteMethodsViewController.h"
 
 @interface MainViewController ()
 
 - (IBAction)inviteAFriend:(id)sender;
+- (void) sendText;
 
 @property ABRecordID personID;
 
 @end
 
 @implementation MainViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -36,50 +45,54 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma Text messaging
 
--(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+- (void) sendText {
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if([MFMessageComposeViewController canSendText])
+    {
+        SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
+        controller.body = [[NSString alloc] initWithFormat:@"Hi! Want to grab a fika with me? grabafika://%@", sharedSessionModel.sessionID ];
+        controller.messageComposeDelegate = self;
+        controller.topViewController.navigationController.navigationBar.tintColor = [UIColor colorWithRed:1.000 green:0.620 blue:0.000 alpha:1.000];
+        [self presentViewController:controller animated:YES completion:nil];
+    }
     
-    [self dismissViewControllerAnimated:NO completion:nil];
-    self.personID = ABRecordGetRecordID(person);
-    [[SessionModel sharedSessionModel] startSessionWith:ABRecordGetRecordID(person)];
-    [self performSegueWithIdentifier:@"inviteMethods" sender:self];
-    return NO;
 }
 
--(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-    
-    return NO;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
-    if([[segue identifier] isEqualToString:@"inviteMethods"]) {
-        UINavigationController  *navController = (UINavigationController*)[segue destinationViewController];
-        InviteMethodsViewController *targetController = (InviteMethodsViewController *) [[navController viewControllers] objectAtIndex: 0];
-        [targetController setPersonID:self.personID];
+    if(result == MessageComposeResultCancelled)
+    {
+        NSLog(@"cancelled");
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else if(result == MessageComposeResultFailed)
+    {
+        NSLog(@"failed");
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else if(result == MessageComposeResultSent)
+    {
+        NSLog(@"Send sms!");
+        [self dismissViewControllerAnimated:NO completion: ^{
+            [self performSegueWithIdentifier:@"waitingScreen" sender:self];
+        }];
     }
 }
+
 
 #pragma IB actions
 
 - (IBAction)inviteAFriend:(id)sender {
-    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
-    picker.topViewController.navigationController.navigationBar.tintColor = [UIColor colorWithRed:1.000 green:0.620 blue:0.000 alpha:1.000];
-    [self presentViewController:picker animated:YES completion:Nil];
+    SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
+    [sharedSessionModel retrieveSessionID];
+    [self sendText];
 }
-
--(IBAction)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
 
 -(IBAction)unwindInvite:(UIStoryboardSegue *)sender
 {
-  
-
+    [[SessionModel sharedSessionModel] clearSession];
 }
 
 -(IBAction)unwindNavigation:(UIStoryboardSegue *)sender
