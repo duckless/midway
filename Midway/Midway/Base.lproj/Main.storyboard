@@ -27,7 +27,7 @@
                                     <constraint firstAttribute="height" constant="44" id="N7J-15-Xnx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Send invitation" backgroundImage="button.png">
+                                <state key="normal" title="Send fika invitation" backgroundImage="button.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
