@@ -89,6 +89,7 @@
 - (void) clearSession
 {
     [self setSessionID:nil];
+    [self setSessionIsActive:NO];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionID"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionIsActive"];
 }

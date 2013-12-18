@@ -61,7 +61,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
  
     // Is a session already active?
-    if(sharedSessionModel.sessionID != nil)
+    if(sharedSessionModel.sessionID != nil && sharedSessionModel.sessionIsActive)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Session is active" message:@"A session is already active. Do you want to cancel the current session and join the new one?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Join session",nil];
         [alert show];

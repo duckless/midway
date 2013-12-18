@@ -32,10 +32,14 @@
                                                            identifier:@"com.duckless.grabafika"];
 }
 
-- (void) startSearching
+- (void) startMonitoring
 {
+    NSInteger sessionID = [[[SessionModel sharedSessionModel] sessionID] integerValue];
+    NSNumber *major = [[NSNumber alloc] initWithInteger:sessionID];
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"F7412ED5-05EC-47AD-8644-3DAFA74BBF8B"];
-    self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.duckless.grabafika"];
+    self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
+                                                                major:[major shortValue]
+                                                           identifier:@"com.duckless.grabafika"];
     [[LocationManager shared] startMonitoringForRegion:self.beaconRegion];
 }
 
