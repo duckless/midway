@@ -8,6 +8,7 @@
 
 #import "LocationManager.h"
 #import "SessionModel.h"
+#import "Beacon.h"
 
 @implementation LocationManager
 
@@ -91,6 +92,16 @@
 - (void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
     [[NSNotificationCenter defaultCenter] postNotificationName: @"updateSessionCompass" object:nil userInfo:nil];
+}
+
+#pragma ibeacon
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    [self.locationManager startRangingBeaconsInRegion:[[Beacon shared] beaconRegion]];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+    [self.locationManager stopRangingBeaconsInRegion:[[Beacon shared] beaconRegion]];
 }
 
 @end

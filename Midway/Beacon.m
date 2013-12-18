@@ -12,22 +12,13 @@
 
 @implementation Beacon
 
-+ (id)sharedBeacon {
++ (id)shared {
     static Beacon *sharedBeacon = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedBeacon = [[self alloc] init];
     });
     return sharedBeacon;
-}
-
-- (id) init
-{
-    self = [super init];
-    if(self) {
-        
-    }
-    return self;
 }
 
 - (void) startBeaming
@@ -43,8 +34,8 @@
 
 - (void) startSearching
 {
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"23542266-18D1-4FE4-B4A1-23F8195B9D39"];
-    self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.devfright.myRegion"];
+    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"F7412ED5-05EC-47AD-8644-3DAFA74BBF8B"];
+    self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.duckless.grabafika"];
     [[LocationManager shared] startMonitoringForRegion:self.beaconRegion];
 }
 
