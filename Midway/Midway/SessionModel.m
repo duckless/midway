@@ -24,7 +24,7 @@
 @property BOOL sessionIsActive;
 
 @property NSURLConnection *sessionIDconnection;
-@property NSMutableData *sessionIDdata;
+@property NSData *sessionIDdata;
 @property NSTimeInterval timer;
 
 @property NSData *joinSessionData;
@@ -155,11 +155,16 @@
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
     
-    _sessionIDconnection =[[NSURLConnection alloc] initWithRequest:request
-                                                          delegate:self];
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    NSError *error = [[NSError alloc] init];
+    self.sessionIDdata = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    _sessionIDdata = [NSMutableData data];
-    [_sessionIDconnection start];
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:_sessionIDdata
+                          options:kNilOptions
+                          error:&error];
+    
+    [self setSessionID: [json objectForKey:@"session_id"]];
 }
 
 // Second connection to server
@@ -262,25 +267,9 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     if(!data.length)
         return;
-    
-    if (connection == _sessionIDconnection) {
-        [_sessionIDdata appendData:data];
-    }
-    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"retrive session id?");
-    if(connection == _sessionIDconnection)
-    {
-        NSError* error;
-        NSDictionary* json = [NSJSONSerialization
-                              JSONObjectWithData:_sessionIDdata
-                              options:kNilOptions
-                              error:&error];
-        
-        [self setSessionID: [json objectForKey:@"session_id"]];
-    }
 }
 
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse *)response
