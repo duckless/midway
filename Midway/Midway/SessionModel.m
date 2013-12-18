@@ -48,6 +48,8 @@
     if(self) {
         _emails = [[NSMutableArray alloc] init];
         _phoneNumbers = [[NSMutableArray alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateSessionCompass" object:nil];
     }
     return self;
 }
@@ -316,7 +318,6 @@
     // Target location
     float lat2 = self.targetLocation.coordinate.latitude;
     float lon2 = self.targetLocation.coordinate.longitude;
-    
     
     float headingToTarget = atan2(sin(lon2 - lon1) * cos(lat2), cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1));
     float headingInDegrees = radiansToDegrees(headingToTarget);

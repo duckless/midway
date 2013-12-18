@@ -33,6 +33,7 @@
 {
     [super viewDidLoad];
     NSLog(@"Come on!!!!");
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateCompass" object:nil];
 
     [[LocationManager shared] startUpdatingLocation];
