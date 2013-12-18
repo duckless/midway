@@ -32,6 +32,8 @@
 		0B7CE9531852325200294C19 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9521852325200294C19 /* StoreKit.framework */; };
 		0B7CE9551852325900294C19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7CE9541852325900294C19 /* SystemConfiguration.framework */; };
 		0BD249221861D4520004BFBE /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD249211861D4520004BFBE /* CoreBluetooth.framework */; };
+		0BD249251861D59E0004BFBE /* Beacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD249241861D59E0004BFBE /* Beacon.m */; };
+		0BD249281861E4540004BFBE /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD249271861E4540004BFBE /* LocationManager.m */; };
 		D41542DD1848873C004DF581 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DC1848873C004DF581 /* AddressBookUI.framework */; };
 		D41542DF18488749004DF581 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41542DE18488749004DF581 /* AddressBook.framework */; };
 		D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41542E11848A0BE004DF581 /* InviteMethodsViewController.m */; };
@@ -97,6 +99,10 @@
 		0B7CE9521852325200294C19 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0B7CE9541852325900294C19 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0BD249211861D4520004BFBE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		0BD249231861D59E0004BFBE /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Beacon.h; path = ../Beacon.h; sourceTree = "<group>"; };
+		0BD249241861D59E0004BFBE /* Beacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Beacon.m; path = ../Beacon.m; sourceTree = "<group>"; };
+		0BD249261861E4540004BFBE /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		0BD249271861E4540004BFBE /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		D41542DC1848873C004DF581 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		D41542DE18488749004DF581 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		D41542E01848A0BE004DF581 /* InviteMethodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteMethodsViewController.h; sourceTree = "<group>"; };
@@ -207,6 +213,8 @@
 		0B05A0E9183F7C3500D697EF /* Midway */ = {
 			isa = PBXGroup;
 			children = (
+				0BD249231861D59E0004BFBE /* Beacon.h */,
+				0BD249241861D59E0004BFBE /* Beacon.m */,
 				0B05A0F2183F7C3500D697EF /* AppDelegate.h */,
 				0B45287D185C9CBE000DC569 /* AppDelegate.m */,
 				D4A9D8F5184F28990095E745 /* CompassView.h */,
@@ -225,6 +233,8 @@
 				D41542E6184B6BF4004DF581 /* SessionModel.h */,
 				D41542E7184B6BF4004DF581 /* SessionModel.m */,
 				0B05A0EA183F7C3500D697EF /* Supporting Files */,
+				0BD249261861E4540004BFBE /* LocationManager.h */,
+				0BD249271861E4540004BFBE /* LocationManager.m */,
 			);
 			path = Midway;
 			sourceTree = "<group>";
@@ -400,6 +410,8 @@
 				D41542E8184B6BF4004DF581 /* SessionModel.m in Sources */,
 				D41542E21848A0BF004DF581 /* InviteMethodsViewController.m in Sources */,
 				0B05A0FA183F7C3600D697EF /* MainViewController.m in Sources */,
+				0BD249281861E4540004BFBE /* LocationManager.m in Sources */,
+				0BD249251861D59E0004BFBE /* Beacon.m in Sources */,
 				0B05A0FD183F7C3600D697EF /* FlipsideViewController.m in Sources */,
 				0B05A0F0183F7C3500D697EF /* main.m in Sources */,
 			);

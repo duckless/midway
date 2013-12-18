@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface Beacon : NSObject
+@interface Beacon : NSObject <CBPeripheralManagerDelegate>
+
+@property (strong, nonatomic) CLBeaconRegion *beaconRegion;
+@property (strong, nonatomic) NSDictionary *beaconPeripheralData;
+@property (strong, nonatomic) CBPeripheralManager *peripheralManager;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
