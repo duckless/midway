@@ -310,10 +310,46 @@ be accepted.</string>
                     <view key="view" contentMode="scaleToFill" id="PLF-pE-CVp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination reached. Enjoy your fika!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="248" translatesAutoresizingMaskIntoConstraints="NO" id="BpX-Mt-kHr">
+                                <rect key="frame" x="36" y="134" width="248" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="108" id="wgD-oO-Njx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8X-Nv-5yI">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.96133667879999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Kfl-73-OCg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Ok">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bT6-35-76v" kind="unwind" unwindAction="unwindNavigation:" id="7Eb-Qf-Nde"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BpX-Mt-kHr" firstAttribute="top" secondItem="bum-dV-XKU" secondAttribute="bottom" constant="114" id="9Cz-F3-8ou"/>
+                            <constraint firstItem="BpX-Mt-kHr" firstAttribute="leading" secondItem="PLF-pE-CVp" secondAttribute="leading" constant="36" id="B51-Y5-IbD"/>
+                            <constraint firstItem="Pf5-aU-Ssa" firstAttribute="top" secondItem="u8X-Nv-5yI" secondAttribute="bottom" id="Ec0-Yd-mHJ"/>
+                            <constraint firstItem="u8X-Nv-5yI" firstAttribute="centerX" secondItem="BpX-Mt-kHr" secondAttribute="centerX" id="KC7-WR-2eK"/>
+                            <constraint firstItem="u8X-Nv-5yI" firstAttribute="leading" secondItem="PLF-pE-CVp" secondAttribute="leading" id="WvK-1N-4ch"/>
+                            <constraint firstAttribute="trailing" secondItem="u8X-Nv-5yI" secondAttribute="trailing" id="d6d-b9-q5L"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Bh-pb-hvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bT6-35-76v" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2401" y="150"/>
         </scene>
