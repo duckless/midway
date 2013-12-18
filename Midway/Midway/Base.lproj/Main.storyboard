@@ -35,17 +35,6 @@
                                     <action selector="inviteAFriend:" destination="rQl-PL-IFJ" eventType="touchUpInside" id="6C3-9a-Xz4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.050000000000000003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7h-gj-6xd">
-                                <rect key="frame" x="113" y="416" width="94" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Secret button">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="gnY-Bc-C1q" kind="modal" identifier="geoPosition" id="wWL-kB-hcx"/>
-                                </connections>
-                            </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="h13-yE-kI6">
                                 <rect key="frame" x="25" y="45" width="66" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -58,7 +47,7 @@
                                 <rect key="frame" x="25" y="127" width="208" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.96133667230606079" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="1" height="1"/>
@@ -116,9 +105,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gdx-Fl-KiY" firstAttribute="top" secondItem="F7h-gj-6xd" secondAttribute="bottom" constant="78" id="3Dl-6c-Pg7"/>
                             <constraint firstAttribute="trailing" secondItem="gdx-Fl-KiY" secondAttribute="trailing" id="EKa-gp-RDj"/>
-                            <constraint firstItem="gdx-Fl-KiY" firstAttribute="centerX" secondItem="F7h-gj-6xd" secondAttribute="centerX" id="Ndy-n3-N2r"/>
                             <constraint firstItem="h13-yE-kI6" firstAttribute="top" secondItem="PLr-FI-Wqc" secondAttribute="bottom" constant="25" id="Wpp-iJ-tSB"/>
                             <constraint firstItem="gdx-Fl-KiY" firstAttribute="leading" secondItem="l9E-07-oys" secondAttribute="leading" id="XPU-rc-mPr"/>
                             <constraint firstAttribute="bottom" secondItem="gdx-Fl-KiY" secondAttribute="bottom" id="fDP-oo-Vvp"/>
@@ -127,55 +114,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="HtY-cL-NSQ"/>
                     <connections>
-                        <segue destination="DSV-AG-bZB" kind="modal" identifier="inviteMethods" id="Wle-bW-Wus"/>
+                        <segue destination="o95-YC-IBd" kind="modal" identifier="waitingScreen" id="MXk-v1-I8G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4L-l5-tyG" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-73" y="150"/>
-        </scene>
-        <!--Invite Methods View Controller - Invite methods-->
-        <scene sceneID="Up1-fj-eEY">
-            <objects>
-                <tableViewController id="kcs-Tq-i0D" customClass="InviteMethodsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="sca-y0-p15">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inviteCell" textLabel="GFe-aw-NEl" style="IBUITableViewCellStyleDefault" id="Osc-oY-dN7">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Osc-oY-dN7" id="NgY-4c-g3K">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GFe-aw-NEl">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Invite methods" id="M5R-Qh-AHd">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Sgt-73-6kh">
-                            <connections>
-                                <segue destination="rQl-PL-IFJ" kind="modal" id="gI6-Fv-tUu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="o95-YC-IBd" kind="modal" identifier="waitingForAccept" modalTransitionStyle="coverVertical" id="HJ5-l4-pIa"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ge7-vf-Zxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1031" y="150"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GTJ-9x-yQ1">
@@ -231,7 +175,7 @@ be accepted.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fwj-ny-e5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="150"/>
+            <point key="canvasLocation" x="384" y="150"/>
         </scene>
         <!--Geo Position View Controller-->
         <scene sceneID="HNp-UJ-6gR">
@@ -318,7 +262,7 @@ be accepted.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3AQ-oJ-SmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="W6G-Nz-NLA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1984" y="150"/>
+            <point key="canvasLocation" x="856" y="150"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="z82-Wb-evT">
@@ -372,22 +316,7 @@ be accepted.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Bh-pb-hvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bT6-35-76v" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2401" y="150"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="mAI-5E-406">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="DSV-AG-bZB" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uRW-GG-avs">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="kcs-Tq-i0D" kind="relationship" relationship="rootViewController" id="Qu8-Rk-Gx4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IE7-nW-vkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="491" y="150"/>
+            <point key="canvasLocation" x="1273" y="150"/>
         </scene>
     </scenes>
     <resources>
@@ -401,7 +330,4 @@ be accepted.</string>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="uZX-5n-lEh"/>
-    </inferredMetricsTieBreakers>
 </document>
