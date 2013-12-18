@@ -115,8 +115,7 @@ class SessionController < ApplicationController
       body = {
         :where => {:deviceToken => uuid}, 
         :data => {
-          :alert => message,
-          :"content-available" => 1
+          :alert => message
         }
       }
 

@@ -43,24 +43,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [currentInstallation saveInBackground];
 }
 
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"Received remote notification");
     [PFPush handlePush:userInfo];
     
-    if ([[userInfo objectForKey:@"type"] isEqualToString:@"join"])
-    {
-        [[SessionModel sharedSessionModel] updateTargetLocation];
-        [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
-        [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
-    }
-    
-    if ([[userInfo objectForKey:@"type"] isEqualToString:@"join"])
-    {
-        [[SessionModel sharedSessionModel] clearSession];
-    }
-    
-    //handler(UIBackgroundFetchResultNewData);
+    [[SessionModel sharedSessionModel] updateTargetLocation];
+    [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
+    [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
 }
 
 
