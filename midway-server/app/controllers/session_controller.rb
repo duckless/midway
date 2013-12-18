@@ -31,11 +31,15 @@ class SessionController < ApplicationController
     @session.participants << @participant
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
-    midway_fika_location = "#{midway_fika['location'][:lat]},#{midway_fika['location'][:lng]}"
 
-    send_push @other_participant.uuid, "Your friend has joined."
-
-    render json: {:session_id => @session.session_id, :location => midway_fika_location, :venue_name => midway_fika['name']}
+    if midway_fika then
+      send_push @other_participant.uuid, "Your friend has joined.", {:type => 'join'}
+      midway_fika_location = "#{midway_fika['location'][:lat]},#{midway_fika['location'][:lng]}"
+      render json: {:session_id => @session.session_id, 
+        :location => midway_fika_location, :venue_name => midway_fika['name']}
+    else
+      render json: {:error => "No venue found"}
+    end
   end
 
   def update
@@ -59,13 +63,40 @@ class SessionController < ApplicationController
     @participant.save
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
-    midway_fika_location = "#{midway_fika['location'][:lat]},#{midway_fika['location'][:lng]}"
 
-    render json: {:session_id => @session.session_id, :location => midway_fika_location, :venue_name => midway_fika['name']}
+    if midway_fika then
+      midway_fika_location = "#{midway_fika['location'][:lat]},#{midway_fika['location'][:lng]}"
+      render json: {:session_id => @session.session_id, 
+        :location => midway_fika_location, :venue_name => midway_fika['name']}
+    else
+      render json: {:error => "No venue found"}
+    end
+  end
+
+  def cancel
+    @session = Session.find_by_session_id(params[:session_id])
+    if @session.nil?
+      render json: {:error => "Invalid session"}
+      return
+    end
+
+    @participant = Participant.where(['uuid = ? AND session_id = ?', 
+      params[:uuid], @session.id]).first
+    if @participant.nil?
+      render json: {:error => "Invalid uuid"}
+      return
+    end
+
+    Participant.where(['session_id = ?', @session.id]).destroy
+    @session.destroy
+
+    send_push @other_participant.uuid, "The session has been canceled.", {:type => 'cancel'}
+
+    render json: {:message => 'Successful'}
   end
 
   protected
-    def send_push(uuid, message)
+    def send_push(uuid, message, data = {})
       require 'net/http'
       require "uri"
 
@@ -81,10 +112,17 @@ class SessionController < ApplicationController
       request.add_field('X-Parse-REST-API-Key', parse['rest_api_key'])
       request.add_field('Content-Type', 'application/json')
 
-      request.body = {
+      body = {
         where: {deviceToken: uuid}, 
-        data: {alert: message}
-      }.to_json
+        data: {
+          alert: message,
+          "content-available": 1
+        }
+      }
+
+      body[:data].merge!(data)
+
+      request.body = body.to_json
 
       response = http.request(request)
     end
@@ -102,7 +140,7 @@ class SessionController < ApplicationController
       config["#{name}"]
     end
 
-    def find_fika(location)
+    def find_fika(location, i = 1)
       foursquare = read_config "foursquare"
       client = Foursquare2::Client.new(:client_id => foursquare['client_id'], 
         :client_secret => foursquare['client_secret'])
@@ -110,9 +148,14 @@ class SessionController < ApplicationController
       venues = client.search_venues(:ll => location, 
         :categoryId => foursquare['cafe_category_id'],
         :radius => foursquare['radius'])
-      venues['groups'][0]['items'][0]
-      # location = venues['groups'][0]['items'][0]['location']
-      # "#{location[:lat]},#{location[:lng]}"
+      if venues then
+        venues['groups'][0]['items'][0]
+      elsif i < 3 then
+        find_fika location, i++
+      else
+        false
+      end
+
     end
 
 end
