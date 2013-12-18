@@ -32,7 +32,7 @@ class SessionController < ApplicationController
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
 
-    if midway_fika then
+    if midway_fika
       send_push @other_participant.uuid, "Your friend has joined.", {:type => 'join'}
       midway_fika_location = "#{midway_fika['location'][:lat]},#{midway_fika['location'][:lng]}"
       render json: {:session_id => @session.session_id, 
@@ -64,7 +64,7 @@ class SessionController < ApplicationController
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
 
-    if midway_fika then
+    if midway_fika
       midway_fika_location = "#{midway_fika['location'][:lat]},#{midway_fika['location'][:lng]}"
       render json: {:session_id => @session.session_id, 
         :location => midway_fika_location, :venue_name => midway_fika['name']}
@@ -116,9 +116,11 @@ class SessionController < ApplicationController
         where: {deviceToken: uuid}, 
         data: {
           alert: message,
-          "content-available": 1
+          content-available: 1
         }
       }
+
+      logger.debug body.to_json
 
       body[:data].merge!(data)
 
@@ -148,9 +150,9 @@ class SessionController < ApplicationController
       venues = client.search_venues(:ll => location, 
         :categoryId => foursquare['cafe_category_id'],
         :radius => foursquare['radius'])
-      if venues then
+      if venues
         venues['groups'][0]['items'][0]
-      elsif i < 3 then
+      elsif i < 3
         find_fika location, i++
       else
         false
