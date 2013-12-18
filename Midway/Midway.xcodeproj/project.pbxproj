@@ -50,6 +50,7 @@
 		D485E767184CB95D0082C780 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D485E766184CB95D0082C780 /* CoreLocation.framework */; };
 		D485E769184CB9660082C780 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D485E768184CB9660082C780 /* QuartzCore.framework */; };
 		D4A9D8F7184F28990095E745 /* CompassView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9D8F6184F28990095E745 /* CompassView.m */; };
+		D4CF1ACE1861F1C700B5FD6E /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CF1ACD1861F1C700B5FD6E /* button.png */; };
 		D961AD29185756130036B13C /* grabfikaheading.png in Resources */ = {isa = PBXBuildFile; fileRef = D961AD28185756130036B13C /* grabfikaheading.png */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		D485E768184CB9660082C780 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4A9D8F5184F28990095E745 /* CompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassView.h; sourceTree = "<group>"; };
 		D4A9D8F6184F28990095E745 /* CompassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassView.m; sourceTree = "<group>"; };
+		D4CF1ACD1861F1C700B5FD6E /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		D961AD28185756130036B13C /* grabfikaheading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grabfikaheading.png; path = ../grabfikaheading.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -259,6 +261,7 @@
 		D45AF30D1860A46E00BFD338 /* grabfika.assets */ = {
 			isa = PBXGroup;
 			children = (
+				D4CF1ACD1861F1C700B5FD6E /* button.png */,
 				D45AF31A1860DD0B00BFD338 /* icon.png */,
 				D45AF31B1860DD0B00BFD338 /* rectangle.button.png */,
 				D45AF31C1860DD0C00BFD338 /* background.png */,
@@ -366,6 +369,7 @@
 				0B05A0FF183F7C3600D697EF /* Images.xcassets in Resources */,
 				D961AD29185756130036B13C /* grabfikaheading.png in Resources */,
 				D45AF3181860A46E00BFD338 /* arrow.png in Resources */,
+				D4CF1ACE1861F1C700B5FD6E /* button.png in Resources */,
 				0B452880185C9CEF000DC569 /* parse_config.plist in Resources */,
 				D45AF3161860A46E00BFD338 /* 58.png in Resources */,
 				D45AF3151860A46E00BFD338 /* 120.png in Resources */,
