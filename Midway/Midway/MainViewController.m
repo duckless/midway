@@ -12,6 +12,7 @@
 
 - (IBAction)inviteAFriend:(id)sender;
 - (void) sendText;
+- (void) sendMail;
 
 @property ABRecordID personID;
 
@@ -48,6 +49,7 @@
 #pragma Text messaging
 
 - (void) sendText {
+ 
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if([MFMessageComposeViewController canSendText])
     {
@@ -57,6 +59,7 @@
         controller.topViewController.navigationController.navigationBar.tintColor = [UIColor colorWithRed:1.000 green:0.620 blue:0.000 alpha:1.000];
         [self presentViewController:controller animated:YES completion:nil];
     }
+    controller = nil;
     
 }
 
@@ -81,13 +84,37 @@
     }
 }
 
+#pragma Email
+
+- (void) sendMail {
+    
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:@"Grab a fika"];
+    SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
+    NSString *text = [[NSString alloc] initWithFormat:@"Hi! Want to grab a fika with me? <br/> <a href='grabafika://%@'>Tap here!</a> to use the Grab a Fika iOS app.", sharedSessionModel.sessionID];
+    [controller setMessageBody:text isHTML:YES];
+    if (controller) [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+        [self performSegueWithIdentifier:@"waitingScreen" sender:self];
+    }
+}
+
 
 #pragma IB actions
 
 - (IBAction)inviteAFriend:(id)sender {
     SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
     [sharedSessionModel retrieveSessionID];
-    [self sendText];
+    [self sendMail];
 }
 
 -(IBAction)unwindInvite:(UIStoryboardSegue *)sender
