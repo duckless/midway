@@ -7,6 +7,7 @@
 //
 #import "AddressBookUI/AddressBookUI.h"
 #import "SessionModel.h"
+#import "LocationManager.h"
 #import "Parse/PFInstallation.h"
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
@@ -32,7 +33,6 @@
 @property NSData *updateSessionData;
 
 @property CLLocation *targetLocation;
-@property NSString *venueName;
 
 - (void) retrieveSessionID;
 - (void) gatherInviteeInfo;
@@ -49,17 +49,7 @@
         _emails = [[NSMutableArray alloc] init];
         _phoneNumbers = [[NSMutableArray alloc] init];
         
-        // Location mananger setup
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        _locationManager.headingFilter = 1;
-        _locationManager.distanceFilter = kCLDistanceFilterNone;
-        _locationManager.delegate= self;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLocationUpdates) name:UIApplicationDidEnterBackgroundNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdatingSignificantLocation) name:UIApplicationDidEnterBackgroundNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdatingLocation) name:UIApplicationDidBecomeActiveNotification object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateSessionCompass" object:nil];
     }
     return self;
 }
@@ -144,8 +134,8 @@
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
-                          self.currentLocation.coordinate.latitude,
-                          self.currentLocation.coordinate.longitude,
+                          [[LocationManager shared] currentLocation].coordinate.latitude,
+                          [[LocationManager shared] currentLocation].coordinate.longitude,
                           nil];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
@@ -180,8 +170,8 @@
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
-                          self.currentLocation.coordinate.latitude,
-                          self.currentLocation.coordinate.longitude,
+                          [[LocationManager shared] currentLocation].coordinate.latitude,
+                          [[LocationManager shared] currentLocation].coordinate.longitude,
                           nil];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
@@ -217,7 +207,6 @@
     [self setTargetLocation: [[CLLocation alloc]
                               initWithLatitude:[latLong[0] doubleValue]
                               longitude:[latLong[1] doubleValue]]];
-    [self setVenueName:[json objectForKey:@"venue_name"]];
     
     [self setSessionID:sessionID];
 }
@@ -229,8 +218,8 @@
     NSString *token = [[PFInstallation currentInstallation] deviceToken];
     
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
-                          self.currentLocation.coordinate.latitude,
-                          self.currentLocation.coordinate.longitude,
+                          [[LocationManager shared] currentLocation].coordinate.latitude,
+                          [[LocationManager shared] currentLocation].coordinate.longitude,
                           nil];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
@@ -266,7 +255,6 @@
     [self setTargetLocation: [[CLLocation alloc]
                               initWithLatitude:[latLong[0] doubleValue]
                               longitude:[latLong[1] doubleValue]]];
-    [self setVenueName:[json objectForKey:@"venue_name"]];
 }
 
 #pragma connection helpers
@@ -305,97 +293,31 @@
     NSLog(@"Did Fail");
 }
 
-#pragma Location manager
-
-- (void) startUpdatingLocation
-{
-    NSLog(@"starting location services");
-    [self.locationManager startUpdatingHeading];
-    [self.locationManager startUpdatingLocation];
-}
-
--(void) startUpdatingSignificantLocation
-{
-    NSLog(@"starting significant");
-    [self.locationManager startMonitoringSignificantLocationChanges];
-}
-
--(void) stopLocationUpdates
-{
-    NSLog(@"Stopping location services");
-    [self.locationManager stopMonitoringSignificantLocationChanges];
-    [self.locationManager stopUpdatingLocation];
-    [self.locationManager stopUpdatingHeading];
-}
-
-- (CLHeading *) currentHeading
-{
-    return self.locationManager.heading;
-}
-
-- (CLLocation *) currentLocation
-{
-    return self.locationManager.location;
-}
-
--(double) currentLatitude
-{
-    return self.locationManager.location.coordinate.latitude;;
-}
-
--(double) currentLongitude
-{
-    return self.locationManager.location.coordinate.longitude;
-}
-
-
-#pragma location manager delegate
-
-- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    [self updateCompass];
-    //[self updateTargetLocation];
-}
-
-- (void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
-{
-    [self updateCompass];
-}
-
 #pragma helper?
 
 - (void) updateCompass
 {
     double heading = [self headingTowardTargetLocation];
-    double distance = [[self currentLocation] distanceFromLocation: self.targetLocation];
+    double distance = [[[LocationManager shared] currentLocation] distanceFromLocation: self.targetLocation];
     
     NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
     [userInfo setObject: [[NSNumber alloc] initWithDouble:heading] forKey:@"heading"];
     [userInfo setObject: [[NSNumber alloc] initWithDouble:distance] forKey:@"distance"];
-    @try {
-        [userInfo setObject:self.venueName forKey:@"venueName"];
-    }
-    @catch (NSException * e) {
-
-    }
-    @finally {
-
-    }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName: @"updateCompass" object:nil userInfo:userInfo];
 }
 
 -(double) headingTowardTargetLocation
 {
-    NSInteger trueAngle = [self currentHeading].trueHeading;
+    NSInteger trueAngle = [[LocationManager shared] currentHeading].trueHeading;
     
     // Current location
-    double lat1 = [self currentLatitude];
-    double lon1 = [self currentLongitude];
+    double lat1 = [[LocationManager shared] currentLatitude];
+    double lon1 = [[LocationManager shared] currentLongitude];
     
     // Target location
     float lat2 = self.targetLocation.coordinate.latitude;
     float lon2 = self.targetLocation.coordinate.longitude;
-    
     
     float headingToTarget = atan2(sin(lon2 - lon1) * cos(lat2), cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1));
     float headingInDegrees = radiansToDegrees(headingToTarget);
@@ -406,6 +328,14 @@
         compassHeading = compassHeading + 360;
     
     return degreesToRadians(compassHeading);
+}
+
+- (void) receiveNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:@"updateSessionCompass"])
+    {
+        [self updateCompass];
+    }
 }
 
 @end

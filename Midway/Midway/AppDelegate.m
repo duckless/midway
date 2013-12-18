@@ -73,7 +73,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     return YES;
 }
 
-
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         NSLog(@"OK Tapped. Join Session");
@@ -83,7 +82,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         NSLog(@"Cancel Tapped.");
     }
 }
-
 
 - (void) joinSession
 {
@@ -119,6 +117,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if ([[SessionModel sharedSessionModel] sessionID])
+    {
+        [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
+        [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

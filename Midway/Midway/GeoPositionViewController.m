@@ -5,7 +5,7 @@
 //  Created by Olof Bjerke on 2013-12-02.
 //  Copyright (c) 2013 duckless. All rights reserved.
 //
-#import "SessionModel.h"
+#import "LocationManager.h"
 #import "CompassView.h"
 #import "GeoPositionViewController.h"
 
@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *coordinates;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
 @property (weak, nonatomic) IBOutlet UILabel *venueNameLabel;
-@property CLLocationManager *locationManager;
+
 @property CompassView * compassView;
 @end
 
@@ -34,7 +34,8 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateCompass" object:nil];
 
-    [[SessionModel sharedSessionModel] startUpdatingLocation];
+    [[LocationManager shared] startUpdatingLocation];
+    
     self.compassView = [[CompassView alloc] initWithFrame:CGRectMake(40, 40, 240, 240)];
     [self.testView addSubview:self.compassView];
 }
