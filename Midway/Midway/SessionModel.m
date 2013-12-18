@@ -92,6 +92,7 @@
     [self setSessionIsActive:NO];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionID"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionIsActive"];
+    [self requestWithAction:@"cancel"];
 }
 
 #pragma Contact list
@@ -139,7 +140,7 @@
 // First connection to server
 // This message should contact the server in the background, retrieving a new session ID to be used when an email or SMS is sent
 - (void) retrieveSessionID {
-    NSDictionary *json = [self requestWithURL:@"http://midway.zbrox.org/session/start"];
+    NSDictionary *json = [self requestWithAction:@"start"];
     
     [self setSessionID: [json objectForKey:@"session_id"]];
 }
@@ -150,7 +151,7 @@
 // Seems to be working fine. Retrieves a café close by.
 -(void)acceptSessionWith:(NSString *)sessionID
 {
-    NSDictionary *json = [self requestWithURL:@"http://midway.zbrox.org/session/join"];
+    NSDictionary *json = [self requestWithAction:@"join"];
     
     NSString *responseLocation = [json objectForKey:@"location"];
     NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
@@ -162,8 +163,9 @@
     [self setSessionIsActive:YES];
 }
 
-- (NSDictionary*) requestWithURL: (NSString*)url
+- (NSDictionary*) requestWithAction: (NSString*)action
 {
+    NSString *url = [NSString stringWithFormat:@"http://midway.zbrox.org/session/%@", action];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
                                     initWithURL:[NSURL
                                                  URLWithString:url]];
@@ -212,7 +214,7 @@
 // Run this method to retrieve a new target location?
 // Method runs every x seconds to retrieve a new target café
 - (void) updateTargetLocation {
-    NSDictionary *json = [self requestWithURL:@"http://midway.zbrox.org/session/update"];
+    NSDictionary *json = [self requestWithAction:@"update"];
     NSString *responseLocation = [json objectForKey:@"location"];
     NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
     
