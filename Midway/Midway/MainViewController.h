@@ -7,8 +7,9 @@
 //
 
 #import "MessageUI/MFMessageComposeViewController.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface MainViewController : UIViewController <MFMessageComposeViewControllerDelegate>
+@interface MainViewController : UIViewController <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 -(IBAction)unwindInvite:(UIStoryboardSegue *)sender;
 
 @end
