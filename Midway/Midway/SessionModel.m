@@ -20,17 +20,7 @@
 @property NSMutableArray *emails;
 @property NSMutableArray *phoneNumbers;
 @property NSString *inviteeName;
-
-@property BOOL sessionIsActive;
-
-@property NSURLConnection *sessionIDconnection;
-@property NSData *sessionIDdata;
 @property NSTimeInterval timer;
-
-@property NSData *joinSessionData;
-
-@property NSURLConnection *updateSessionConnection;
-@property NSData *updateSessionData;
 
 @property CLLocation *targetLocation;
 
@@ -42,6 +32,7 @@
 @implementation SessionModel
 
 @synthesize sessionID = _sessionID;
+@synthesize sessionIsActive = _sessionIsActive;
 
 -(id) init {
     self = [super init];
@@ -61,6 +52,22 @@
         sharedSessionModel = [[self alloc] init];
     });
     return sharedSessionModel;
+}
+
+- (void) setSessionIsActive:(BOOL)sessionIsActive
+{
+    _sessionIsActive = sessionIsActive;
+    [[NSUserDefaults standardUserDefaults] setBool:_sessionIsActive forKey:@"sessionIsActive"];
+}
+
+- (BOOL) sessionIsActive
+{
+    if ( ! _sessionIsActive)
+    {
+        _sessionIsActive = [[NSUserDefaults standardUserDefaults] boolForKey:@"sessionIsActive"];
+    }
+    
+    return _sessionIsActive;
 }
 
 - (void) setSessionID:(NSString *)sessionID
@@ -83,6 +90,7 @@
 {
     [self setSessionID:nil];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionID"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionIsActive"];
 }
 
 #pragma Contact list
@@ -150,6 +158,7 @@
                               longitude:[latLong[1] doubleValue]]];
     
     [self setSessionID:sessionID];
+    [self setSessionIsActive:YES];
 }
 
 - (NSDictionary*) requestWithURL: (NSString*)url
@@ -205,10 +214,16 @@
     NSDictionary *json = [self requestWithURL:@"http://midway.zbrox.org/session/update"];
     NSString *responseLocation = [json objectForKey:@"location"];
     NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
-
+    
     [self setTargetLocation: [[CLLocation alloc]
                               initWithLatitude:[latLong[0] doubleValue]
                               longitude:[latLong[1] doubleValue]]];
+    if ([self targetLocation])
+    {
+        [self setSessionIsActive:YES];
+    } else {
+        [self setSessionIsActive:NO];
+    }
 }
 
 #pragma helper?

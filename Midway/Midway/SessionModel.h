@@ -12,6 +12,7 @@
 @interface SessionModel : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 
 @property (strong,nonatomic) NSString *sessionID;
+@property BOOL sessionIsActive;
 
 + (id)sharedSessionModel;
 
