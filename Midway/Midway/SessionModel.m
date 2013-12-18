@@ -94,7 +94,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionID"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionIsActive"];
     [self requestWithAction:@"cancel"];
-    [[Beacon shared] stopMonitoring];
+    //[[Beacon shared] stopMonitoring];
 }
 
 #pragma Contact list

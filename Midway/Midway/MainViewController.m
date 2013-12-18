@@ -90,6 +90,7 @@
     
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     controller.mailComposeDelegate = self;
+    controller.topViewController.navigationController.navigationBar.tintColor = [UIColor colorWithRed:1.000 green:0.620 blue:0.000 alpha:1.000];
     [controller setSubject:@"Grab a fika"];
     SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
     NSString *text = [[NSString alloc] initWithFormat:@"Hi! Want to grab a fika with me? <br/> <a href='grabafika://%@'>Tap here!</a> to use the Grab a Fika iOS app.", sharedSessionModel.sessionID];
