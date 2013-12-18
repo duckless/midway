@@ -5,6 +5,8 @@ MidwayServer::Application.routes.draw do
 
   post "session/update"
 
+  post "session/cancel"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

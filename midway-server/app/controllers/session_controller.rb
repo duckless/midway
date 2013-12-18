@@ -27,7 +27,8 @@ class SessionController < ApplicationController
       return
     end
 
-    @other_participant = Participant.find_by_session_id(@session.id)
+    @other_participant = Participant.where(['session_id = ? AND id != ?', 
+      @session.id, @participant.id]).first
     @session.participants << @participant
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
