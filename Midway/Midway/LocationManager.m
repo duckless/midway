@@ -98,6 +98,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     [self.locationManager startRangingBeaconsInRegion:[[Beacon shared] beaconRegion]];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"So you met?" message:@"Now grab your fika with your friend!" delegate:self cancelButtonTitle:@"Cance" otherButtonTitles:nil];
+    [alert show];
+    [self.locationManager stopMonitoringForRegion:[[Beacon shared] beaconRegion]];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {

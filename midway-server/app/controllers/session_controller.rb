@@ -27,8 +27,8 @@ class SessionController < ApplicationController
       return
     end
 
-    @other_participant = Participant.where(['session_id = ? AND id != ?', 
-      @session.id, @participant.id]).first
+    @other_participant = Participant.where(['session_id = ? AND uuid != ?', 
+      @session.id, @participant.uuid]).first
     @session.participants << @participant
 
     midway_fika = find_fika middle_pos(@other_participant.last_location, @participant.last_location)
@@ -57,8 +57,8 @@ class SessionController < ApplicationController
       return
     end
 
-    @other_participant = Participant.where(['session_id = ? AND id != ?', 
-      @session.id, @participant.id]).first
+    @other_participant = Participant.where(['session_id = ? AND uuid != ?', 
+      @session.id, @participant.uuid]).first
 
     @participant.last_location = params[:location]
     @participant.save
