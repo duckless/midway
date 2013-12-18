@@ -71,12 +71,12 @@
 
 - (NSString *) sessionID
 {
-    if (_sessionID)
-    {
-        return _sessionID;
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"sessionID"]) {
+        _sessionID = [[NSUserDefaults standardUserDefaults] stringForKey:@"sessionID"];
     } else {
-        return [[NSUserDefaults standardUserDefaults] stringForKey:@"sessionID"];
+        [self retrieveSessionID];
     }
+    return _sessionID;
 }
 
 - (void) clearSession
@@ -130,82 +130,18 @@
 // First connection to server
 // This message should contact the server in the background, retrieving a new session ID to be used when an email or SMS is sent
 - (void) retrieveSessionID {
-    NSLog(@"Retrieve a sessionID...");
-    NSString *token = [[PFInstallation currentInstallation] deviceToken];
-    
-    NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
-                          [[LocationManager shared] currentLocation].coordinate.latitude,
-                          [[LocationManager shared] currentLocation].coordinate.longitude,
-                          nil];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                    initWithURL:[NSURL
-                                                 URLWithString:@"http://midway.zbrox.org/session/start"]];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    NSString *postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@",
-                            token,
-                            location,
-                            nil];
-    
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
-   forHTTPHeaderField:@"Content-length"];
-    
-    [request setHTTPBody:[postString
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    self.sessionIDdata = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:_sessionIDdata
-                          options:kNilOptions
-                          error:&error];
+    NSDictionary *json = [self requestWithURL:@"http://midway.zbrox.org/session/start"];
     
     [self setSessionID: [json objectForKey:@"session_id"]];
 }
+
 
 // Second connection to server
 // This method is triggered when a user taps on a link with the grabafika:// URI scheme.
 // Seems to be working fine. Retrieves a café close by.
 -(void)acceptSessionWith:(NSString *)sessionID
 {
-    NSString *token = [[PFInstallation currentInstallation] deviceToken];
-    
-    NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
-                          [[LocationManager shared] currentLocation].coordinate.latitude,
-                          [[LocationManager shared] currentLocation].coordinate.longitude,
-                          nil];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                    initWithURL:[NSURL
-                                                 URLWithString:@"http://midway.zbrox.org/session/join"]];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    NSString *postString = [[NSString alloc] initWithFormat:@"session_id=%@&uuid=%@&location=%@",
-                            sessionID,
-                            token,
-                            location,
-                            nil];
-
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
-    forHTTPHeaderField:@"Content-length"];
-    
-    [request setHTTPBody:[postString
-                          dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    self.joinSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:self.joinSessionData
-                          options:kNilOptions
-                          error:&error];
+    NSDictionary *json = [self requestWithURL:@"http://midway.zbrox.org/session/join"];
     
     NSString *responseLocation = [json objectForKey:@"location"];
     NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
@@ -216,70 +152,63 @@
     [self setSessionID:sessionID];
 }
 
-
-// Run this method to retrieve a new target location?
-// Method runs every x seconds to retrieve a new target café
-- (void) updateTargetLocation {
-    NSString *token = [[PFInstallation currentInstallation] deviceToken];
+- (NSDictionary*) requestWithURL: (NSString*)url
+{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
+                                    initWithURL:[NSURL
+                                                 URLWithString:url]];
     
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *token = [[PFInstallation currentInstallation] deviceToken];
     NSString *location = [[NSString alloc] initWithFormat:@"%f,%f",
                           [[LocationManager shared] currentLocation].coordinate.latitude,
                           [[LocationManager shared] currentLocation].coordinate.longitude,
                           nil];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                    initWithURL:[NSURL
-                                                 URLWithString:@"http://midway.zbrox.org/session/update"]];
+    NSString *postString;
+    if (_sessionID)
+    {
+        postString = [[NSString alloc] initWithFormat:@"session_id=%@&uuid=%@&location=%@",
+                                _sessionID,
+                                token,
+                                location,
+                                nil];
+    } else {
+        postString = [[NSString alloc] initWithFormat:@"uuid=%@&location=%@",
+                                token,
+                                location,
+                                nil];
+    }
     
-    [request setHTTPMethod:@"POST"];
     
-    NSString *postString = [[NSString alloc] initWithFormat:@"session_id=%@&uuid=%@&location=%@",
-                            [self sessionID],
-                            token,
-                            location,
-                            nil];
-
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postString length]]
    forHTTPHeaderField:@"Content-length"];
     
     [request setHTTPBody:[postString
                           dataUsingEncoding:NSUTF8StringEncoding]];
     
-    
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSError *error = [[NSError alloc] init];
-    _updateSessionData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSData *receivedData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:_updateSessionData
+    return [NSJSONSerialization
+                          JSONObjectWithData:receivedData
                           options:kNilOptions
                           error:&error];
+}
+
+
+// Run this method to retrieve a new target location?
+// Method runs every x seconds to retrieve a new target café
+- (void) updateTargetLocation {
+    NSDictionary *json = [self requestWithURL:@"http://midway.zbrox.org/session/update"];
     NSString *responseLocation = [json objectForKey:@"location"];
     NSArray *latLong = [responseLocation componentsSeparatedByString:@","];
 
     [self setTargetLocation: [[CLLocation alloc]
                               initWithLatitude:[latLong[0] doubleValue]
                               longitude:[latLong[1] doubleValue]]];
-}
-
-#pragma connection helpers
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if(!data.length)
-        return;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-}
-
-- (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"Did Receive Response");
-}
-
-- (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
-{
-    NSLog(@"Did Fail");
 }
 
 #pragma helper?

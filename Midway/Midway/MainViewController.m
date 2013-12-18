@@ -63,9 +63,6 @@
 #pragma IB actions
 
 - (IBAction)inviteAFriend:(id)sender {
-    SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
-    [sharedSessionModel retrieveSessionID];
-    
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
     picker.topViewController.navigationController.navigationBar.tintColor = [UIColor colorWithRed:1.000 green:0.620 blue:0.000 alpha:1.000];
