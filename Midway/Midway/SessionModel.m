@@ -158,6 +158,7 @@
 // Seems to be working fine. Retrieves a café close by.
 -(void)acceptSessionWith:(NSString *)sessionID
 {
+    [self setSessionID:sessionID];
     NSDictionary *json = [self requestWithAction:@"join"];
     
     NSString *responseLocation = [json objectForKey:@"location"];
@@ -166,7 +167,6 @@
                               initWithLatitude:[latLong[0] doubleValue]
                               longitude:[latLong[1] doubleValue]]];
     
-    [self setSessionID:sessionID];
     [self setSessionIsActive:YES];
 }
 

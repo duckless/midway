@@ -87,6 +87,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 - (void) joinSession
 {
+    NSLog(self.url);
     [[SessionModel sharedSessionModel] acceptSessionWith:self.url];
     [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
     [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
