@@ -48,8 +48,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [PFPush handlePush:userInfo];
     
     [[SessionModel sharedSessionModel] updateTargetLocation];
-    [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
-    [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
+    [self.window.rootViewController dismissViewControllerAnimated:NO completion: ^{
+       [self.window.rootViewController performSegueWithIdentifier:@"geoPosition" sender:self];
+    }];
+
 }
 
 
