@@ -19,4 +19,6 @@
 @property (strong, nonatomic) CBPeripheralManager *peripheralManager;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
+- (void) startBeaming;
+
 @end

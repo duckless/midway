@@ -148,7 +148,7 @@
     
     if (_sessionID)
     {
-        [[Beacon shared] startMonitoring];
+        [[Beacon shared] startBeaming];
     }
 }
 

@@ -96,6 +96,11 @@
 
 #pragma ibeacon
 
+- (void)startMonitoringForRegion:(CLRegion *)region
+{
+    [self.locationManager startMonitoringForRegion:region];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     [self.locationManager startRangingBeaconsInRegion:[[Beacon shared] beaconRegion]];
     
