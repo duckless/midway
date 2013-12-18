@@ -43,6 +43,11 @@
     [[LocationManager shared] startMonitoringForRegion:self.beaconRegion];
 }
 
+- (void) stopMonitoring
+{
+    [[LocationManager shared] stopMonitoringForRegion:self.beaconRegion];
+}
+
 - (IBAction)transmitBeacon:(UIButton *)sender {
     self.beaconPeripheralData = [self.beaconRegion peripheralDataWithMeasuredPower:nil];
     self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self

@@ -8,6 +8,7 @@
 #import "AddressBookUI/AddressBookUI.h"
 #import "SessionModel.h"
 #import "LocationManager.h"
+#import "Beacon.h"
 #import "Parse/PFInstallation.h"
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
@@ -93,6 +94,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionID"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sessionIsActive"];
     [self requestWithAction:@"cancel"];
+    [[Beacon shared] stopMonitoring];
 }
 
 #pragma Contact list
@@ -143,6 +145,11 @@
     NSDictionary *json = [self requestWithAction:@"start"];
     
     [self setSessionID: [json objectForKey:@"session_id"]];
+    
+    if (_sessionID)
+    {
+        [[Beacon shared] startMonitoring];
+    }
 }
 
 
