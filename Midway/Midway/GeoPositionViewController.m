@@ -32,7 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Come on!!!!");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateCompass" object:nil];
 
     [[SessionModel sharedSessionModel] startUpdatingLocation];
@@ -75,10 +74,9 @@
 
         }
         [self.compassView updateCompassWithHeading: heading];
-        self.distance.text = [[NSString alloc] initWithFormat:@"%f", distanceLeft];
+        self.distance.text = [[NSString alloc] initWithFormat:@"%.0fm", distanceLeft];
         self.venueNameLabel.text = venueName;
     }
 }
-
 
 @end

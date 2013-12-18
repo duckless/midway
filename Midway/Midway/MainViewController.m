@@ -36,25 +36,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Flipside View
 
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
+    self.personID = ABRecordGetRecordID(person);
+    [[SessionModel sharedSessionModel] startSessionWith:ABRecordGetRecordID(person)];
+    [self performSegueWithIdentifier:@"inviteMethods" sender:self];
+    return NO;
+}
+
+-(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    
+    return NO;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"prepare for segue");
-    if ([[segue identifier] isEqualToString:@"showAlternate"]) {
-        [[segue destinationViewController] setDelegate:self];
-    }
     if([[segue identifier] isEqualToString:@"inviteMethods"]) {
         UINavigationController  *navController = (UINavigationController*)[segue destinationViewController];
         InviteMethodsViewController *targetController = (InviteMethodsViewController *) [[navController viewControllers] objectAtIndex: 0];
         [targetController setPersonID:self.personID];
     }
 }
+
+#pragma IB actions
 
 - (IBAction)inviteAFriend:(id)sender {
     SessionModel * sharedSessionModel = [SessionModel sharedSessionModel];
@@ -71,20 +77,6 @@
     
 }
 
-
--(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-    
-    [self dismissViewControllerAnimated:NO completion:nil];
-    self.personID = ABRecordGetRecordID(person);
-    [[SessionModel sharedSessionModel] startSessionWith:ABRecordGetRecordID(person)];
-    [self performSegueWithIdentifier:@"inviteMethods" sender:self];
-    return NO;
-}
-
--(BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-    
-    return NO;
-}
 
 -(IBAction)unwindInvite:(UIStoryboardSegue *)sender
 {

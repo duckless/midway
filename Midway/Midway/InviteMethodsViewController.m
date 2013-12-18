@@ -76,8 +76,8 @@
     [controller setSubject:@"Grab a fika"];
     [controller setToRecipients: recipents];
     SessionModel *sharedSessionModel = [SessionModel sharedSessionModel];
-    NSString *text = [[NSString alloc] initWithFormat:@"Hi! Want to grab a fika with me? grabafika://%@", sharedSessionModel.sessionID ];
-    [controller setMessageBody:text isHTML:NO];
+    NSString *text = [[NSString alloc] initWithFormat:@"Hi! Want to grab a fika with me? <br/> <a href='grabafika://%@'>Tap here!</a> to use the Grab a Fika iOS app.", sharedSessionModel.sessionID];
+    [controller setMessageBody:text isHTML:YES];
     if (controller) [self presentViewController:controller animated:YES completion:nil];
 }
 
